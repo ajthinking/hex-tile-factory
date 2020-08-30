@@ -42,7 +42,7 @@ export default {
                 fillPatternScale: {
                     x: 0.4,
                     y: 0.4
-                },                
+                },           
             })
         },
 
@@ -72,7 +72,7 @@ export default {
         indexToColor(index) {
             let colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C']
             return colors[index];
-        }
+        },
     },
     
     created() {

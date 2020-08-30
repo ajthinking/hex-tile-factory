@@ -19,4 +19,8 @@ export class Line {
             return [...result, ...point.asArray()]
         },[])
     }
+
+    length() {
+        return this.points.length
+    }
 }

@@ -25527,6 +25527,11 @@ var Line = /*#__PURE__*/function () {
         return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
       }, []);
     }
+  }, {
+    key: "length",
+    value: function length() {
+      return this.points.length;
+    }
   }]);
 
   return Line;
@@ -25768,11 +25773,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tile", function() { return Tile; });
 /* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
 /* harmony import */ var _SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SectionFactory */ "./resources/js/hex-tile-factory/SectionFactory.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -25798,14 +25805,37 @@ var Tile = /*#__PURE__*/function () {
     }
   }, {
     key: "randomize",
-    value: function randomize() {// for each section
+    value: function randomize() {
+      var _this = this;
+
+      [0, 1, 2, 3, 4, 5, 6, 7].forEach(function (iteration) {
+        _this.sections.forEach(function (section) {
+          section.innerBorder.points.forEach;
+
+          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
+            var point = section.innerBorder.points[i];
+            point.x = point.x + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
+            point.y = point.y + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
+          }
+        });
+
+        _this.densify();
+      });
+      console.log(this.sections[0].innerBorder); // for each section
       // for each non fixed point
       // randomize
       // densify
     }
   }, {
     key: "densify",
-    value: function densify() {}
+    value: function densify() {
+      console.log("CALLED");
+      this.sections.forEach(function (section) {
+        for (var i = section.innerBorder.length() - 1; i > 0; i = i - 2) {
+          section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
+        }
+      });
+    }
   }], [{
     key: "fromEncoded",
     value: function fromEncoded(encoded) {
