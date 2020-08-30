@@ -124,7 +124,7 @@ __webpack_require__.r(__webpack_exports__);
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
-        draggable: true,
+        //draggable: true,
         offsetX: -window.innerWidth / 2,
         offsetY: -window.innerHeight / 2
       });
@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
           stroke: 'black',
           strokeWidth: 1,
           closed: true,
-          draggable: true,
+          //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2
         });
@@ -25369,7 +25369,7 @@ var HexagonFactory = /*#__PURE__*/function () {
       for (var i = 0; i < 6; i++) {
         var _config$radius, _config$offsetX, _config$offsetY;
 
-        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 100;
+        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 200;
         var offsetX = (_config$offsetX = config.offsetX) !== null && _config$offsetX !== void 0 ? _config$offsetX : 0;
         var offsetY = (_config$offsetY = config.offsetY) !== null && _config$offsetY !== void 0 ? _config$offsetY : 0;
         var startX = Math.cos(radius / 2);
@@ -25390,7 +25390,7 @@ var HexagonFactory = /*#__PURE__*/function () {
       for (var i = start; i <= end; i++) {
         var _config$radius2, _config$offsetX2, _config$offsetY2;
 
-        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 100;
+        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 200;
         var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
         var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
         var startX = Math.cos(radius / 2);

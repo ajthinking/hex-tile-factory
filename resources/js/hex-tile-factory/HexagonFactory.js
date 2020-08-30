@@ -8,7 +8,7 @@ export class HexagonFactory {
         let line = new Line();
 
         for(let i = 0; i < 6; i++) {
-            let radius = config.radius ?? 100
+            let radius = config.radius ?? 200
             let offsetX = config.offsetX ?? 0
             let offsetY = config.offsetY ?? 0
             let startX = Math.cos(radius/2)
@@ -29,7 +29,7 @@ export class HexagonFactory {
         let config = {};
 
         for(let i = start; i <= end; i++) {
-            let radius = config.radius ?? 100
+            let radius = config.radius ?? 200
             let offsetX = config.offsetX ?? 0
             let offsetY = config.offsetY ?? 0
             let startX = Math.cos(radius/2)

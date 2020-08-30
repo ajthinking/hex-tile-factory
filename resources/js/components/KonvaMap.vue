@@ -30,7 +30,7 @@ export default {
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
-                draggable: true,
+                //draggable: true,
                 offsetX: -window.innerWidth/2,
                 offsetY: -window.innerHeight/2,
             })
@@ -44,7 +44,7 @@ export default {
                     stroke: 'black',
                     strokeWidth: 1,
                     closed: true,
-                    draggable: true,
+                    //draggable: true,
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
                 })
