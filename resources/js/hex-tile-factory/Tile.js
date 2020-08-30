@@ -1,17 +1,21 @@
+import { HexagonFactory} from './HexagonFactory'
+import { SectionFactory} from './SectionFactory'
+
 export class Tile {    
-    outerBorder
+    constructor(options) {
+        this.encoded = options.encoded
 
-    sections = []
+        this.backgroundHexagon = HexagonFactory.make()
 
-    constructor(config) {
-        // from config.encoded
-            // create base sections
-            // create protected zones
-            // randomize
+        this.sections = SectionFactory.make(this.encoded)
     }
 
-    fromEncoded(encoded) {
-        this.encoded = encoded
+    static fromEncoded(encoded) {
+        let instance = new Tile({
+            encoded
+        })
+
+        return instance
     }
 
     hasSections() {

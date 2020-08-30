@@ -29,6 +29,6 @@ export class SectionFactory {
             }
         }
 
-        return sections;
+        return sections.filter(section => section.type != 0);
     }
 }

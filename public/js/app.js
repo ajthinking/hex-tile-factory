@@ -95,8 +95,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _hex_tile_factory_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
-/* harmony import */ var _hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/SectionFactory */ "./resources/js/hex-tile-factory/SectionFactory.js");
+/* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./resources/js/hex-tile-factory/Tile.js");
 //
 //
 //
@@ -106,9 +105,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -117,29 +113,44 @@ __webpack_require__.r(__webpack_exports__);
         width: window.innerWidth,
         height: window.innerHeight
       },
-      hexagon: new Konva.Line({
-        points: _hex_tile_factory_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make({
-          offsetX: 0,
-          offsetY: 0
-        }).asArray(),
-        fill: 'gray',
-        stroke: 'black',
-        strokeWidth: 3,
-        closed: true,
-        draggable: true
-      }),
-      section: new Konva.Line({
-        points: _hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make('110000')[0].asLine().asArray(),
-        fill: 'red',
-        stroke: 'black',
-        strokeWidth: 3,
-        closed: true,
-        draggable: true
-      })
+      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200')
     };
   },
-  mounted: function mounted() {
-    console.log(_hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make('110000')[0].asLine().asArray());
+  computed: {
+    backgroundHexagon: function backgroundHexagon() {
+      return new Konva.Line({
+        points: this.tile.backgroundHexagon.asArray(),
+        fill: 'LightBlue',
+        stroke: 'black',
+        strokeWidth: 1,
+        closed: true,
+        draggable: true,
+        offsetX: -window.innerWidth / 2,
+        offsetY: -window.innerHeight / 2
+      });
+    },
+    sections: function sections() {
+      var _this = this;
+
+      return this.tile.sections.map(function (section) {
+        return new Konva.Line({
+          points: section.asLine().asArray(),
+          fill: _this.indexToColor(section.type),
+          stroke: 'black',
+          strokeWidth: 1,
+          closed: true,
+          draggable: true,
+          offsetX: -window.innerWidth / 2,
+          offsetY: -window.innerHeight / 2
+        });
+      });
+    }
+  },
+  methods: {
+    indexToColor: function indexToColor(index) {
+      var colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C'];
+      return colors[index];
+    }
   }
 });
 
@@ -13046,11 +13057,13 @@ var render = function() {
       _c(
         "v-layer",
         [
-          _c("v-line", { attrs: { config: _vm.hexagon } }),
+          _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
           _vm._v(" "),
-          _c("v-line", { attrs: { config: _vm.section } })
+          _vm._l(_vm.sections, function(section, index) {
+            return _c("v-line", { key: index, attrs: { config: section } })
+          })
         ],
-        1
+        2
       )
     ],
     1
@@ -25573,16 +25586,25 @@ var Section = /*#__PURE__*/function () {
     _classCallCheck(this, Section);
 
     this.options = options;
-    this.border = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(options.start, options.end);
-    this.helperPoint = new _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].centerPoint();
+    this.type = options.type;
+    this.start = options.start;
+    this.end = options.end;
+    this.length = this.end - this.start + 1;
+    this.border = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(options.start, options.end); //this.helperPoint = new HexagonFactory.centerPoint()
+
+    this.helperPoint = this.getHelperPoint();
   }
 
   _createClass(Section, [{
     key: "asLine",
     value: function asLine() {
-      console.log("HELPER POINT", this.helperPoint);
       return this.border.addPoint(this.helperPoint);
-      return this.border.addPoint(this.helperPoint);
+    }
+  }, {
+    key: "getHelperPoint",
+    value: function getHelperPoint() {
+      var angle = this.start * Math.PI / 3 + this.length * Math.PI / 6 - Math.PI / 6;
+      return new _Point__WEBPACK_IMPORTED_MODULE_1__["Point"](30 * Math.cos(angle), 30 * Math.sin(angle));
     }
   }]);
 
@@ -25651,11 +25673,67 @@ var SectionFactory = /*#__PURE__*/function () {
         }
       }
 
-      return sections;
+      return sections.filter(function (section) {
+        return section.type != 0;
+      });
     }
   }]);
 
   return SectionFactory;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/hex-tile-factory/Tile.js":
+/*!***********************************************!*\
+  !*** ./resources/js/hex-tile-factory/Tile.js ***!
+  \***********************************************/
+/*! exports provided: Tile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tile", function() { return Tile; });
+/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SectionFactory */ "./resources/js/hex-tile-factory/SectionFactory.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Tile = /*#__PURE__*/function () {
+  function Tile(options) {
+    _classCallCheck(this, Tile);
+
+    this.encoded = options.encoded;
+    this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
+    this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.encoded);
+  }
+
+  _createClass(Tile, [{
+    key: "hasSections",
+    value: function hasSections() {
+      return true;
+    }
+  }, {
+    key: "isSixSided",
+    value: function isSixSided() {
+      return false;
+    }
+  }], [{
+    key: "fromEncoded",
+    value: function fromEncoded(encoded) {
+      var instance = new Tile({
+        encoded: encoded
+      });
+      return instance;
+    }
+  }]);
+
+  return Tile;
 }();
 
 /***/ }),
