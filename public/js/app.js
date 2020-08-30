@@ -96,6 +96,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/SectionFactory */ "./resources/js/hex-tile-factory/SectionFactory.js");
+//
 //
 //
 //
@@ -107,6 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -116,16 +119,27 @@ __webpack_require__.r(__webpack_exports__);
       },
       hexagon: new Konva.Line({
         points: _hex_tile_factory_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make({
-          offsetX: 200,
-          offsetY: 200
+          offsetX: 0,
+          offsetY: 0
         }).asArray(),
         fill: 'gray',
         stroke: 'black',
         strokeWidth: 3,
         closed: true,
         draggable: true
+      }),
+      section: new Konva.Line({
+        points: _hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make('110000')[0].asLine().asArray(),
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 3,
+        closed: true,
+        draggable: true
       })
     };
+  },
+  mounted: function mounted() {
+    console.log(_hex_tile_factory_SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make('110000')[0].asLine().asArray());
   }
 });
 
@@ -13028,7 +13042,17 @@ var render = function() {
   return _c(
     "v-stage",
     { staticClass: "bg-gray-400 w-full", attrs: { config: _vm.configKonva } },
-    [_c("v-layer", [_c("v-line", { attrs: { config: _vm.hexagon } })], 1)],
+    [
+      _c(
+        "v-layer",
+        [
+          _c("v-line", { attrs: { config: _vm.hexagon } }),
+          _vm._v(" "),
+          _c("v-line", { attrs: { config: _vm.section } })
+        ],
+        1
+      )
+    ],
     1
   )
 }
@@ -25336,12 +25360,44 @@ var HexagonFactory = /*#__PURE__*/function () {
         var offsetX = (_config$offsetX = config.offsetX) !== null && _config$offsetX !== void 0 ? _config$offsetX : 0;
         var offsetY = (_config$offsetY = config.offsetY) !== null && _config$offsetY !== void 0 ? _config$offsetY : 0;
         var startX = Math.cos(radius / 2);
-        var startY = -0.5 * radius;
+        var startY = 0; //-0.5 * radius
+
         var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
         line.addPoint(point);
       }
 
       return new _Polygon__WEBPACK_IMPORTED_MODULE_0__["Polygon"](line);
+    }
+  }, {
+    key: "borderBetween",
+    value: function borderBetween(start, end) {
+      var line = new _Line__WEBPACK_IMPORTED_MODULE_1__["Line"]();
+      var config = {};
+
+      for (var i = start; i <= end; i++) {
+        var _config$radius2, _config$offsetX2, _config$offsetY2;
+
+        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 100;
+        var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
+        var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
+        var startX = Math.cos(radius / 2);
+        var startY = 0; //-0.5 * radius
+
+        var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
+        line.addPoint(point);
+      }
+
+      return line;
+    }
+  }, {
+    key: "centerPoint",
+    value: function centerPoint() {
+      var _config$offsetX3, _config$offsetY3;
+
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var offsetX = (_config$offsetX3 = config.offsetX) !== null && _config$offsetX3 !== void 0 ? _config$offsetX3 : 0;
+      var offsetY = (_config$offsetY3 = config.offsetY) !== null && _config$offsetY3 !== void 0 ? _config$offsetY3 : 0;
+      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](offsetX, offsetY);
     }
   }]);
 
@@ -25360,6 +25416,18 @@ var HexagonFactory = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Line", function() { return Line; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -25379,6 +25447,14 @@ var Line = /*#__PURE__*/function () {
     key: "addPoint",
     value: function addPoint(point) {
       this.points.push(point);
+      return this;
+    }
+  }, {
+    key: "asArray",
+    value: function asArray() {
+      return this.points.reduce(function (result, point) {
+        return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
+      }, []);
     }
   }]);
 
@@ -25461,16 +25537,125 @@ var Polygon = /*#__PURE__*/function () {
   _createClass(Polygon, [{
     key: "asArray",
     value: function asArray() {
-      var r = this.line.points.reduce(function (result, point) {
+      return this.line.points.reduce(function (result, point) {
         return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
       }, []);
-      console.log(r); // console.log("Har linjen punkter?", this.line.points) JA
-
-      return r;
     }
   }]);
 
   return Polygon;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/hex-tile-factory/Section.js":
+/*!**************************************************!*\
+  !*** ./resources/js/hex-tile-factory/Section.js ***!
+  \**************************************************/
+/*! exports provided: Section */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Section", function() { return Section; });
+/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Section = /*#__PURE__*/function () {
+  function Section(options) {
+    _classCallCheck(this, Section);
+
+    this.options = options;
+    this.border = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(options.start, options.end);
+    this.helperPoint = new _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].centerPoint();
+  }
+
+  _createClass(Section, [{
+    key: "asLine",
+    value: function asLine() {
+      console.log("HELPER POINT", this.helperPoint);
+      return this.border.addPoint(this.helperPoint);
+      return this.border.addPoint(this.helperPoint);
+    }
+  }]);
+
+  return Section;
+}();
+
+/***/ }),
+
+/***/ "./resources/js/hex-tile-factory/SectionFactory.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/hex-tile-factory/SectionFactory.js ***!
+  \*********************************************************/
+/*! exports provided: SectionFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SectionFactory", function() { return SectionFactory; });
+/* harmony import */ var _Polygon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Polygon */ "./resources/js/hex-tile-factory/Polygon.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
+/* harmony import */ var _Section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Section */ "./resources/js/hex-tile-factory/Section.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var SectionFactory = /*#__PURE__*/function () {
+  function SectionFactory() {
+    _classCallCheck(this, SectionFactory);
+  }
+
+  _createClass(SectionFactory, null, [{
+    key: "make",
+    value: function make(encoded) {
+      // Assume sections does not intersect array end-to-start
+      var sides = encoded.split('').map(function (str) {
+        return parseInt(str);
+      });
+      var sections = [];
+      var currentType = sides[0];
+      var currentStart = 0;
+
+      for (var i = 0; i < 6; i++) {
+        if (sides[i] !== currentType) {
+          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
+            type: currentType,
+            start: currentStart,
+            end: i
+          }));
+          currentType = sides[i];
+          currentStart = i;
+        }
+
+        if (i == 5) {
+          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
+            type: currentType,
+            start: currentStart,
+            end: 6
+          }));
+        }
+      }
+
+      return sections;
+    }
+  }]);
+
+  return SectionFactory;
 }();
 
 /***/ }),

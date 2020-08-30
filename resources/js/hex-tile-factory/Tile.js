@@ -1,12 +1,4 @@
-// What is a Tile?
-// A set of geometries
-//
-// {outerBorder Polygon, sections []}
-//
-//
-export class Tile {
-    encoded
-    
+export class Tile {    
     outerBorder
 
     sections = []
