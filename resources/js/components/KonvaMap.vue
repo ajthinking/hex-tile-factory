@@ -1,8 +1,10 @@
 <template>
   <v-stage class="bg-gray-400 w-full"  :config="configKonva">
     <v-layer>
-      <v-line :config="backgroundHexagon"></v-line>
-      <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+      </v-group>
     </v-layer>
   </v-stage>
 </template>
