@@ -111,15 +111,15 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       configKonva: {
-        width: 1000,
-        height: 500
+        width: window.innerWidth,
+        height: window.innerHeight
       },
       hexagon: new Konva.Line({
         points: _hex_tile_factory_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make({
           offsetX: 200,
           offsetY: 200
         }).asArray(),
-        fill: 'green',
+        fill: 'gray',
         stroke: 'black',
         strokeWidth: 3,
         closed: true,
@@ -13027,7 +13027,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-stage",
-    { staticClass: "bg-indigo-500 w-full", attrs: { config: _vm.configKonva } },
+    { staticClass: "bg-gray-400 w-full", attrs: { config: _vm.configKonva } },
     [_c("v-layer", [_c("v-line", { attrs: { config: _vm.hexagon } })], 1)],
     1
   )

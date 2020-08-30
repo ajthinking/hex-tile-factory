@@ -1,5 +1,5 @@
 <template>
-  <v-stage class="bg-indigo-500 w-full"  :config="configKonva">
+  <v-stage class="bg-gray-400 w-full"  :config="configKonva">
     <v-layer>
       <!--<v-circle :config="configCircle"></v-circle>
       <v-line :config="configPolygon"></v-line>-->
@@ -16,12 +16,12 @@ export default {
   data() {
     return {
       configKonva: {
-        width: 1000,
-        height: 500
+        width: window.innerWidth,
+        height: window.innerHeight
       },
       hexagon: new Konva.Line({
         points: HexagonFactory.make({ offsetX: 200, offsetY: 200}).asArray(),
-        fill: 'green',
+        fill: 'gray',
         stroke: 'black',
         strokeWidth: 3,
         closed: true,
