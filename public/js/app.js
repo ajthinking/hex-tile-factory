@@ -113,20 +113,28 @@ __webpack_require__.r(__webpack_exports__);
         width: window.innerWidth,
         height: window.innerHeight
       },
-      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200')
+      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200'),
+      grass: false,
+      water: false
     };
   },
   computed: {
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
         points: this.tile.backgroundHexagon.asArray(),
-        fill: 'LightBlue',
+        //fill: 'LightBlue',
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
         //draggable: true,
         offsetX: -window.innerWidth / 2,
-        offsetY: -window.innerHeight / 2
+        offsetY: -window.innerHeight / 2,
+        fillPatternImage: this.water,
+        //fillPatternRepeat: 'no-repeat',
+        fillPatternScale: {
+          x: 0.4,
+          y: 0.4
+        }
       });
     },
     sections: function sections() {
@@ -135,13 +143,19 @@ __webpack_require__.r(__webpack_exports__);
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
-          fill: _this.indexToColor(section.type),
+          //fill: this.indexToColor(section.type),
           stroke: 'black',
           strokeWidth: 1,
           closed: true,
           //draggable: true,
           offsetX: -window.innerWidth / 2,
-          offsetY: -window.innerHeight / 2
+          offsetY: -window.innerHeight / 2,
+          fillPatternImage: _this.grass,
+          //fillPatternRepeat: 'no-repeat',
+          fillPatternScale: {
+            x: 0.1,
+            y: 0.1
+          }
         });
       });
     }
@@ -151,6 +165,23 @@ __webpack_require__.r(__webpack_exports__);
       var colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C'];
       return colors[index];
     }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    var grass = new window.Image();
+    grass.src = "/images/grass.jpg";
+
+    grass.onload = function () {
+      _this2.grass = grass;
+    };
+
+    var water = new window.Image();
+    water.src = "/images/water.jpg";
+
+    water.onload = function () {
+      _this2.water = water;
+    };
   }
 });
 
@@ -25369,7 +25400,7 @@ var HexagonFactory = /*#__PURE__*/function () {
       for (var i = 0; i < 6; i++) {
         var _config$radius, _config$offsetX, _config$offsetY;
 
-        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 200;
+        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 100;
         var offsetX = (_config$offsetX = config.offsetX) !== null && _config$offsetX !== void 0 ? _config$offsetX : 0;
         var offsetY = (_config$offsetY = config.offsetY) !== null && _config$offsetY !== void 0 ? _config$offsetY : 0;
         var startX = Math.cos(radius / 2);
@@ -25390,7 +25421,7 @@ var HexagonFactory = /*#__PURE__*/function () {
       for (var i = start; i <= end; i++) {
         var _config$radius2, _config$offsetX2, _config$offsetY2;
 
-        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 200;
+        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 100;
         var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
         var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
         var startX = Math.cos(radius / 2);
