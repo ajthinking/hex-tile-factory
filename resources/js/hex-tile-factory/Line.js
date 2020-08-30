@@ -8,6 +8,11 @@ export class Line {
         return this
     }
 
+    addLine(line) {
+        this.points = [...this.points, ...line.points]
+        return this
+    }    
+
     asArray()
     {
         return this.points.reduce((result, point) => {

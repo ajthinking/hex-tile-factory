@@ -1,28 +1,43 @@
 import { HexagonFactory } from "./HexagonFactory"
 import { Point } from "./Point"
+import { Line } from "./Line"
 
 export class Section {
     constructor(options) {
-        this.options = options
         this.type = options.type
         this.start = options.start
         this.end = options.end
-        this.length = this.end-this.start + 1
-        this.border = HexagonFactory.borderBetween(options.start, options.end)
-        //this.helperPoint = new HexagonFactory.centerPoint()
-        this.helperPoint = this.getHelperPoint()
+
+        this.outerBorder = HexagonFactory.borderBetween(this.start, this.end)
+        this.innerBorder = this.getInitialInnerBorder()
     }
 
     asLine() {
-        return this.border.addPoint(this.helperPoint)
+        return this.outerBorder.addLine(this.innerBorder)
     }
 
     getHelperPoint() {
-        let angle = this.start*Math.PI/3 + this.length*Math.PI/6 - Math.PI/6
-
+        let angle = this.start*Math.PI/3 + this.length()*Math.PI/6 - Math.PI/6
+        
         return new Point(
             30*Math.cos(angle),
-            30*Math.sin(angle),
+            30*Math.sin(angle)
         )
+    }
+
+    id() {
+        return 'type_' + this.type + '_from_' + this.start + '_to_' + this.end
+    }
+
+    getInitialInnerBorder() {
+        return new Line([
+            HexagonFactory.pointAtIndex(this.end),
+            this.getHelperPoint(),
+            HexagonFactory.pointAtIndex(this.start)
+        ])
+    }
+    
+    length() {
+        return this.end-this.start + 1
     }
 }

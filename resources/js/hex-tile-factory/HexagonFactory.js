@@ -33,7 +33,7 @@ export class HexagonFactory {
             let offsetX = config.offsetX ?? 0
             let offsetY = config.offsetY ?? 0
             let startX = Math.cos(radius/2)
-            let startY = 0//-0.5 * radius
+            let startY = 0
 
             let point = new Point(
                 startX + radius * Math.cos(i*Math.PI/3) + offsetX,
@@ -44,6 +44,20 @@ export class HexagonFactory {
         }
 
         return line;
+    }
+
+    static pointAtIndex(i) {
+        let config = {}
+        let radius = config.radius ?? 100
+        let offsetX = config.offsetX ?? 0
+        let offsetY = config.offsetY ?? 0
+        let startX = Math.cos(radius/2)
+        let startY = 0
+
+        return new Point(
+            startX + radius * Math.cos(i*Math.PI/3) + offsetX,
+            startY + radius * Math.sin(i*Math.PI/3) + offsetY,
+        )
     }
 
     static centerPoint(config = {}) {

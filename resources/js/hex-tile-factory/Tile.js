@@ -8,6 +8,8 @@ export class Tile {
         this.backgroundHexagon = HexagonFactory.make()
 
         this.sections = SectionFactory.make(this.encoded)
+
+        this.randomize()
     }
 
     static fromEncoded(encoded) {
@@ -24,5 +26,16 @@ export class Tile {
 
     isSixSided() {
         return false;
-    }    
+    }
+    
+    randomize() {
+        // for each section
+            // for each non fixed point
+                // randomize
+        // densify
+    }
+
+    densify() {
+
+    }
 }

@@ -25434,8 +25434,7 @@ var HexagonFactory = /*#__PURE__*/function () {
         var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
         var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
         var startX = Math.cos(radius / 2);
-        var startY = 0; //-0.5 * radius
-
+        var startY = 0;
         var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
         line.addPoint(point);
       }
@@ -25443,13 +25442,26 @@ var HexagonFactory = /*#__PURE__*/function () {
       return line;
     }
   }, {
-    key: "centerPoint",
-    value: function centerPoint() {
-      var _config$offsetX3, _config$offsetY3;
+    key: "pointAtIndex",
+    value: function pointAtIndex(i) {
+      var _config$radius3, _config$offsetX3, _config$offsetY3;
 
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var config = {};
+      var radius = (_config$radius3 = config.radius) !== null && _config$radius3 !== void 0 ? _config$radius3 : 100;
       var offsetX = (_config$offsetX3 = config.offsetX) !== null && _config$offsetX3 !== void 0 ? _config$offsetX3 : 0;
       var offsetY = (_config$offsetY3 = config.offsetY) !== null && _config$offsetY3 !== void 0 ? _config$offsetY3 : 0;
+      var startX = Math.cos(radius / 2);
+      var startY = 0;
+      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
+    }
+  }, {
+    key: "centerPoint",
+    value: function centerPoint() {
+      var _config$offsetX4, _config$offsetY4;
+
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var offsetX = (_config$offsetX4 = config.offsetX) !== null && _config$offsetX4 !== void 0 ? _config$offsetX4 : 0;
+      var offsetY = (_config$offsetY4 = config.offsetY) !== null && _config$offsetY4 !== void 0 ? _config$offsetY4 : 0;
       return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](offsetX, offsetY);
     }
   }]);
@@ -25500,6 +25512,12 @@ var Line = /*#__PURE__*/function () {
     key: "addPoint",
     value: function addPoint(point) {
       this.points.push(point);
+      return this;
+    }
+  }, {
+    key: "addLine",
+    value: function addLine(line) {
+      this.points = [].concat(_toConsumableArray(this.points), _toConsumableArray(line.points));
       return this;
     }
   }, {
@@ -25613,6 +25631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Section", function() { return Section; });
 /* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
 /* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -25621,30 +25640,43 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var Section = /*#__PURE__*/function () {
   function Section(options) {
     _classCallCheck(this, Section);
 
-    this.options = options;
     this.type = options.type;
     this.start = options.start;
     this.end = options.end;
-    this.length = this.end - this.start + 1;
-    this.border = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(options.start, options.end); //this.helperPoint = new HexagonFactory.centerPoint()
-
-    this.helperPoint = this.getHelperPoint();
+    this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
+    this.innerBorder = this.getInitialInnerBorder();
   }
 
   _createClass(Section, [{
     key: "asLine",
     value: function asLine() {
-      return this.border.addPoint(this.helperPoint);
+      return this.outerBorder.addLine(this.innerBorder);
     }
   }, {
     key: "getHelperPoint",
     value: function getHelperPoint() {
-      var angle = this.start * Math.PI / 3 + this.length * Math.PI / 6 - Math.PI / 6;
+      var angle = this.start * Math.PI / 3 + this.length() * Math.PI / 6 - Math.PI / 6;
       return new _Point__WEBPACK_IMPORTED_MODULE_1__["Point"](30 * Math.cos(angle), 30 * Math.sin(angle));
+    }
+  }, {
+    key: "id",
+    value: function id() {
+      return 'type_' + this.type + '_from_' + this.start + '_to_' + this.end;
+    }
+  }, {
+    key: "getInitialInnerBorder",
+    value: function getInitialInnerBorder() {
+      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.end), this.getHelperPoint(), _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.start)]);
+    }
+  }, {
+    key: "length",
+    value: function length() {
+      return this.end - this.start + 1;
     }
   }]);
 
@@ -25751,6 +25783,7 @@ var Tile = /*#__PURE__*/function () {
     this.encoded = options.encoded;
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.encoded);
+    this.randomize();
   }
 
   _createClass(Tile, [{
@@ -25763,6 +25796,16 @@ var Tile = /*#__PURE__*/function () {
     value: function isSixSided() {
       return false;
     }
+  }, {
+    key: "randomize",
+    value: function randomize() {// for each section
+      // for each non fixed point
+      // randomize
+      // densify
+    }
+  }, {
+    key: "densify",
+    value: function densify() {}
   }], [{
     key: "fromEncoded",
     value: function fromEncoded(encoded) {
