@@ -18,7 +18,7 @@ export class Tile {
         var a = reader.read('POINT (-20 0)')
         var b = reader.read('POINT (20 0)')
         a = a.buffer(40)
-        console.log(a, b)
+        console.log(a.getGeometryType(), b.getGeometryType())
     }
 
     static fromEncoded(encoded) {
