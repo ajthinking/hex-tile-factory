@@ -20,7 +20,7 @@ export default {
                 width: window.innerWidth,
                 height: window.innerHeight
             },
-            tile: Tile.fromEncoded('110200'),
+            tile: Tile.fromEncoded('100000'),
             grass: false,
             water: false,
         };
@@ -57,7 +57,7 @@ export default {
                     //draggable: true,
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
-                    fillPatternImage: this.grass,
+                    //fillPatternImage: this.grass,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,

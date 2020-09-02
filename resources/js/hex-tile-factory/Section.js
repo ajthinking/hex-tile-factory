@@ -13,7 +13,10 @@ export class Section {
     }
 
     asLine() {
-        return this.outerBorder.addLine(this.innerBorder)
+        return new Line([
+            ...this.outerBorder.asPoints().map(p => p.clone() ),
+            ...this.innerBorder.asPoints().map(p => p.clone() ),
+        ])
     }
 
     getHelperPoint() {

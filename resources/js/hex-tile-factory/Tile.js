@@ -11,7 +11,16 @@ export class Tile {
 
         this.sections = SectionFactory.make(this.encoded)
 
-        this.randomize()
+        console.log(
+            this.sections[0].asLine().length(),
+            this.sections[0].asLine().length(),
+            this.sections[0].asLine().length(),
+            this.sections[0].asLine().length(),
+            this.sections[0].asLine().length(),
+            //this.sections[1].asLine().length(),
+        )
+
+        //this.randomize()
     }
 
     static fromEncoded(encoded) {
@@ -31,20 +40,12 @@ export class Tile {
     }
     
     randomize() {
-        console.log(
-            this.allPoints()
-        );
-        
-        [0].forEach(iteration => {
-            this.sections.forEach(section => {
-                section.innerBorder.points.forEach
-                for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
-                    let point = section.innerBorder.points[i]
-                    point = this.randomizePoint(point, iteration)
-                }
-            })
-
-            this.densify()
+        this.sections.forEach(section => {
+            section.innerBorder.points.forEach
+            for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
+                let point = section.innerBorder.points[i]
+                point = this.randomizePoint(point, 0)
+            }
         })
     }
 
