@@ -26367,19 +26367,26 @@ var Tile = /*#__PURE__*/function () {
   }, {
     key: "randomizePoint",
     value: function randomizePoint(point, iteration) {
-      console.log("Original coordinates", point.x, point.y);
       var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
         return p.asArray();
       })));
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_3__["default"].from(points);
-      console.log("Retracing coordinates", points[delaunay.triangles[0]]); // for (let i = 0; i < triangles.length; i += 3) {
-      //     coordinates.push([
-      //         points[triangles[i]],
-      //         points[triangles[i + 1]],
-      //         points[triangles[i + 2]]
-      //     ]);
-      // }
-      // Filter delaunay.triangles to find all triangles touching the point to be randomized
+      var triangles = delaunay.triangles;
+      console.log("Retracing coordinates", points[delaunay.triangles[0]]);
+      var connectedTriangles = [];
+
+      for (var i = 0; i < triangles.length; i += 3) {
+        var pi0 = triangles[i];
+        var pi1 = triangles[i + 1];
+        var pi2 = triangles[i + 2];
+
+        if ([pi0, pi1, pi2].includes(0)) {
+          connectedTriangles.push([points[pi0], points[pi1], points[pi2]]);
+        }
+      }
+
+      console.log("Total triangels", delaunay.triangles.length / 3);
+      console.log("Related triangles", connectedTriangles.length); // Filter delaunay.triangles to find all triangles touching the point to be randomized
       // calculate each triangle area with herons formula
       // based on area (and possible opinionated directions) select a random triangle
       // in the triangle select a random point
@@ -26394,6 +26401,19 @@ var Tile = /*#__PURE__*/function () {
       return [].concat(_toConsumableArray(this.backgroundHexagon.asPoints()), _toConsumableArray(this.sections.flatMap(function (s) {
         return s.asLine().asPoints();
       })));
+    }
+  }, {
+    key: "triangleArea",
+    value: function triangleArea(p0, p1, p2) {
+      var sides = prompt("Triangle side lengths in cm (number,number,number)"),
+          nsides = sides.split(","),
+          a = parseFloat(nsides[0]),
+          b = parseFloat(nsides[1]),
+          c = parseFloat(nsides[2]),
+          s = (a + b + c) / 2,
+          area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+      alert("The triangle's area is " + area + " square cm");
+      return area; // return the area
     }
   }], [{
     key: "fromEncoded",

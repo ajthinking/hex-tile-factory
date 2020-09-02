@@ -61,23 +61,33 @@ export class Tile {
     }
 
     randomizePoint(point, iteration) {
-        console.log("Original coordinates", point.x, point.y)
-
         const points = [
             [point.x, point.y], // Ensures our point is at index 0
             ...this.allPoints().map(p => p.asArray()) // Duplicates will be ignored
         ]
 
         const delaunay = Delaunator.from(points);
+        let triangles = delaunay.triangles
         console.log("Retracing coordinates", points[delaunay.triangles[0]]);
 
-        // for (let i = 0; i < triangles.length; i += 3) {
-        //     coordinates.push([
-        //         points[triangles[i]],
-        //         points[triangles[i + 1]],
-        //         points[triangles[i + 2]]
-        //     ]);
-        // }
+        let connectedTriangles = []
+
+        for (let i = 0; i < triangles.length; i += 3) {
+            let pi0 = triangles[i];
+            let pi1 = triangles[i+1];
+            let pi2 = triangles[i+2];
+
+            if([pi0,pi1,pi2].includes(0)) {
+                connectedTriangles.push([
+                    points[pi0],
+                    points[pi1],
+                    points[pi2]
+                ]);
+            }
+        }
+
+        console.log("Total triangels", delaunay.triangles.length/3)
+        console.log("Related triangles", connectedTriangles.length)
 
         // Filter delaunay.triangles to find all triangles touching the point to be randomized
         // calculate each triangle area with herons formula
@@ -95,4 +105,16 @@ export class Tile {
             ...this.sections.flatMap(s => s.asLine().asPoints())
         ]
     }
+
+    triangleArea(p0,p1,p2) {
+        var sides = prompt("Triangle side lengths in cm (number,number,number)"),
+            nsides = sides.split(","),
+            a = parseFloat(nsides[0]),
+            b = parseFloat(nsides[1]),
+            c = parseFloat(nsides[2]),
+            s = (a + b + c) / 2,
+            area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        alert("The triangle's area is " + area + " square cm");
+        return area; // return the area
+    }    
 }
