@@ -68,7 +68,6 @@ export class Tile {
 
         const delaunay = Delaunator.from(points);
         let triangles = delaunay.triangles
-        console.log("Retracing coordinates", points[delaunay.triangles[0]]);
 
         let connectedTriangles = []
 
@@ -87,16 +86,17 @@ export class Tile {
             }
         }
 
-        console.log("Total triangels", delaunay.triangles.length/3)
-        console.log("Related triangles", connectedTriangles.length)
-
-        // Filter delaunay.triangles to find all triangles touching the point to be randomized
-        // calculate each triangle area with herons formula
-        // based on area (and possible opinionated directions) select a random triangle
-        // in the triangle select a random point
-
-        point.x = point.x + (0.5-Math.random())*100*Math.pow(1/2, iteration);
-        point.y = point.y + (0.5-Math.random())*100*Math.pow(1/2, iteration);        
+        let selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
+        let selectedTriangle = connectedTriangles[selectedTriangleIndex];
+        
+        let newPoint = new Point(
+            (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
+            (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
+        )
+        
+        point.x = newPoint.x
+        point.y = newPoint.y
+        
         return point
     }
 

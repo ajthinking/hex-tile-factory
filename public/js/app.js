@@ -26372,7 +26372,6 @@ var Tile = /*#__PURE__*/function () {
       })));
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_3__["default"].from(points);
       var triangles = delaunay.triangles;
-      console.log("Retracing coordinates", points[delaunay.triangles[0]]);
       var connectedTriangles = [];
 
       for (var i = 0; i < triangles.length; i += 3) {
@@ -26386,14 +26385,11 @@ var Tile = /*#__PURE__*/function () {
         }
       }
 
-      console.log("Total triangels", delaunay.triangles.length / 3);
-      console.log("Related triangles", connectedTriangles.length); // Filter delaunay.triangles to find all triangles touching the point to be randomized
-      // calculate each triangle area with herons formula
-      // based on area (and possible opinionated directions) select a random triangle
-      // in the triangle select a random point
-
-      point.x = point.x + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
-      point.y = point.y + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
+      var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
+      var selectedTriangle = connectedTriangles[selectedTriangleIndex];
+      var newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
+      point.x = newPoint.x;
+      point.y = newPoint.y;
       return point;
     }
   }, {
