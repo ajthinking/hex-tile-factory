@@ -85,6 +85,10 @@ export class Tile {
         
         // Triangels might overlap with other sections!
         // Need to perform buffer and clip forbidden areas
+        // CLIPPING
+        //https://github.com/mfogel/polygon-clipping#readme
+        // BUFFER
+        //http://bjornharrtell.github.io/jsts/
 
         let newPoint = new Point(
             (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,

@@ -26406,6 +26406,10 @@ var Tile = /*#__PURE__*/function () {
       var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
       var selectedTriangle = connectedTriangles[selectedTriangleIndex]; // Triangels might overlap with other sections!
       // Need to perform buffer and clip forbidden areas
+      // CLIPPING
+      //https://github.com/mfogel/polygon-clipping#readme
+      // BUFFER
+      //http://bjornharrtell.github.io/jsts/
 
       var newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
       point.x = newPoint.x;
