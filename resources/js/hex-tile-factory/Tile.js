@@ -2,6 +2,7 @@ import { HexagonFactory} from './HexagonFactory'
 import { SectionFactory} from './SectionFactory'
 import { Point } from './Point'
 import Delaunator from 'delaunator';
+let jsts = require('jsts')
 
 export class Tile {    
     constructor(options) {
@@ -12,6 +13,12 @@ export class Tile {
         this.sections = SectionFactory.make(this.encoded)
 
         this.randomize()
+
+        var reader = new jsts.io.WKTReader()
+        var a = reader.read('POINT (-20 0)')
+        var b = reader.read('POINT (20 0)')
+        a = a.buffer(40)
+        console.log(a, b)
     }
 
     static fromEncoded(encoded) {

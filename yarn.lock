@@ -3983,6 +3983,11 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsts@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/jsts/-/jsts-2.5.1.tgz#636b82e2947e6584bec089cde5ff54f73b6f4678"
+  integrity sha512-5oNiwCFYxyd43qPrcXsp+5e6L9hIe9/UHaJfyOPvMDJdygwDffy22oOAvEyALVlI5bLP9ZToSxQFRclm2OEGdg==
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
