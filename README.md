@@ -5,4 +5,4 @@ Creating organic looking hexagons with carcassone-ish topology
 
 `Tile.fromEncoded('001022')`
 
-<img src="https://user-images.githubusercontent.com/3457668/91664989-eef15500-eaf2-11ea-81bb-2737b64204aa.png" width=200>
+<img src="https://user-images.githubusercontent.com/3457668/91667615-4cdb6800-eb06-11ea-9905-715a8db86667.png" width=400>
