@@ -140,8 +140,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
-      var _this = this;
-
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -152,7 +150,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          fillPatternImage: _this.grass,
+          //fillPatternImage: this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -169,20 +167,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this2.grass = grass;
+      _this.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this2.water = water;
+      _this.water = water;
     };
   }
 });
@@ -26342,7 +26340,7 @@ var Tile = /*#__PURE__*/function () {
       var _this = this;
 
       console.log(this.allPoints());
-      [0, 1, 2, 3, 4, 5, 6, 7].forEach(function (iteration) {
+      [0].forEach(function (iteration) {
         _this.sections.forEach(function (section) {
           section.innerBorder.points.forEach;
 
@@ -26367,11 +26365,24 @@ var Tile = /*#__PURE__*/function () {
   }, {
     key: "randomizePoint",
     value: function randomizePoint(point, iteration) {
-      //point.x = point.x + (0.5-Math.random())*100*Math.pow(1/2, iteration);
-      //point.y = point.y + (0.5-Math.random())*100*Math.pow(1/2, iteration);
-      //const points = this.allPoints().map(p => p.asArray())
-      //const delaunay = Delaunator.from(points);
-      //console.log(delaunay.triangles);
+      var points = this.allPoints().map(function (p) {
+        return p.asArray();
+      });
+      var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_3__["default"].from(points);
+      console.log(delaunay.triangles); // for (let i = 0; i < triangles.length; i += 3) {
+      //     coordinates.push([
+      //         points[triangles[i]],
+      //         points[triangles[i + 1]],
+      //         points[triangles[i + 2]]
+      //     ]);
+      // }
+      // Filter delaunay.triangles to find all triangles touching the point to be randomized
+      // calculate each triangle area with herons formula
+      // based on area (and possible opinionated directions) select a random triangle
+      // in the triangle select a random point
+
+      point.x = point.x + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
+      point.y = point.y + (0.5 - Math.random()) * 100 * Math.pow(1 / 2, iteration);
       return point;
     }
   }, {

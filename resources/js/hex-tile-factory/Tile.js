@@ -35,7 +35,7 @@ export class Tile {
             this.allPoints()
         );
         
-        [0,1,2,3,4,5,6,7].forEach(iteration => {
+        [0].forEach(iteration => {
             this.sections.forEach(section => {
                 section.innerBorder.points.forEach
                 for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
@@ -61,17 +61,28 @@ export class Tile {
     }
 
     randomizePoint(point, iteration) {
-        //point.x = point.x + (0.5-Math.random())*100*Math.pow(1/2, iteration);
-        //point.y = point.y + (0.5-Math.random())*100*Math.pow(1/2, iteration);
-        
-
-        //const points = this.allPoints().map(p => p.asArray())
-
-        //const delaunay = Delaunator.from(points);
-        //console.log(delaunay.triangles);
 
 
+        const points = this.allPoints().map(p => p.asArray())
 
+        const delaunay = Delaunator.from(points);
+        console.log(delaunay.triangles);
+
+        // for (let i = 0; i < triangles.length; i += 3) {
+        //     coordinates.push([
+        //         points[triangles[i]],
+        //         points[triangles[i + 1]],
+        //         points[triangles[i + 2]]
+        //     ]);
+        // }
+
+        // Filter delaunay.triangles to find all triangles touching the point to be randomized
+        // calculate each triangle area with herons formula
+        // based on area (and possible opinionated directions) select a random triangle
+        // in the triangle select a random point
+
+        point.x = point.x + (0.5-Math.random())*100*Math.pow(1/2, iteration);
+        point.y = point.y + (0.5-Math.random())*100*Math.pow(1/2, iteration);        
         return point
     }
 
