@@ -115,7 +115,7 @@ __webpack_require__.r(__webpack_exports__);
         width: window.innerWidth,
         height: window.innerHeight
       },
-      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('100000'),
+      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200'),
       grass: false,
       water: false
     };
@@ -140,6 +140,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
+      var _this = this;
+
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -150,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          //fillPatternImage: this.grass,
+          fillPatternImage: _this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -167,20 +169,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this.grass = grass;
+      _this2.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this.water = water;
+      _this2.water = water;
     };
   }
 });
@@ -26342,8 +26344,7 @@ var Tile = /*#__PURE__*/function () {
     this.encoded = options.encoded;
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.encoded);
-    console.log(this.sections[0].asLine().length(), this.sections[0].asLine().length(), this.sections[0].asLine().length(), this.sections[0].asLine().length(), this.sections[0].asLine().length() //this.sections[1].asLine().length(),
-    ); //this.randomize()
+    this.randomize();
   }
 
   _createClass(Tile, [{
@@ -26361,30 +26362,32 @@ var Tile = /*#__PURE__*/function () {
     value: function randomize() {
       var _this = this;
 
-      this.sections.forEach(function (section) {
-        section.innerBorder.points.forEach;
+      [0].forEach(function (iteration) {
+        _this.sections.forEach(function (section) {
+          _this.densify(section);
 
-        for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
-          var point = section.innerBorder.points[i];
-          point = _this.randomizePoint(point, 0);
-        }
+          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
+            var point = section.innerBorder.points[i];
+
+            _this.randomizePoint(point, iteration);
+          }
+        });
       });
     }
   }, {
     key: "densify",
-    value: function densify() {
-      this.sections.forEach(function (section) {
-        for (var i = section.innerBorder.length() - 1; i > 0; i = i - 2) {
-          section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
-        }
-      });
+    value: function densify(section) {
+      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 2) {
+        section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
+      }
     }
   }, {
     key: "randomizePoint",
     value: function randomizePoint(point, iteration) {
       var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
         return p.asArray();
-      })));
+      }))); //console.log(points.flatMap(p => [p[0], p[1]]));
+
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_3__["default"].from(points);
       var triangles = delaunay.triangles;
       var connectedTriangles = [];
@@ -26401,11 +26404,12 @@ var Tile = /*#__PURE__*/function () {
       }
 
       var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
-      var selectedTriangle = connectedTriangles[selectedTriangleIndex];
+      var selectedTriangle = connectedTriangles[selectedTriangleIndex]; // Triangels might overlap with other sections!
+      // Need to perform buffer and clip forbidden areas
+
       var newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
       point.x = newPoint.x;
       point.y = newPoint.y;
-      return point;
     }
   }, {
     key: "allPoints",

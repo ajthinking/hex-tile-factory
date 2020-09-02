@@ -11,16 +11,7 @@ export class Tile {
 
         this.sections = SectionFactory.make(this.encoded)
 
-        console.log(
-            this.sections[0].asLine().length(),
-            this.sections[0].asLine().length(),
-            this.sections[0].asLine().length(),
-            this.sections[0].asLine().length(),
-            this.sections[0].asLine().length(),
-            //this.sections[1].asLine().length(),
-        )
-
-        //this.randomize()
+        this.randomize()
     }
 
     static fromEncoded(encoded) {
@@ -40,36 +31,38 @@ export class Tile {
     }
     
     randomize() {
-        this.sections.forEach(section => {
-            section.innerBorder.points.forEach
-            for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
-                let point = section.innerBorder.points[i]
-                point = this.randomizePoint(point, 0)
-            }
+        [0].forEach(iteration => {
+            this.sections.forEach(section => {
+                this.densify(section)
+                for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
+                    let point = section.innerBorder.points[i]
+                    this.randomizePoint(point, iteration)
+                }
+            })
         })
+
     }
 
-    densify() {
-        this.sections.forEach(section => {
-            for(let i = section.innerBorder.length() -1; i > 0; i=i-2) {
-                
-                section.innerBorder.points.splice(i,0, new Point(
-                    (section.innerBorder.points[i-1].x+section.innerBorder.points[i].x)/2,
-                    (section.innerBorder.points[i-1].y+section.innerBorder.points[i].y)/2,
-                ))
-            }
-        })
+    densify(section) {
+        for(let i = section.innerBorder.length() -1; i > 0; i=i-2) {   
+            section.innerBorder.points.splice(i,0, new Point(
+                (section.innerBorder.points[i-1].x+section.innerBorder.points[i].x)/2,
+                (section.innerBorder.points[i-1].y+section.innerBorder.points[i].y)/2,
+            ))
+        }
     }
 
     randomizePoint(point, iteration) {
+        
         const points = [
-            [point.x, point.y], // Ensures our point is at index 0
-            ...this.allPoints().map(p => p.asArray()) // Duplicates will be ignored
+            [point.x, point.y], // Ensures our point is at index 0 to easily find it
+            ...this.allPoints().map(p => p.asArray()) // Any duplicates will be ignored
         ]
+
+        //console.log(points.flatMap(p => [p[0], p[1]]));
 
         const delaunay = Delaunator.from(points);
         let triangles = delaunay.triangles
-
         let connectedTriangles = []
 
         for (let i = 0; i < triangles.length; i += 3) {
@@ -90,6 +83,9 @@ export class Tile {
         let selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
         let selectedTriangle = connectedTriangles[selectedTriangleIndex];
         
+        // Triangels might overlap with other sections!
+        // Need to perform buffer and clip forbidden areas
+
         let newPoint = new Point(
             (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
             (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
@@ -97,8 +93,6 @@ export class Tile {
         
         point.x = newPoint.x
         point.y = newPoint.y
-        
-        return point
     }
 
     allPoints() {
