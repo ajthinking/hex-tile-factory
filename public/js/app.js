@@ -26381,7 +26381,8 @@ var Tile = /*#__PURE__*/function () {
         var pi2 = triangles[i + 2];
 
         if ([pi0, pi1, pi2].includes(0)) {
-          connectedTriangles.push([points[pi0], points[pi1], points[pi2]]);
+          connectedTriangles.push([// Build area
+          points[pi0], points[pi1], points[pi2]]);
         }
       }
 

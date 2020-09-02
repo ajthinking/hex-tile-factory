@@ -79,6 +79,7 @@ export class Tile {
 
             if([pi0,pi1,pi2].includes(0)) {
                 connectedTriangles.push([
+                    // Build area
                     points[pi0],
                     points[pi1],
                     points[pi2]
