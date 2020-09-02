@@ -26367,11 +26367,12 @@ var Tile = /*#__PURE__*/function () {
   }, {
     key: "randomizePoint",
     value: function randomizePoint(point, iteration) {
-      var points = this.allPoints().map(function (p) {
+      console.log("Original coordinates", point.x, point.y);
+      var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
         return p.asArray();
-      });
+      })));
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_3__["default"].from(points);
-      console.log(delaunay.triangles); // for (let i = 0; i < triangles.length; i += 3) {
+      console.log("Retracing coordinates", points[delaunay.triangles[0]]); // for (let i = 0; i < triangles.length; i += 3) {
       //     coordinates.push([
       //         points[triangles[i]],
       //         points[triangles[i + 1]],

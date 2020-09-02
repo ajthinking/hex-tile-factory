@@ -61,12 +61,15 @@ export class Tile {
     }
 
     randomizePoint(point, iteration) {
+        console.log("Original coordinates", point.x, point.y)
 
-
-        const points = this.allPoints().map(p => p.asArray())
+        const points = [
+            [point.x, point.y], // Ensures our point is at index 0
+            ...this.allPoints().map(p => p.asArray()) // Duplicates will be ignored
+        ]
 
         const delaunay = Delaunator.from(points);
-        console.log(delaunay.triangles);
+        console.log("Retracing coordinates", points[delaunay.triangles[0]]);
 
         // for (let i = 0; i < triangles.length; i += 3) {
         //     coordinates.push([
