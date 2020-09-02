@@ -13,6 +13,10 @@ export class Line {
         return this
     }    
 
+    asPoints() {
+        return this.points
+    }
+
     asArray()
     {
         return this.points.reduce((result, point) => {

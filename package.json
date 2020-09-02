@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "delaunator": "^4.0.1",
         "konva": "^7.0.6",
         "vue-konva": "^2.1.4"
     }
