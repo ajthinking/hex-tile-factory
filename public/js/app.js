@@ -140,6 +140,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
+      var _this = this;
+
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -150,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          //fillPatternImage: this.grass,
+          fillPatternImage: _this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -167,20 +169,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this.grass = grass;
+      _this2.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this.water = water;
+      _this2.water = water;
     };
   }
 });
