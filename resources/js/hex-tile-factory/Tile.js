@@ -41,6 +41,7 @@ export class Tile {
         [0].forEach(iteration => {
             this.sections.forEach(section => {
                 this.densify(section)
+                
                 for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
                     let point = section.innerBorder.points[i]
                     this.randomizePoint(point, iteration)
@@ -51,7 +52,7 @@ export class Tile {
     }
 
     densify(section) {
-        for(let i = section.innerBorder.length() -1; i > 0; i=i-2) {   
+        for(let i = section.innerBorder.length() -1; i > 0; i=i-1) {   
             section.innerBorder.points.splice(i,0, new Point(
                 (section.innerBorder.points[i-1].x+section.innerBorder.points[i].x)/2,
                 (section.innerBorder.points[i-1].y+section.innerBorder.points[i].y)/2,
@@ -96,11 +97,22 @@ export class Tile {
         //https://github.com/mfogel/polygon-clipping#readme
         // BUFFER
         //http://bjornharrtell.github.io/jsts/
+        
+        let newPoint;
 
-        let newPoint = new Point(
-            (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
-            (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
-        )
+        try {
+            newPoint = new Point(
+                (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
+                (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
+            )
+        } catch {
+            console.log("ERROR")
+            console.log(selectedTriangleIndex)
+            console.log(connectedTriangles)
+            console.log(selectedTriangle)
+            
+        }
+
         
         point.x = newPoint.x
         point.y = newPoint.y

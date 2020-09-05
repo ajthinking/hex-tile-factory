@@ -140,8 +140,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
-      var _this = this;
-
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -152,7 +150,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          fillPatternImage: _this.grass,
+          //fillPatternImage: this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -169,20 +167,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this2.grass = grass;
+      _this.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this2.water = water;
+      _this.water = water;
     };
   }
 });
@@ -26403,7 +26401,7 @@ var Tile = /*#__PURE__*/function () {
   }, {
     key: "densify",
     value: function densify(section) {
-      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 2) {
+      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 1) {
         section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
       }
     }
@@ -26437,7 +26435,17 @@ var Tile = /*#__PURE__*/function () {
       // BUFFER
       //http://bjornharrtell.github.io/jsts/
 
-      var newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
+      var newPoint;
+
+      try {
+        newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
+      } catch (_unused) {
+        console.log("ERROR");
+        console.log(selectedTriangleIndex);
+        console.log(connectedTriangles);
+        console.log(selectedTriangle);
+      }
+
       point.x = newPoint.x;
       point.y = newPoint.y;
     }
