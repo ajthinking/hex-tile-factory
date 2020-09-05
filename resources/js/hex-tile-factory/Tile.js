@@ -43,17 +43,23 @@ export class Tile {
     }
     
     randomize() {
-        this.sections.forEach(section => {
-            this.densify(section)
-            
-            // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
-            //     let point = section.innerBorder.points[i]
-            //     this.randomizePoint(point, iteration)
-            // }
+        [0,1].forEach(iteration => {
+            this.sections.forEach(section => {
+                this.densify(section)
+      
+                
+                for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
+                    let point = section.innerBorder.points[i]
+                    this.randomizePoint(point)
+                }
+            })
         })
 
-        this.randomizePoint(this.sections[0].innerBorder.points[1])
-        this.randomizePoint(this.sections[1].innerBorder.points[1])
+
+        // this.randomizePoint(this.sections[0].innerBorder.points[1])
+        // this.randomizePoint(this.sections[1].innerBorder.points[1])
+        // this.randomizePoint(this.sections[0].innerBorder.points[1])
+        // this.randomizePoint(this.sections[1].innerBorder.points[1])        
     }
 
     densify(section) {

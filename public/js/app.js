@@ -141,6 +141,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
+      var _this = this;
+
       return this.tile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -151,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          //fillPatternImage: this.grass,
+          fillPatternImage: _this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -165,7 +167,7 @@ __webpack_require__.r(__webpack_exports__);
         return new Konva.Line({
           points: triangle.asArray(),
           //fill: this.indexToColor(section.type),
-          stroke: 'red',
+          stroke: 'black',
           strokeWidth: 1,
           closed: true,
           //draggable: true,
@@ -188,20 +190,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this.grass = grass;
+      _this2.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this.water = water;
+      _this2.water = water;
     };
   }
 });
@@ -26427,15 +26429,20 @@ var Tile = /*#__PURE__*/function () {
     value: function randomize() {
       var _this = this;
 
-      this.sections.forEach(function (section) {
-        _this.densify(section); // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
-        //     let point = section.innerBorder.points[i]
-        //     this.randomizePoint(point, iteration)
-        // }
+      [0, 1].forEach(function (iteration) {
+        _this.sections.forEach(function (section) {
+          _this.densify(section);
 
-      });
-      this.randomizePoint(this.sections[0].innerBorder.points[1]);
-      this.randomizePoint(this.sections[1].innerBorder.points[1]);
+          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
+            var point = section.innerBorder.points[i];
+
+            _this.randomizePoint(point);
+          }
+        });
+      }); // this.randomizePoint(this.sections[0].innerBorder.points[1])
+      // this.randomizePoint(this.sections[1].innerBorder.points[1])
+      // this.randomizePoint(this.sections[0].innerBorder.points[1])
+      // this.randomizePoint(this.sections[1].innerBorder.points[1])        
     }
   }, {
     key: "densify",
