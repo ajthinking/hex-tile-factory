@@ -8,8 +8,9 @@ export class Section {
         this.start = options.start
         this.end = options.end
 
-        this.outerBorder = HexagonFactory.borderBetween(this.start, this.end)
+        
         this.innerBorder = this.getInitialInnerBorder()
+        this.outerBorder = HexagonFactory.borderBetween(this.start, this.end)
     }
 
     asLine() {
@@ -38,6 +39,16 @@ export class Section {
             this.getHelperPoint(),
             HexagonFactory.pointAtIndex(this.start)
         ])
+    }
+
+    getOuterHiddenBorder() {
+        let points = this.outerBorder.asPoints()
+
+        return new Line(
+            points.filter((p,i) => {
+                return i != 0 && i != points.length-1
+            })
+        )
     }
     
     length() {

@@ -4,6 +4,7 @@
       <v-group :config="{draggable: true}">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>
       </v-group>
     </v-layer>
   </v-stage>
@@ -52,6 +53,27 @@ export default {
                     points: section.asLine().asArray(),
                     //fill: this.indexToColor(section.type),
                     stroke: 'black',
+                    strokeWidth: 3,
+                    closed: true,
+                    //draggable: true,
+                    offsetX: -window.innerWidth/2,
+                    offsetY: -window.innerHeight/2,
+                    //fillPatternImage: this.grass,
+                    //fillPatternRepeat: 'no-repeat',
+                    fillPatternScale: {
+                        x: 0.1,
+                        y: 0.1
+                    },
+                })
+            })
+        },
+        
+        triangles: function() {
+            return this.tile.connectedTriangles.map(triangle => {
+                return new Konva.Line({
+                    points: triangle.asArray(),
+                    //fill: this.indexToColor(section.type),
+                    stroke: 'red',
                     strokeWidth: 1,
                     closed: true,
                     //draggable: true,

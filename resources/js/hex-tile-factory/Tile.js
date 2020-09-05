@@ -1,6 +1,7 @@
 import { HexagonFactory} from './HexagonFactory'
 import { SectionFactory} from './SectionFactory'
 import { Point } from './Point'
+import { Line } from './Line'
 import Delaunator from 'delaunator';
 let jsts = require('jsts')
 
@@ -18,7 +19,6 @@ export class Tile {
         var a = reader.read('POINT (-20 0)')
         var b = reader.read('POINT (20 0)')
         a = a.buffer(40)
-        console.log(a.getGeometryType(), b.getGeometryType())
     }
 
     static fromEncoded(encoded) {
@@ -38,17 +38,17 @@ export class Tile {
     }
     
     randomize() {
-        [0].forEach(iteration => {
-            this.sections.forEach(section => {
-                this.densify(section)
-                
-                for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
-                    let point = section.innerBorder.points[i]
-                    this.randomizePoint(point, iteration)
-                }
-            })
+        this.sections.forEach(section => {
+            //this.densify(section)
+            
+            // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
+            //     let point = section.innerBorder.points[i]
+            //     this.randomizePoint(point, iteration)
+            // }
         })
 
+        this.randomizePoint(this.sections[0].innerBorder.points[1])
+        this.randomizePoint(this.sections[1].innerBorder.points[1])
     }
 
     densify(section) {
@@ -60,14 +60,12 @@ export class Tile {
         }
     }
 
-    randomizePoint(point, iteration) {
+    randomizePoint(point, iteration = 0) {
         
         const points = [
             [point.x, point.y], // Ensures our point is at index 0 to easily find it
             ...this.allPoints().map(p => p.asArray()) // Any duplicates will be ignored
         ]
-
-        //console.log(points.flatMap(p => [p[0], p[1]]));
 
         const delaunay = Delaunator.from(points);
         let triangles = delaunay.triangles
@@ -110,8 +108,13 @@ export class Tile {
             console.log(selectedTriangleIndex)
             console.log(connectedTriangles)
             console.log(selectedTriangle)
-            
         }
+
+        this.connectedTriangles = connectedTriangles.map(t => {
+            return new Line(
+                t.map(p => new Point(p[0], p[1]))
+            );
+        });
 
         
         point.x = newPoint.x
