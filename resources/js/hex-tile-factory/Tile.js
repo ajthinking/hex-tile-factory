@@ -19,6 +19,11 @@ export class Tile {
         var a = reader.read('POINT (-20 0)')
         var b = reader.read('POINT (20 0)')
         a = a.buffer(40)
+
+        this.layers = {
+            background: this.backgroundHexagon,
+            sections: this.sections
+        }
     }
 
     static fromEncoded(encoded) {
@@ -39,7 +44,7 @@ export class Tile {
     
     randomize() {
         this.sections.forEach(section => {
-            //this.densify(section)
+            this.densify(section)
             
             // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
             //     let point = section.innerBorder.points[i]
@@ -70,6 +75,7 @@ export class Tile {
         const delaunay = Delaunator.from(points);
         let triangles = delaunay.triangles
         let connectedTriangles = []
+        let notConnectedTriangles = []
 
         for (let i = 0; i < triangles.length; i += 3) {
             let pi0 = triangles[i];
@@ -83,6 +89,13 @@ export class Tile {
                     points[pi1],
                     points[pi2]
                 ]);
+            } else {
+                notConnectedTriangles.push([
+                    // Build area
+                    points[pi0],
+                    points[pi1],
+                    points[pi2]
+                ]);                
             }
         }
 
@@ -103,22 +116,27 @@ export class Tile {
                 (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
                 (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
             )
+
+            this.connectedTriangles = connectedTriangles.map(t => {
+                return new Line(
+                    t.map(p => new Point(p[0], p[1]))
+                );
+            });
+            
+            point.x = newPoint.x
+            point.y = newPoint.y
         } catch {
             console.log("ERROR")
             console.log(selectedTriangleIndex)
             console.log(connectedTriangles)
+            console.log(notConnectedTriangles)
             console.log(selectedTriangle)
+            this.connectedTriangles = notConnectedTriangles.map(t => {
+                return new Line(
+                    t.map(p => new Point(p[0], p[1]))
+                );
+            });             
         }
-
-        this.connectedTriangles = connectedTriangles.map(t => {
-            return new Line(
-                t.map(p => new Point(p[0], p[1]))
-            );
-        });
-
-        
-        point.x = newPoint.x
-        point.y = newPoint.y
     }
 
     allPoints() {

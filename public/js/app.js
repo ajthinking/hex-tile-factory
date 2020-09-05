@@ -26406,6 +26406,10 @@ var Tile = /*#__PURE__*/function () {
     var a = reader.read('POINT (-20 0)');
     var b = reader.read('POINT (20 0)');
     a = a.buffer(40);
+    this.layers = {
+      background: this.backgroundHexagon,
+      sections: this.sections
+    };
   }
 
   _createClass(Tile, [{
@@ -26421,11 +26425,14 @@ var Tile = /*#__PURE__*/function () {
   }, {
     key: "randomize",
     value: function randomize() {
-      this.sections.forEach(function (section) {//this.densify(section)
-        // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
+      var _this = this;
+
+      this.sections.forEach(function (section) {
+        _this.densify(section); // for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
         //     let point = section.innerBorder.points[i]
         //     this.randomizePoint(point, iteration)
         // }
+
       });
       this.randomizePoint(this.sections[0].innerBorder.points[1]);
       this.randomizePoint(this.sections[1].innerBorder.points[1]);
@@ -26447,6 +26454,7 @@ var Tile = /*#__PURE__*/function () {
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_4__["default"].from(points);
       var triangles = delaunay.triangles;
       var connectedTriangles = [];
+      var notConnectedTriangles = [];
 
       for (var i = 0; i < triangles.length; i += 3) {
         var pi0 = triangles[i];
@@ -26455,6 +26463,9 @@ var Tile = /*#__PURE__*/function () {
 
         if ([pi0, pi1, pi2].includes(0)) {
           connectedTriangles.push([// Build area
+          points[pi0], points[pi1], points[pi2]]);
+        } else {
+          notConnectedTriangles.push([// Build area
           points[pi0], points[pi1], points[pi2]]);
         }
       }
@@ -26471,20 +26482,25 @@ var Tile = /*#__PURE__*/function () {
 
       try {
         newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
+        this.connectedTriangles = connectedTriangles.map(function (t) {
+          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
+            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
+          }));
+        });
+        point.x = newPoint.x;
+        point.y = newPoint.y;
       } catch (_unused) {
         console.log("ERROR");
         console.log(selectedTriangleIndex);
         console.log(connectedTriangles);
+        console.log(notConnectedTriangles);
         console.log(selectedTriangle);
+        this.connectedTriangles = notConnectedTriangles.map(function (t) {
+          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
+            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
+          }));
+        });
       }
-
-      this.connectedTriangles = connectedTriangles.map(function (t) {
-        return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
-          return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
-        }));
-      });
-      point.x = newPoint.x;
-      point.y = newPoint.y;
     }
   }, {
     key: "allPoints",
