@@ -1,8 +1,27 @@
 <template>
-<div class="bg-gray-400">
-    <div class="flex justify-around text-5xl bg-gray-400 text-gray-200">
-    <div @click="tileStateIndex=Math.max(tileStateIndex-1, 0)" class="w-full border flex mx-auto justify-center hover:bg-gray-500">-</div>
-    <div @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)" class="w-full border flex mx-auto justify-center hover:bg-gray-500">+</div>
+<div class="flex bg-gray-400">
+    <div class="px-4 flex flex-col bg-gray-100 text-gray-200">
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">Topology</label>
+            <input class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="011020">
+        </div>
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">Seed</label>
+            <input class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
+        </div>
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">History</label>
+            <div class="mt-2 flex text-gray-600">
+                <div tabindex="0" @click="tileStateIndex=Math.max(tileStateIndex-1, 0)"
+                    class="flex w-full border justify-center hover:bg-gray-500">-</div>
+                <div tabindex="0" @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)"
+                    class="flex w-full border justify-center hover:bg-gray-500">+</div>                
+            </div>
+        </div>
+        <div class="flex justify-center mt-8 uppercase font-bold">
+            <div class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
+        </div>              
+
     </div>
   <v-stage class="w-full"  :config="configKonva">
     <v-layer>

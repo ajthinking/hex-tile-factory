@@ -114,6 +114,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -30807,44 +30826,60 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "bg-gray-400" },
+    { staticClass: "flex bg-gray-400" },
     [
       _c(
         "div",
-        {
-          staticClass: "flex justify-around text-5xl bg-gray-400 text-gray-200"
-        },
+        { staticClass: "px-4 flex flex-col bg-gray-100 text-gray-200" },
         [
-          _c(
-            "div",
-            {
-              staticClass:
-                "w-full border flex mx-auto justify-center hover:bg-gray-500",
-              on: {
-                click: function($event) {
-                  _vm.tileStateIndex = Math.max(_vm.tileStateIndex - 1, 0)
-                }
-              }
-            },
-            [_vm._v("-")]
-          ),
+          _vm._m(0),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "w-full border flex mx-auto justify-center hover:bg-gray-500",
-              on: {
-                click: function($event) {
-                  _vm.tileStateIndex = Math.min(
-                    _vm.tileStateIndex + 1,
-                    _vm.tile.states.length - 1
-                  )
-                }
-              }
-            },
-            [_vm._v("+")]
-          )
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("History")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-2 flex text-gray-600" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex w-full border justify-center hover:bg-gray-500",
+                  attrs: { tabindex: "0" },
+                  on: {
+                    click: function($event) {
+                      _vm.tileStateIndex = Math.max(_vm.tileStateIndex - 1, 0)
+                    }
+                  }
+                },
+                [_vm._v("-")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex w-full border justify-center hover:bg-gray-500",
+                  attrs: { tabindex: "0" },
+                  on: {
+                    click: function($event) {
+                      _vm.tileStateIndex = Math.min(
+                        _vm.tileStateIndex + 1,
+                        _vm.tile.states.length - 1
+                      )
+                    }
+                  }
+                },
+                [_vm._v("+")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
         ]
       ),
       _vm._v(" "),
@@ -30880,7 +30915,59 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
+        _vm._v("Topology")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass:
+          "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+        attrs: { placeholder: "011020" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
+        _vm._v("Seed")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass:
+          "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+        attrs: { placeholder: "12345" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex justify-center mt-8 uppercase font-bold" },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer"
+          },
+          [_vm._v("Random")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
