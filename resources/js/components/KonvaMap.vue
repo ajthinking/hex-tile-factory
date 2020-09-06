@@ -1,25 +1,28 @@
 <template>
-<div class="flex bg-gray-400">
+<div class="flex bg-gray-300">
     <div class="px-4 flex flex-col bg-gray-100 text-gray-200">
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Topology</label>
-            <input class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="011020">
+            <input v-model="topology" class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="011020">
         </div>
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Seed</label>
-            <input class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
+            <div class="flex">
+                <input v-model="seed" class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
+                <div @click="seed=Math.floor(Math.random()*1000000)" class="font-medium flex mt-2 ml-2 px-2 cursor-pointer text-gray-500 items-center text-xs lowercase">random</div>
+            </div>
         </div>
         <div class="mt-4 uppercase font-bold">
-            <label class="tracking-wider text-xs text-gray-500">History</label>
+            <label class="tracking-wider text-xs text-gray-500">Generalization</label>
             <div class="mt-2 flex text-gray-600">
                 <div tabindex="0" @click="tileStateIndex=Math.max(tileStateIndex-1, 0)"
-                    class="flex w-full border justify-center hover:bg-gray-500">-</div>
+                    class="flex w-full border justify-center bg-white hover:bg-gray-500">-</div>
                 <div tabindex="0" @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)"
-                    class="flex w-full border justify-center hover:bg-gray-500">+</div>                
+                    class="flex w-full border justify-center bg-white hover:bg-gray-500">+</div>                
             </div>
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
-            <div class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
+            <div @click="randomize()" class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
         </div>              
 
     </div>
@@ -46,14 +49,19 @@ export default {
                 width: window.innerWidth,
                 height: window.innerHeight
             },
-            tile: Tile.fromEncoded('110200'),
+            topology: '110200',
+            seed: 12345,
             tileStateIndex: 0,
+            city: false,
             grass: false,
             water: false,
         };
     },
 
     computed: {
+        tile: function() {
+            return Tile.fromEncoded(this.topology, this.seed)
+        },
         activeTile: function() {
             return this.tile.states[
                 this.tileStateIndex
@@ -71,6 +79,7 @@ export default {
                 offsetX: -window.innerWidth/2,
                 offsetY: -window.innerHeight/2,
                 fillPatternImage: this.water,
+                //fillPatternImage: this.grass,
                 //fillPatternRepeat: 'no-repeat',
                 fillPatternScale: {
                     x: 0.4,
@@ -91,6 +100,7 @@ export default {
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
                     fillPatternImage: this.grass,
+                    //fillPatternImage: this.city,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,
@@ -126,14 +136,34 @@ export default {
             let colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C']
             return colors[index];
         },
+
+        randomTopology() {
+            let configuration = '';
+
+            for(let i = 0; i< 6; i++) {
+                configuration += Math.floor(Math.random()*3).toString()
+            }
+
+            return configuration;
+        },
+
+        randomize() {
+            this.topology=this.randomTopology()            
+        }
     },
     
     created() {
+        const city = new window.Image();
+        city.src = "/images/city.jpg";
+        city.onload = () => {
+            this.city = grass
+        };
+
         const grass = new window.Image();
         grass.src = "/images/grass.jpg";
         grass.onload = () => {
             this.grass = grass
-        };
+        };        
 
         const water = new window.Image();
         water.src = "/images/water.jpg";

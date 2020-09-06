@@ -133,6 +133,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -141,13 +144,18 @@ __webpack_require__.r(__webpack_exports__);
         width: window.innerWidth,
         height: window.innerHeight
       },
-      tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200'),
+      topology: '110200',
+      seed: 12345,
       tileStateIndex: 0,
+      city: false,
       grass: false,
       water: false
     };
   },
   computed: {
+    tile: function tile() {
+      return _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded(this.topology, this.seed);
+    },
     activeTile: function activeTile() {
       return this.tile.states[this.tileStateIndex];
     },
@@ -162,6 +170,7 @@ __webpack_require__.r(__webpack_exports__);
         offsetX: -window.innerWidth / 2,
         offsetY: -window.innerHeight / 2,
         fillPatternImage: this.water,
+        //fillPatternImage: this.grass,
         //fillPatternRepeat: 'no-repeat',
         fillPatternScale: {
           x: 0.4,
@@ -183,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
           fillPatternImage: _this.grass,
+          //fillPatternImage: this.city,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -215,10 +225,29 @@ __webpack_require__.r(__webpack_exports__);
     indexToColor: function indexToColor(index) {
       var colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C'];
       return colors[index];
+    },
+    randomTopology: function randomTopology() {
+      var configuration = '';
+
+      for (var i = 0; i < 6; i++) {
+        configuration += Math.floor(Math.random() * 3).toString();
+      }
+
+      return configuration;
+    },
+    randomize: function randomize() {
+      this.topology = this.randomTopology();
     }
   },
   created: function created() {
     var _this2 = this;
+
+    var city = new window.Image();
+    city.src = "/images/city.jpg";
+
+    city.onload = function () {
+      _this2.city = grass;
+    };
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
@@ -30826,21 +30855,95 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex bg-gray-400" },
+    { staticClass: "flex bg-gray-300" },
     [
       _c(
         "div",
         { staticClass: "px-4 flex flex-col bg-gray-100 text-gray-200" },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Topology")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.topology,
+                  expression: "topology"
+                }
+              ],
+              staticClass:
+                "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+              attrs: { placeholder: "011020" },
+              domProps: { value: _vm.topology },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.topology = $event.target.value
+                }
+              }
+            })
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
             _c(
               "label",
               { staticClass: "tracking-wider text-xs text-gray-500" },
-              [_vm._v("History")]
+              [_vm._v("Seed")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.seed,
+                    expression: "seed"
+                  }
+                ],
+                staticClass:
+                  "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+                attrs: { placeholder: "12345" },
+                domProps: { value: _vm.seed },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.seed = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "font-medium flex mt-2 ml-2 px-2 cursor-pointer text-gray-500 items-center text-xs lowercase",
+                  on: {
+                    click: function($event) {
+                      _vm.seed = Math.floor(Math.random() * 1000000)
+                    }
+                  }
+                },
+                [_vm._v("random")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Generalization")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "mt-2 flex text-gray-600" }, [
@@ -30848,7 +30951,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "flex w-full border justify-center hover:bg-gray-500",
+                    "flex w-full border justify-center bg-white hover:bg-gray-500",
                   attrs: { tabindex: "0" },
                   on: {
                     click: function($event) {
@@ -30863,7 +30966,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "flex w-full border justify-center hover:bg-gray-500",
+                    "flex w-full border justify-center bg-white hover:bg-gray-500",
                   attrs: { tabindex: "0" },
                   on: {
                     click: function($event) {
@@ -30879,7 +30982,25 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _c(
+            "div",
+            { staticClass: "flex justify-center mt-8 uppercase font-bold" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer",
+                  on: {
+                    click: function($event) {
+                      return _vm.randomize()
+                    }
+                  }
+                },
+                [_vm._v("Random")]
+              )
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -30915,59 +31036,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
-      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
-        _vm._v("Topology")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
-        attrs: { placeholder: "011020" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
-      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
-        _vm._v("Seed")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
-        attrs: { placeholder: "12345" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex justify-center mt-8 uppercase font-bold" },
-      [
-        _c(
-          "div",
-          {
-            staticClass:
-              "text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer"
-          },
-          [_vm._v("Random")]
-        )
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -43840,11 +43909,7 @@ var Tile = /*#__PURE__*/function () {
         point.x = newPoint.x;
         point.y = newPoint.y;
       } catch (_unused) {
-        console.log("ERROR");
-        console.log(selectedTriangleIndex);
-        console.log(connectedTriangles);
-        console.log(notConnectedTriangles);
-        console.log(selectedTriangle);
+        console.log("ERROR no selected triangle");
         this.connectedTriangles = notConnectedTriangles.map(function (t) {
           return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
             return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);

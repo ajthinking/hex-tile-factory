@@ -132,11 +132,7 @@ export class Tile {
             point.x = newPoint.x
             point.y = newPoint.y
         } catch {
-            console.log("ERROR")
-            console.log(selectedTriangleIndex)
-            console.log(connectedTriangles)
-            console.log(notConnectedTriangles)
-            console.log(selectedTriangle)
+            console.log("ERROR no selected triangle")
             this.connectedTriangles = notConnectedTriangles.map(t => {
                 return new Line(
                     t.map(p => new Point(p[0], p[1]))
