@@ -16,14 +16,8 @@ export class Tile {
 
         this.states = []
 
-        this.randomize(); this.states.push(cloneDeep(this));        
-        this.randomize(); this.states.push(cloneDeep(this));        
-        this.randomize(); this.states.push(cloneDeep(this));        
-        this.randomize(); this.states.push(cloneDeep(this));        
-        this.randomize(); this.states.push(cloneDeep(this));
-        this.randomize(); this.states.push(cloneDeep(this));
-        // this.randomize(); this.states.push(cloneDeep(this));
-        // this.randomize(); this.states.push(cloneDeep(this));        
+        this.commit('Initial commit')
+        this.randomize();       
     }
 
     static fromEncoded(encoded) {
@@ -46,11 +40,13 @@ export class Tile {
         [0].forEach(iteration => {
             this.sections.forEach(section => {
                 this.densify(section)
+                this.commit("Densified line")
       
                 
                 for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
                     let point = section.innerBorder.points[i]
                     this.randomizePoint(point)
+                    this.commit("Randomized point")
                 }
             })
         })
@@ -60,6 +56,13 @@ export class Tile {
         // this.randomizePoint(this.sections[1].innerBorder.points[1])
         // this.randomizePoint(this.sections[0].innerBorder.points[1])
         // this.randomizePoint(this.sections[1].innerBorder.points[1])        
+    }
+
+    commit(message = 'Commited state') {
+        this.message = message
+        this.states.push(cloneDeep(this))
+        console.log(this.states.length)
+        return this
     }
 
     densify(section) {

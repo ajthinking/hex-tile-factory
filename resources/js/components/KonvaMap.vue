@@ -13,12 +13,15 @@
             </div>
         </div>
         <div class="mt-4 uppercase font-bold">
-            <label class="tracking-wider text-xs text-gray-500">Generalization</label>
+            <label class="tracking-wider text-xs text-gray-500">History</label>
             <div class="mt-2 flex text-gray-600">
                 <div tabindex="0" @click="tileStateIndex=Math.max(tileStateIndex-1, 0)"
                     class="flex w-full border justify-center bg-white hover:bg-gray-500">-</div>
                 <div tabindex="0" @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)"
                     class="flex w-full border justify-center bg-white hover:bg-gray-500">+</div>                
+            </div>
+            <div class="flex text-sm w-full mt-2 text-gray-500 normal-case">
+                State {{this.tileStateIndex}}: "{{ activeTile.message }}"
             </div>
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
@@ -33,6 +36,21 @@
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
         <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
       </v-group>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
+      </v-group>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
+      </v-group>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
+      </v-group>                  
     </v-layer>
   </v-stage>
 </div>
@@ -76,8 +94,8 @@ export default {
                 strokeWidth: 1,
                 closed: true,
                 //draggable: true,
-                offsetX: -window.innerWidth/2,
-                offsetY: -window.innerHeight/2,
+                offsetX: -window.innerWidth/3,
+                offsetY: -window.innerHeight/3,
                 fillPatternImage: this.water,
                 //fillPatternImage: this.grass,
                 //fillPatternRepeat: 'no-repeat',
@@ -97,8 +115,8 @@ export default {
                     strokeWidth: 3,
                     closed: true,
                     //draggable: true,
-                    offsetX: -window.innerWidth/2,
-                    offsetY: -window.innerHeight/2,
+                    offsetX: -window.innerWidth/3,
+                    offsetY: -window.innerHeight/3,
                     fillPatternImage: this.grass,
                     //fillPatternImage: this.city,
                     //fillPatternRepeat: 'no-repeat',
@@ -119,8 +137,8 @@ export default {
                     strokeWidth: 1,
                     closed: true,
                     //draggable: true,
-                    offsetX: -window.innerWidth/2,
-                    offsetY: -window.innerHeight/2,
+                    offsetX: -window.innerWidth/3,
+                    offsetY: -window.innerHeight/3,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,

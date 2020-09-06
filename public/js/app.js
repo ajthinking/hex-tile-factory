@@ -136,6 +136,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -167,8 +185,8 @@ __webpack_require__.r(__webpack_exports__);
         strokeWidth: 1,
         closed: true,
         //draggable: true,
-        offsetX: -window.innerWidth / 2,
-        offsetY: -window.innerHeight / 2,
+        offsetX: -window.innerWidth / 3,
+        offsetY: -window.innerHeight / 3,
         fillPatternImage: this.water,
         //fillPatternImage: this.grass,
         //fillPatternRepeat: 'no-repeat',
@@ -189,8 +207,8 @@ __webpack_require__.r(__webpack_exports__);
           strokeWidth: 3,
           closed: true,
           //draggable: true,
-          offsetX: -window.innerWidth / 2,
-          offsetY: -window.innerHeight / 2,
+          offsetX: -window.innerWidth / 3,
+          offsetY: -window.innerHeight / 3,
           fillPatternImage: _this.grass,
           //fillPatternImage: this.city,
           //fillPatternRepeat: 'no-repeat',
@@ -210,8 +228,8 @@ __webpack_require__.r(__webpack_exports__);
           strokeWidth: 1,
           closed: true,
           //draggable: true,
-          offsetX: -window.innerWidth / 2,
-          offsetY: -window.innerHeight / 2,
+          offsetX: -window.innerWidth / 3,
+          offsetY: -window.innerHeight / 3,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -30943,7 +30961,7 @@ var render = function() {
             _c(
               "label",
               { staticClass: "tracking-wider text-xs text-gray-500" },
-              [_vm._v("Generalization")]
+              [_vm._v("History")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "mt-2 flex text-gray-600" }, [
@@ -30979,7 +30997,24 @@ var render = function() {
                 },
                 [_vm._v("+")]
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex text-sm w-full mt-2 text-gray-500 normal-case"
+              },
+              [
+                _vm._v(
+                  "\n                State " +
+                    _vm._s(this.tileStateIndex) +
+                    ': "' +
+                    _vm._s(_vm.activeTile.message) +
+                    '"\n            '
+                )
+              ]
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -31011,6 +31046,54 @@ var render = function() {
           _c(
             "v-layer",
             [
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
               _c(
                 "v-group",
                 { attrs: { config: { draggable: true } } },
@@ -43811,19 +43894,8 @@ var Tile = /*#__PURE__*/function () {
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.encoded);
     this.states = [];
+    this.commit('Initial commit');
     this.randomize();
-    this.states.push(cloneDeep(this));
-    this.randomize();
-    this.states.push(cloneDeep(this));
-    this.randomize();
-    this.states.push(cloneDeep(this));
-    this.randomize();
-    this.states.push(cloneDeep(this));
-    this.randomize();
-    this.states.push(cloneDeep(this));
-    this.randomize();
-    this.states.push(cloneDeep(this)); // this.randomize(); this.states.push(cloneDeep(this));
-    // this.randomize(); this.states.push(cloneDeep(this));        
   }
 
   _createClass(Tile, [{
@@ -43845,16 +43917,29 @@ var Tile = /*#__PURE__*/function () {
         _this.sections.forEach(function (section) {
           _this.densify(section);
 
+          _this.commit("Densified line");
+
           for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
             var point = section.innerBorder.points[i];
 
             _this.randomizePoint(point);
+
+            _this.commit("Randomized point");
           }
         });
       }); // this.randomizePoint(this.sections[0].innerBorder.points[1])
       // this.randomizePoint(this.sections[1].innerBorder.points[1])
       // this.randomizePoint(this.sections[0].innerBorder.points[1])
       // this.randomizePoint(this.sections[1].innerBorder.points[1])        
+    }
+  }, {
+    key: "commit",
+    value: function commit() {
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Commited state';
+      this.message = message;
+      this.states.push(cloneDeep(this));
+      console.log(this.states.length);
+      return this;
     }
   }, {
     key: "densify",
