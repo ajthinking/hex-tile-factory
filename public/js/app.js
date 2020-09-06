@@ -108,6 +108,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -117,14 +123,18 @@ __webpack_require__.r(__webpack_exports__);
         height: window.innerHeight
       },
       tile: _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"].fromEncoded('110200'),
+      tileStateIndex: 0,
       grass: false,
       water: false
     };
   },
   computed: {
+    activeTile: function activeTile() {
+      return this.tile.states[this.tileStateIndex];
+    },
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
-        points: this.tile.backgroundHexagon.asArray(),
+        points: this.activeTile.backgroundHexagon.asArray(),
         //fill: 'LightBlue',
         stroke: 'black',
         strokeWidth: 1,
@@ -141,7 +151,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
-      return this.tile.sections.map(function (section) {
+      return this.activeTile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
           //fill: this.indexToColor(section.type),
@@ -161,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     triangles: function triangles() {
-      return this.tile.connectedTriangles.map(function (triangle) {
+      return this.activeTile.connectedTriangles.map(function (triangle) {
         return new Konva.Line({
           points: triangle.asArray(),
           //fill: this.indexToColor(section.type),
@@ -30795,30 +30805,76 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-stage",
-    { staticClass: "bg-gray-400 w-full", attrs: { config: _vm.configKonva } },
+    "div",
+    { staticClass: "bg-gray-400" },
     [
       _c(
-        "v-layer",
+        "div",
+        {
+          staticClass: "flex justify-around text-5xl bg-gray-400 text-gray-200"
+        },
         [
           _c(
-            "v-group",
-            { attrs: { config: { draggable: true } } },
+            "div",
+            {
+              staticClass:
+                "w-full border flex mx-auto justify-center hover:bg-gray-500",
+              on: {
+                click: function($event) {
+                  _vm.tileStateIndex--
+                }
+              }
+            },
+            [_vm._v("-")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full border flex mx-auto justify-center hover:bg-gray-500",
+              on: {
+                click: function($event) {
+                  _vm.tileStateIndex++
+                }
+              }
+            },
+            [_vm._v("+")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-stage",
+        { staticClass: "w-full", attrs: { config: _vm.configKonva } },
+        [
+          _c(
+            "v-layer",
             [
-              _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
-              _vm._v(" "),
-              _vm._l(_vm.sections, function(section, index) {
-                return _c("v-line", { key: index, attrs: { config: section } })
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.triangles, function(triangle, index) {
-                return _c("v-line", {
-                  key: index + 1000,
-                  attrs: { config: triangle }
-                })
-              })
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.triangles, function(triangle, index) {
+                    return _c("v-line", {
+                      key: index + 1000,
+                      attrs: { config: triangle }
+                    })
+                  })
+                ],
+                2
+              )
             ],
-            2
+            1
           )
         ],
         1
@@ -43601,17 +43657,11 @@ var Tile = /*#__PURE__*/function () {
     this.encoded = options.encoded;
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.encoded);
+    this.states = [];
     this.randomize();
-    var reader = new jsts.io.WKTReader();
-    var a = reader.read('POINT (-20 0)');
-    var b = reader.read('POINT (20 0)');
-    a = a.buffer(40);
-    this.layers = {
-      background: this.backgroundHexagon,
-      sections: this.sections
-    };
-    var p = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](1, 2);
-    console.log("SURRRRE", p.asArray(), cloneDeep(p).asArray());
+    this.states.push(cloneDeep(this));
+    this.randomize();
+    this.states.push(cloneDeep(this));
   }
 
   _createClass(Tile, [{
@@ -43629,7 +43679,7 @@ var Tile = /*#__PURE__*/function () {
     value: function randomize() {
       var _this = this;
 
-      [0, 1].forEach(function (iteration) {
+      [0].forEach(function (iteration) {
         _this.sections.forEach(function (section) {
           _this.densify(section);
 

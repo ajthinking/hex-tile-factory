@@ -14,25 +14,19 @@ export class Tile {
 
         this.sections = SectionFactory.make(this.encoded)
 
+        this.states = []
+
         this.randomize()
 
-        var reader = new jsts.io.WKTReader()
-        var a = reader.read('POINT (-20 0)')
-        var b = reader.read('POINT (20 0)')
-        a = a.buffer(40)
+        this.states.push(
+            cloneDeep(this)
+        );
 
-        this.layers = {
-            background: this.backgroundHexagon,
-            sections: this.sections
-        }
+        this.randomize()
 
-        let p = new Point(1,2)
-
-        console.log(
-            "SURRRRE",
-            p.asArray(),
-            cloneDeep(p).asArray()
-        )
+        this.states.push(
+            cloneDeep(this)
+        );        
     }
 
     static fromEncoded(encoded) {
@@ -52,7 +46,7 @@ export class Tile {
     }
     
     randomize() {
-        [0,1].forEach(iteration => {
+        [0].forEach(iteration => {
             this.sections.forEach(section => {
                 this.densify(section)
       

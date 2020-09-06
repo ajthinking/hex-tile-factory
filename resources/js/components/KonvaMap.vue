@@ -1,5 +1,10 @@
 <template>
-  <v-stage class="bg-gray-400 w-full"  :config="configKonva">
+<div class="bg-gray-400">
+    <div class="flex justify-around text-5xl bg-gray-400 text-gray-200">
+    <div @click="tileStateIndex--" class="w-full border flex mx-auto justify-center hover:bg-gray-500">-</div>
+    <div @click="tileStateIndex++" class="w-full border flex mx-auto justify-center hover:bg-gray-500">+</div>
+    </div>
+  <v-stage class="w-full"  :config="configKonva">
     <v-layer>
       <v-group :config="{draggable: true}">
         <v-line :config="backgroundHexagon"></v-line>
@@ -8,6 +13,7 @@
       </v-group>
     </v-layer>
   </v-stage>
+</div>
 </template>
 
 <script>
@@ -22,15 +28,22 @@ export default {
                 height: window.innerHeight
             },
             tile: Tile.fromEncoded('110200'),
+            tileStateIndex: 0,
             grass: false,
             water: false,
         };
     },
 
     computed: {
+        activeTile: function() {
+            return this.tile.states[
+                this.tileStateIndex
+            ]
+        },
+
         backgroundHexagon: function() {
             return new Konva.Line({
-                points: this.tile.backgroundHexagon.asArray(),
+                points: this.activeTile.backgroundHexagon.asArray(),
                 //fill: 'LightBlue',
                 stroke: 'black',
                 strokeWidth: 1,
@@ -48,7 +61,7 @@ export default {
         },
 
         sections: function() {
-            return this.tile.sections.map(section => {
+            return this.activeTile.sections.map(section => {
                 return new Konva.Line({
                     points: section.asLine().asArray(),
                     //fill: this.indexToColor(section.type),
@@ -69,7 +82,7 @@ export default {
         },
         
         triangles: function() {
-            return this.tile.connectedTriangles.map(triangle => {
+            return this.activeTile.connectedTriangles.map(triangle => {
                 return new Konva.Line({
                     points: triangle.asArray(),
                     //fill: this.indexToColor(section.type),
