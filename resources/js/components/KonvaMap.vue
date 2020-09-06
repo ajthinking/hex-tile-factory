@@ -1,15 +1,15 @@
 <template>
 <div class="bg-gray-400">
     <div class="flex justify-around text-5xl bg-gray-400 text-gray-200">
-    <div @click="tileStateIndex--" class="w-full border flex mx-auto justify-center hover:bg-gray-500">-</div>
-    <div @click="tileStateIndex++" class="w-full border flex mx-auto justify-center hover:bg-gray-500">+</div>
+    <div @click="tileStateIndex=Math.max(tileStateIndex-1, 0)" class="w-full border flex mx-auto justify-center hover:bg-gray-500">-</div>
+    <div @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)" class="w-full border flex mx-auto justify-center hover:bg-gray-500">+</div>
     </div>
   <v-stage class="w-full"  :config="configKonva">
     <v-layer>
       <v-group :config="{draggable: true}">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
       </v-group>
     </v-layer>
   </v-stage>
@@ -51,7 +51,7 @@ export default {
                 //draggable: true,
                 offsetX: -window.innerWidth/2,
                 offsetY: -window.innerHeight/2,
-                //fillPatternImage: this.water,
+                fillPatternImage: this.water,
                 //fillPatternRepeat: 'no-repeat',
                 fillPatternScale: {
                     x: 0.4,
@@ -71,7 +71,7 @@ export default {
                     //draggable: true,
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
-                    //fillPatternImage: this.grass,
+                    fillPatternImage: this.grass,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,
@@ -92,7 +92,6 @@ export default {
                     //draggable: true,
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
-                    //fillPatternImage: this.grass,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,

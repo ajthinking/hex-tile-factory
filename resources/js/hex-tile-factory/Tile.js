@@ -16,17 +16,14 @@ export class Tile {
 
         this.states = []
 
-        this.randomize()
-
-        this.states.push(
-            cloneDeep(this)
-        );
-
-        this.randomize()
-
-        this.states.push(
-            cloneDeep(this)
-        );        
+        this.randomize(); this.states.push(cloneDeep(this));        
+        this.randomize(); this.states.push(cloneDeep(this));        
+        this.randomize(); this.states.push(cloneDeep(this));        
+        this.randomize(); this.states.push(cloneDeep(this));        
+        this.randomize(); this.states.push(cloneDeep(this));
+        this.randomize(); this.states.push(cloneDeep(this));
+        // this.randomize(); this.states.push(cloneDeep(this));
+        // this.randomize(); this.states.push(cloneDeep(this));        
     }
 
     static fromEncoded(encoded) {

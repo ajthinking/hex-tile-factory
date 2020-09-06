@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
         //draggable: true,
         offsetX: -window.innerWidth / 2,
         offsetY: -window.innerHeight / 2,
-        //fillPatternImage: this.water,
+        fillPatternImage: this.water,
         //fillPatternRepeat: 'no-repeat',
         fillPatternScale: {
           x: 0.4,
@@ -151,6 +151,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
+      var _this = this;
+
       return this.activeTile.sections.map(function (section) {
         return new Konva.Line({
           points: section.asLine().asArray(),
@@ -161,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          //fillPatternImage: this.grass,
+          fillPatternImage: _this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -181,7 +183,6 @@ __webpack_require__.r(__webpack_exports__);
           //draggable: true,
           offsetX: -window.innerWidth / 2,
           offsetY: -window.innerHeight / 2,
-          //fillPatternImage: this.grass,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -198,20 +199,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     var grass = new window.Image();
     grass.src = "/images/grass.jpg";
 
     grass.onload = function () {
-      _this.grass = grass;
+      _this2.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "/images/water.jpg";
 
     water.onload = function () {
-      _this.water = water;
+      _this2.water = water;
     };
   }
 });
@@ -30821,7 +30822,7 @@ var render = function() {
                 "w-full border flex mx-auto justify-center hover:bg-gray-500",
               on: {
                 click: function($event) {
-                  _vm.tileStateIndex--
+                  _vm.tileStateIndex = Math.max(_vm.tileStateIndex - 1, 0)
                 }
               }
             },
@@ -30835,7 +30836,10 @@ var render = function() {
                 "w-full border flex mx-auto justify-center hover:bg-gray-500",
               on: {
                 click: function($event) {
-                  _vm.tileStateIndex++
+                  _vm.tileStateIndex = Math.min(
+                    _vm.tileStateIndex + 1,
+                    _vm.tile.states.length - 1
+                  )
                 }
               }
             },
@@ -30861,13 +30865,6 @@ var render = function() {
                     return _c("v-line", {
                       key: index,
                       attrs: { config: section }
-                    })
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.triangles, function(triangle, index) {
-                    return _c("v-line", {
-                      key: index + 1000,
-                      attrs: { config: triangle }
                     })
                   })
                 ],
@@ -43662,6 +43659,15 @@ var Tile = /*#__PURE__*/function () {
     this.states.push(cloneDeep(this));
     this.randomize();
     this.states.push(cloneDeep(this));
+    this.randomize();
+    this.states.push(cloneDeep(this));
+    this.randomize();
+    this.states.push(cloneDeep(this));
+    this.randomize();
+    this.states.push(cloneDeep(this));
+    this.randomize();
+    this.states.push(cloneDeep(this)); // this.randomize(); this.states.push(cloneDeep(this));
+    // this.randomize(); this.states.push(cloneDeep(this));        
   }
 
   _createClass(Tile, [{
