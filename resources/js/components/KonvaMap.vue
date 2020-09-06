@@ -38,7 +38,7 @@ export default {
                 //draggable: true,
                 offsetX: -window.innerWidth/2,
                 offsetY: -window.innerHeight/2,
-                fillPatternImage: this.water,
+                //fillPatternImage: this.water,
                 //fillPatternRepeat: 'no-repeat',
                 fillPatternScale: {
                     x: 0.4,
@@ -58,7 +58,7 @@ export default {
                     //draggable: true,
                     offsetX: -window.innerWidth/2,
                     offsetY: -window.innerHeight/2,
-                    fillPatternImage: this.grass,
+                    //fillPatternImage: this.grass,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,

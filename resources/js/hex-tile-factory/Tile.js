@@ -4,6 +4,7 @@ import { Point } from './Point'
 import { Line } from './Line'
 import Delaunator from 'delaunator';
 let jsts = require('jsts')
+const cloneDeep = require('lodash').cloneDeep
 
 export class Tile {    
     constructor(options) {
@@ -24,6 +25,14 @@ export class Tile {
             background: this.backgroundHexagon,
             sections: this.sections
         }
+
+        let p = new Point(1,2)
+
+        console.log(
+            "SURRRRE",
+            p.asArray(),
+            cloneDeep(p).asArray()
+        )
     }
 
     static fromEncoded(encoded) {
