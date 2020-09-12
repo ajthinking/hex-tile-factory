@@ -11,9 +11,11 @@ Creating organic looking hexagons with carcassone-ish topology
 
 * Currently on a PHP backend...
 
-    git clone https://github.com/ajthinking/hex-tile-factory.git
-    cd hex-tile-factory
-    composer install
-    cp .env.example .env
-    php artisan key:generate
-    php artisan serve
+```bash
+git clone https://github.com/ajthinking/hex-tile-factory.git
+cd hex-tile-factory
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
