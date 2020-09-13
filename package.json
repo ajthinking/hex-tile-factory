@@ -27,6 +27,7 @@
         "delaunator": "^4.0.1",
         "jsts": "^2.5.1",
         "konva": "^7.0.6",
+        "seedrandom": "^3.0.5",
         "vue-konva": "^2.1.4"
     }
 }

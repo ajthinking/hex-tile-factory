@@ -5,14 +5,21 @@ import { Line } from './Line'
 import Delaunator from 'delaunator';
 let jsts = require('jsts')
 const _ = require('lodash')
+var seedrandom = require('seedrandom');
 
 export class Tile {    
     constructor(options) {
-        this.encoded = options.encoded
+        this.topology = options.topology
+        this.iterations = Array(
+            parseInt(options.iterations) ?? 3
+        ).fill().map((x,i)=>i)
+
+        this.seed = options.seed ?? 12345
+        seedrandom(this.seed, { global: true })
 
         this.backgroundHexagon = HexagonFactory.make()
 
-        this.sections = SectionFactory.make(this.encoded)
+        this.sections = SectionFactory.make(this.topology)
 
         this.states = []
 
@@ -20,9 +27,9 @@ export class Tile {
         this.randomize();       
     }
 
-    static fromEncoded(encoded) {
+    static fromEncoded(topology) {
         let instance = new Tile({
-            encoded
+            topology
         })
 
         return instance
@@ -37,7 +44,7 @@ export class Tile {
     }
     
     randomize() {
-        [0,1,2,3,4,5].forEach(iteration => {
+        this.iterations.forEach(iteration => {
                 this.sections.forEach(section => {
                 this.densify(section)
                 this.commit("Densified line")
@@ -58,7 +65,7 @@ export class Tile {
             // Dont store the recursive states :)
             _.cloneDeep(_.omit(this, ['states']))
         )
-                return this
+        return this
     }
 
     densify(section) {
