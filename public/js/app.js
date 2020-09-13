@@ -43821,7 +43821,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var jsts = __webpack_require__(/*! jsts */ "./node_modules/jsts/dist/jsts.min.js");
 
-var cloneDeep = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js").cloneDeep;
+var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 var Tile = /*#__PURE__*/function () {
   function Tile(options) {
@@ -43850,7 +43850,7 @@ var Tile = /*#__PURE__*/function () {
     value: function randomize() {
       var _this = this;
 
-      [0].forEach(function (iteration) {
+      [0, 1, 2, 3, 4, 5].forEach(function (iteration) {
         _this.sections.forEach(function (section) {
           _this.densify(section);
 
@@ -43864,18 +43864,15 @@ var Tile = /*#__PURE__*/function () {
             _this.commit("Randomized point");
           }
         });
-      }); // this.randomizePoint(this.sections[0].innerBorder.points[1])
-      // this.randomizePoint(this.sections[1].innerBorder.points[1])
-      // this.randomizePoint(this.sections[0].innerBorder.points[1])
-      // this.randomizePoint(this.sections[1].innerBorder.points[1])        
+      });
     }
   }, {
     key: "commit",
     value: function commit() {
       var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Commited state';
       this.message = message;
-      this.states.push(cloneDeep(this));
-      console.log(this.states.length);
+      this.states.push( // Dont store the recursive states :)
+      _.cloneDeep(_.omit(this, ['states'])));
       return this;
     }
   }, {
@@ -43931,7 +43928,6 @@ var Tile = /*#__PURE__*/function () {
         point.x = newPoint.x;
         point.y = newPoint.y;
       } catch (_unused) {
-        console.log("ERROR no selected triangle");
         this.connectedTriangles = notConnectedTriangles.map(function (t) {
           return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
             return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);

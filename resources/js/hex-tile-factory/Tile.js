@@ -4,7 +4,7 @@ import { Point } from './Point'
 import { Line } from './Line'
 import Delaunator from 'delaunator';
 let jsts = require('jsts')
-const cloneDeep = require('lodash').cloneDeep
+const _ = require('lodash')
 
 export class Tile {    
     constructor(options) {
@@ -37,32 +37,28 @@ export class Tile {
     }
     
     randomize() {
-        [0].forEach(iteration => {
-            this.sections.forEach(section => {
+        [0,1,2,3,4,5].forEach(iteration => {
+                this.sections.forEach(section => {
                 this.densify(section)
                 this.commit("Densified line")
-      
+                      
                 
                 for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
                     let point = section.innerBorder.points[i]
                     this.randomizePoint(point)
                     this.commit("Randomized point")
-                }
+                                    }
             })
-        })
-
-
-        // this.randomizePoint(this.sections[0].innerBorder.points[1])
-        // this.randomizePoint(this.sections[1].innerBorder.points[1])
-        // this.randomizePoint(this.sections[0].innerBorder.points[1])
-        // this.randomizePoint(this.sections[1].innerBorder.points[1])        
+                    })        
     }
 
     commit(message = 'Commited state') {
         this.message = message
-        this.states.push(cloneDeep(this))
-        console.log(this.states.length)
-        return this
+        this.states.push(
+            // Dont store the recursive states :)
+            _.cloneDeep(_.omit(this, ['states']))
+        )
+                return this
     }
 
     densify(section) {
@@ -75,7 +71,6 @@ export class Tile {
     }
 
     randomizePoint(point, iteration = 0) {
-        
         const points = [
             [point.x, point.y], // Ensures our point is at index 0 to easily find it
             ...this.allPoints().map(p => p.asArray()) // Any duplicates will be ignored
@@ -135,13 +130,13 @@ export class Tile {
             point.x = newPoint.x
             point.y = newPoint.y
         } catch {
-            console.log("ERROR no selected triangle")
             this.connectedTriangles = notConnectedTriangles.map(t => {
                 return new Line(
                     t.map(p => new Point(p[0], p[1]))
                 );
             });             
         }
+
     }
 
     allPoints() {
