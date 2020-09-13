@@ -8,8 +8,7 @@
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Seed</label>
             <div class="flex">
-                <input v-model="seed" class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
-                <div @click="seed=Math.floor(Math.random()*1000000)" class="font-medium flex mt-2 ml-2 px-2 cursor-pointer text-gray-500 items-center text-xs lowercase">random</div>
+                <input type="number" v-model="seed" number class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
             </div>
         </div>
         <div class="mt-4 uppercase font-bold">

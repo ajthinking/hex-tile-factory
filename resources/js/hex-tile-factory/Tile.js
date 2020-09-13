@@ -16,6 +16,10 @@ export class Tile {
 
         this.seed = options.seed ?? 12345
         seedrandom(this.seed, { global: true })
+        console.log(
+            this.seed,
+            Math.random()
+        )
 
         this.backgroundHexagon = HexagonFactory.make()
 

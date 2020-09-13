@@ -147,7 +147,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -32613,7 +32612,7 @@ var render = function() {
                 ],
                 staticClass:
                   "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
-                attrs: { placeholder: "12345" },
+                attrs: { type: "number", number: "", placeholder: "12345" },
                 domProps: { value: _vm.seed },
                 on: {
                   input: function($event) {
@@ -32623,21 +32622,7 @@ var render = function() {
                     _vm.seed = $event.target.value
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "font-medium flex mt-2 ml-2 px-2 cursor-pointer text-gray-500 items-center text-xs lowercase",
-                  on: {
-                    click: function($event) {
-                      _vm.seed = Math.floor(Math.random() * 1000000)
-                    }
-                  }
-                },
-                [_vm._v("random")]
-              )
+              })
             ])
           ]),
           _vm._v(" "),
@@ -45603,6 +45588,7 @@ var Tile = /*#__PURE__*/function () {
     seedrandom(this.seed, {
       global: true
     });
+    console.log(this.seed, Math.random());
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.topology);
     this.states = [];
