@@ -13,15 +13,24 @@
             </div>
         </div>
         <div class="mt-4 uppercase font-bold">
-            <label class="tracking-wider text-xs text-gray-500">History</label>
+            <label class="tracking-wider text-xs text-gray-500">Iterations: {{ this.iterations}}</label>
+                <div class="w-full">
+                    <input v-model="iterations" type="range" :min="1" :max="5"
+                        class="w-full"
+                    >                    
+                </div> 
+        </div>        
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">History: {{ tileStateIndex  }}</label>
             <div class="mt-2 flex text-gray-600">
-                <div tabindex="0" @click="tileStateIndex=Math.max(tileStateIndex-1, 0)"
-                    class="flex w-full border justify-center bg-white hover:bg-gray-500">-</div>
-                <div tabindex="0" @click="tileStateIndex=Math.min(tileStateIndex+1, tile.states.length-1)"
-                    class="flex w-full border justify-center bg-white hover:bg-gray-500">+</div>                
+                <div class="w-full">
+                    <input v-model="tileStateIndex" type="range" min="0" :max="tile.states.length-1"
+                        class="w-full"
+                    >                    
+                </div>                
             </div>
             <div class="flex text-sm w-full mt-2 text-gray-500 normal-case">
-                State {{this.tileStateIndex}}: "{{ activeTile.message }}"
+                Message: "{{ activeTile.message }}"
             </div>
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
@@ -53,8 +62,9 @@ export default {
                 height: window.innerHeight
             },
             topology: '110200',
-            seed: 12345,
-            tileStateIndex: 0,
+            seed: Math.floor(Math.random() * 100000),
+            tileStateIndex: null,
+            iterations: 3,
             city: false,
             grass: false,
             water: false,
@@ -63,7 +73,14 @@ export default {
 
     computed: {
         tile: function() {
-            return Tile.fromEncoded(this.topology, this.seed)
+            let tile = new Tile({
+                topology: this.topology,
+                seed: this.seed,
+                iterations: this.iterations,
+            })
+
+            this.tileStateIndex = tile.states.length-1
+            return tile
         },
         activeTile: function() {
             return this.tile.states[
@@ -177,3 +194,10 @@ export default {
 }
 
 </script>
+
+<style scoped>
+input[type=range]::-ms-thumb {
+  fill: red;
+  stroke: none;
+}
+</style>
