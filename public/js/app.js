@@ -45620,7 +45620,7 @@ var Tile = /*#__PURE__*/function () {
           for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
             var point = section.innerBorder.points[i];
 
-            _this.randomizePoint(point);
+            _this.randomizePoint(point, iteration);
 
             _this.commit("Randomized point");
           }

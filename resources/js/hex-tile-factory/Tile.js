@@ -56,7 +56,7 @@ export class Tile {
                 
                 for(let i = 1; i+1 < section.innerBorder.points.length; i++) {
                     let point = section.innerBorder.points[i]
-                    this.randomizePoint(point)
+                    this.randomizePoint(point, iteration)
                     this.commit("Randomized point")
                                     }
             })
