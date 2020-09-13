@@ -45703,19 +45703,6 @@ var Tile = /*#__PURE__*/function () {
         return s.asLine().asPoints();
       })));
     }
-  }, {
-    key: "triangleArea",
-    value: function triangleArea(p0, p1, p2) {
-      var sides = prompt("Triangle side lengths in cm (number,number,number)"),
-          nsides = sides.split(","),
-          a = parseFloat(nsides[0]),
-          b = parseFloat(nsides[1]),
-          c = parseFloat(nsides[2]),
-          s = (a + b + c) / 2,
-          area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-      alert("The triangle's area is " + area + " square cm");
-      return area; // return the area
-    }
   }], [{
     key: "fromEncoded",
     value: function fromEncoded(topology) {
