@@ -139,21 +139,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -31046,54 +31031,6 @@ var render = function() {
           _c(
             "v-layer",
             [
-              _c(
-                "v-group",
-                { attrs: { config: { draggable: true } } },
-                [
-                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
-                  _vm._v(" "),
-                  _vm._l(_vm.sections, function(section, index) {
-                    return _c("v-line", {
-                      key: index,
-                      attrs: { config: section }
-                    })
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "v-group",
-                { attrs: { config: { draggable: true } } },
-                [
-                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
-                  _vm._v(" "),
-                  _vm._l(_vm.sections, function(section, index) {
-                    return _c("v-line", {
-                      key: index,
-                      attrs: { config: section }
-                    })
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "v-group",
-                { attrs: { config: { draggable: true } } },
-                [
-                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
-                  _vm._v(" "),
-                  _vm._l(_vm.sections, function(section, index) {
-                    return _c("v-line", {
-                      key: index,
-                      attrs: { config: section }
-                    })
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
               _c(
                 "v-group",
                 { attrs: { config: { draggable: true } } },

@@ -35,22 +35,7 @@
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
         <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>
-      <v-group :config="{draggable: true}">
-        <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>
-      <v-group :config="{draggable: true}">
-        <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>
-      <v-group :config="{draggable: true}">
-        <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>                  
+      </v-group>                 
     </v-layer>
   </v-stage>
 </div>
