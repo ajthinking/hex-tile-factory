@@ -835,6 +835,7 @@ var RandomOffset = /*#__PURE__*/function () {
 
     this.tile = tile;
     this.tile.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.tile.topology);
+    this.tile.commit('Added base sections');
   } // PUBLIC STATIC API
 
 
