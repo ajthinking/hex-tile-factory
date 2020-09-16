@@ -86,16 +86,789 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/KonvaMap.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************/
+/***/ "./js sync recursive \\.vue$/":
+/*!*************************!*\
+  !*** ./js sync \.vue$/ ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/KonvaMap.vue": "./js/components/KonvaMap.vue"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./js sync recursive \\.vue$/";
+
+/***/ }),
+
+/***/ "./js/app.js":
+/*!*******************!*\
+  !*** ./js/app.js ***!
+  \*******************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-konva */ "./node_modules/vue-konva/umd/vue-konva.js");
+/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_konva__WEBPACK_IMPORTED_MODULE_0__);
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.use(vue_konva__WEBPACK_IMPORTED_MODULE_0___default.a); // Auto register components
+
+var files = __webpack_require__("./js sync recursive \\.vue$/");
+
+files.keys().map(function (key) {
+  return Vue.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+});
+var app = new Vue({
+  el: '#app'
+});
+
+/***/ }),
+
+/***/ "./js/components/KonvaMap.vue":
+/*!************************************!*\
+  !*** ./js/components/KonvaMap.vue ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./resources/js/hex-tile-factory/Tile.js");
+/* harmony import */ var _KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true& */ "./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true&");
+/* harmony import */ var _KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=script&lang=js& */ "./js/components/KonvaMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& */ "./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "7f3aa0a8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "js/components/KonvaMap.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./js/components/KonvaMap.vue?vue&type=script&lang=js&":
+/*!*************************************************************!*\
+  !*** ./js/components/KonvaMap.vue?vue&type=script&lang=js& ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&":
+/*!*********************************************************************************************!*\
+  !*** ./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/style-loader!../../node_modules/css-loader??ref--5-1!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/postcss-loader/src??ref--5-2!../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_7f3aa0a8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true&":
+/*!*******************************************************************************!*\
+  !*** ./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_7f3aa0a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/HexagonFactory.js":
+/*!***********************************************!*\
+  !*** ./js/hex-tile-factory/HexagonFactory.js ***!
+  \***********************************************/
+/*! exports provided: HexagonFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HexagonFactory", function() { return HexagonFactory; });
+/* harmony import */ var _Polygon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Polygon */ "./js/hex-tile-factory/Polygon.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Line */ "./js/hex-tile-factory/Line.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./js/hex-tile-factory/Point.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var HexagonFactory = /*#__PURE__*/function () {
+  function HexagonFactory() {
+    _classCallCheck(this, HexagonFactory);
+  }
+
+  _createClass(HexagonFactory, null, [{
+    key: "make",
+    value: function make() {
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var line = new _Line__WEBPACK_IMPORTED_MODULE_1__["Line"]();
+
+      for (var i = 0; i < 6; i++) {
+        var _config$radius, _config$offsetX, _config$offsetY;
+
+        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 100;
+        var offsetX = (_config$offsetX = config.offsetX) !== null && _config$offsetX !== void 0 ? _config$offsetX : 0;
+        var offsetY = (_config$offsetY = config.offsetY) !== null && _config$offsetY !== void 0 ? _config$offsetY : 0;
+        var startX = Math.cos(radius / 2);
+        var startY = 0; //-0.5 * radius
+
+        var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
+        line.addPoint(point);
+      }
+
+      return new _Polygon__WEBPACK_IMPORTED_MODULE_0__["Polygon"](line);
+    }
+  }, {
+    key: "borderBetween",
+    value: function borderBetween(start, end) {
+      var line = new _Line__WEBPACK_IMPORTED_MODULE_1__["Line"]();
+      var config = {};
+
+      for (var i = start; i <= end; i++) {
+        var _config$radius2, _config$offsetX2, _config$offsetY2;
+
+        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 100;
+        var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
+        var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
+        var startX = Math.cos(radius / 2);
+        var startY = 0;
+        var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
+        line.addPoint(point);
+      }
+
+      return line;
+    }
+  }, {
+    key: "pointAtIndex",
+    value: function pointAtIndex(i) {
+      var _config$radius3, _config$offsetX3, _config$offsetY3;
+
+      var config = {};
+      var radius = (_config$radius3 = config.radius) !== null && _config$radius3 !== void 0 ? _config$radius3 : 100;
+      var offsetX = (_config$offsetX3 = config.offsetX) !== null && _config$offsetX3 !== void 0 ? _config$offsetX3 : 0;
+      var offsetY = (_config$offsetY3 = config.offsetY) !== null && _config$offsetY3 !== void 0 ? _config$offsetY3 : 0;
+      var startX = Math.cos(radius / 2);
+      var startY = 0;
+      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
+    }
+  }, {
+    key: "centerPoint",
+    value: function centerPoint() {
+      var _config$offsetX4, _config$offsetY4;
+
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var offsetX = (_config$offsetX4 = config.offsetX) !== null && _config$offsetX4 !== void 0 ? _config$offsetX4 : 0;
+      var offsetY = (_config$offsetY4 = config.offsetY) !== null && _config$offsetY4 !== void 0 ? _config$offsetY4 : 0;
+      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](offsetX, offsetY);
+    }
+  }]);
+
+  return HexagonFactory;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/Line.js":
+/*!*************************************!*\
+  !*** ./js/hex-tile-factory/Line.js ***!
+  \*************************************/
+/*! exports provided: Line */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Line", function() { return Line; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Line = /*#__PURE__*/function () {
+  function Line() {
+    var points = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    _classCallCheck(this, Line);
+
+    this.points = points;
+  }
+
+  _createClass(Line, [{
+    key: "addPoint",
+    value: function addPoint(point) {
+      this.points.push(point);
+      return this;
+    }
+  }, {
+    key: "addLine",
+    value: function addLine(line) {
+      this.points = [].concat(_toConsumableArray(this.points), _toConsumableArray(line.points));
+      return this;
+    }
+  }, {
+    key: "asPoints",
+    value: function asPoints() {
+      return this.points;
+    }
+  }, {
+    key: "asArray",
+    value: function asArray() {
+      return this.points.reduce(function (result, point) {
+        return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
+      }, []);
+    }
+  }, {
+    key: "length",
+    value: function length() {
+      return this.points.length;
+    }
+  }]);
+
+  return Line;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/Point.js":
+/*!**************************************!*\
+  !*** ./js/hex-tile-factory/Point.js ***!
+  \**************************************/
+/*! exports provided: Point */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Point", function() { return Point; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Point = /*#__PURE__*/function () {
+  function Point(x, y) {
+    _classCallCheck(this, Point);
+
+    this.x = x;
+    this.y = y;
+  }
+
+  _createClass(Point, [{
+    key: "asArray",
+    value: function asArray() {
+      return [this.x, this.y];
+    }
+  }, {
+    key: "clone",
+    value: function clone() {
+      return new Point(this.x, this.y);
+    }
+  }]);
+
+  return Point;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/Polygon.js":
+/*!****************************************!*\
+  !*** ./js/hex-tile-factory/Polygon.js ***!
+  \****************************************/
+/*! exports provided: Polygon */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Polygon", function() { return Polygon; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Polygon = /*#__PURE__*/function () {
+  function Polygon(line) {
+    _classCallCheck(this, Polygon);
+
+    this.line = line;
+  }
+
+  _createClass(Polygon, [{
+    key: "asPoints",
+    value: function asPoints() {
+      return this.line.asPoints();
+    }
+  }, {
+    key: "asArray",
+    value: function asArray() {
+      return this.line.points.reduce(function (result, point) {
+        return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
+      }, []);
+    }
+  }]);
+
+  return Polygon;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/Section.js":
+/*!****************************************!*\
+  !*** ./js/hex-tile-factory/Section.js ***!
+  \****************************************/
+/*! exports provided: Section */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Section", function() { return Section; });
+/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Point */ "./js/hex-tile-factory/Point.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Line */ "./js/hex-tile-factory/Line.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var Section = /*#__PURE__*/function () {
+  function Section(options) {
+    _classCallCheck(this, Section);
+
+    this.type = options.type;
+    this.start = options.start;
+    this.end = options.end;
+    this.innerBorder = this.getInitialInnerBorder();
+    this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
+  }
+
+  _createClass(Section, [{
+    key: "asLine",
+    value: function asLine() {
+      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([].concat(_toConsumableArray(this.outerBorder.asPoints().map(function (p) {
+        return p.clone();
+      })), _toConsumableArray(this.innerBorder.asPoints().map(function (p) {
+        return p.clone();
+      }))));
+    }
+  }, {
+    key: "getHelperPoint",
+    value: function getHelperPoint() {
+      var angle = this.start * Math.PI / 3 + this.length() * Math.PI / 6 - Math.PI / 6;
+      return new _Point__WEBPACK_IMPORTED_MODULE_1__["Point"](30 * Math.cos(angle), 30 * Math.sin(angle));
+    }
+  }, {
+    key: "id",
+    value: function id() {
+      return 'type_' + this.type + '_from_' + this.start + '_to_' + this.end;
+    }
+  }, {
+    key: "getInitialInnerBorder",
+    value: function getInitialInnerBorder() {
+      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.end), this.getHelperPoint(), _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.start)]);
+    }
+  }, {
+    key: "getOuterHiddenBorder",
+    value: function getOuterHiddenBorder() {
+      var points = this.outerBorder.asPoints();
+      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"](points.filter(function (p, i) {
+        return i != 0 && i != points.length - 1;
+      }));
+    }
+  }, {
+    key: "length",
+    value: function length() {
+      return this.end - this.start + 1;
+    }
+  }]);
+
+  return Section;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/SectionFactory.js":
+/*!***********************************************!*\
+  !*** ./js/hex-tile-factory/SectionFactory.js ***!
+  \***********************************************/
+/*! exports provided: SectionFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SectionFactory", function() { return SectionFactory; });
+/* harmony import */ var _Polygon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Polygon */ "./js/hex-tile-factory/Polygon.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Line */ "./js/hex-tile-factory/Line.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./js/hex-tile-factory/Point.js");
+/* harmony import */ var _Section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Section */ "./js/hex-tile-factory/Section.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var SectionFactory = /*#__PURE__*/function () {
+  function SectionFactory() {
+    _classCallCheck(this, SectionFactory);
+  }
+
+  _createClass(SectionFactory, null, [{
+    key: "make",
+    value: function make(encoded) {
+      // Assume sections does not intersect array end-to-start
+      var sides = encoded.split('').map(function (str) {
+        return parseInt(str);
+      });
+      var sections = [];
+      var currentType = sides[0];
+      var currentStart = 0;
+
+      for (var i = 0; i < 6; i++) {
+        if (sides[i] !== currentType) {
+          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
+            type: currentType,
+            start: currentStart,
+            end: i
+          }));
+          currentType = sides[i];
+          currentStart = i;
+        }
+
+        if (i == 5) {
+          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
+            type: currentType,
+            start: currentStart,
+            end: 6
+          }));
+        }
+      }
+
+      return sections.filter(function (section) {
+        return section.type != 0;
+      });
+    }
+  }]);
+
+  return SectionFactory;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/Tile.js":
+/*!*************************************!*\
+  !*** ./js/hex-tile-factory/Tile.js ***!
+  \*************************************/
+/*! exports provided: Tile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tile", function() { return Tile; });
+/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SectionFactory */ "./js/hex-tile-factory/SectionFactory.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./js/hex-tile-factory/Point.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Line */ "./js/hex-tile-factory/Line.js");
+/* harmony import */ var delaunator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! delaunator */ "./node_modules/delaunator/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+var jsts = __webpack_require__(/*! jsts */ "./node_modules/jsts/dist/jsts.min.js");
+
+var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+
+var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
+
+var Tile = /*#__PURE__*/function () {
+  function Tile(options) {
+    var _parseInt, _options$seed;
+
+    _classCallCheck(this, Tile);
+
+    this.topology = options.topology;
+    this.iterations = Array((_parseInt = parseInt(options.iterations)) !== null && _parseInt !== void 0 ? _parseInt : 3).fill().map(function (x, i) {
+      return i;
+    });
+    this.seed = (_options$seed = options.seed) !== null && _options$seed !== void 0 ? _options$seed : 12345;
+    seedrandom(this.seed, {
+      global: true
+    });
+    this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
+    this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.topology);
+    this.states = [];
+    this.commit('Initial commit');
+    this.randomize();
+    this.commit('Finished!');
+  }
+
+  _createClass(Tile, [{
+    key: "hasSections",
+    value: function hasSections() {
+      return true;
+    }
+  }, {
+    key: "isSixSided",
+    value: function isSixSided() {
+      return false;
+    }
+  }, {
+    key: "randomize",
+    value: function randomize() {
+      var _this = this;
+
+      this.iterations.forEach(function (iteration) {
+        _this.sections.forEach(function (section) {
+          _this.densify(section);
+
+          _this.commit("Densified line");
+
+          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
+            var point = section.innerBorder.points[i];
+
+            _this.randomizePoint(point, iteration);
+
+            _this.commit("Randomized point");
+          }
+        });
+      });
+    }
+  }, {
+    key: "commit",
+    value: function commit() {
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Commited state';
+      this.message = message;
+      this.states.push( // Dont store the recursive states :)
+      _.cloneDeep(_.omit(this, ['states'])));
+      return this;
+    }
+  }, {
+    key: "densify",
+    value: function densify(section) {
+      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 1) {
+        section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
+      }
+    }
+  }, {
+    key: "randomizePoint",
+    value: function randomizePoint(point) {
+      var iteration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
+        return p.asArray();
+      })));
+      point.x = point.x + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
+      point.y = point.y + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
+      return;
+      var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_4__["default"].from(points);
+      var triangles = delaunay.triangles;
+      var connectedTriangles = [];
+      var notConnectedTriangles = [];
+
+      for (var i = 0; i < triangles.length; i += 3) {
+        var pi0 = triangles[i];
+        var pi1 = triangles[i + 1];
+        var pi2 = triangles[i + 2];
+
+        if ([pi0, pi1, pi2].includes(0)) {
+          connectedTriangles.push([// Build area
+          points[pi0], points[pi1], points[pi2]]);
+        } else {
+          notConnectedTriangles.push([// Build area
+          points[pi0], points[pi1], points[pi2]]);
+        }
+      }
+
+      var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
+      var selectedTriangle = connectedTriangles[selectedTriangleIndex]; // Triangels might overlap with other sections!
+      // Need to perform buffer and clip forbidden areas
+      // CLIPPING
+      //https://github.com/mfogel/polygon-clipping#readme
+      // BUFFER
+      //http://bjornharrtell.github.io/jsts/
+
+      var newPoint;
+
+      try {
+        newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
+        this.connectedTriangles = connectedTriangles.map(function (t) {
+          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
+            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
+          }));
+        });
+        point.x = newPoint.x;
+        point.y = newPoint.y;
+      } catch (_unused) {
+        this.connectedTriangles = notConnectedTriangles.map(function (t) {
+          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
+            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
+          }));
+        });
+      }
+    }
+  }, {
+    key: "allPoints",
+    value: function allPoints() {
+      return [].concat(_toConsumableArray(this.backgroundHexagon.asPoints()), _toConsumableArray(this.sections.flatMap(function (s) {
+        return s.asLine().asPoints();
+      })));
+    }
+  }], [{
+    key: "fromEncoded",
+    value: function fromEncoded(topology) {
+      var instance = new Tile({
+        topology: topology
+      });
+      return instance;
+    }
+  }]);
+
+  return Tile;
+}();
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -152,13 +925,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       configKonva: {
-        width: window.innerWidth,
+        width: 400,
         height: window.innerHeight
       },
       topology: '110200',
       seed: Math.floor(Math.random() * 100000),
       tileStateIndex: null,
-      iterations: 3,
+      iterations: 2,
       city: false,
       grass: false,
       water: false
@@ -185,8 +958,8 @@ __webpack_require__.r(__webpack_exports__);
         strokeWidth: 1,
         closed: true,
         //draggable: true,
-        offsetX: -window.innerWidth / 3,
-        offsetY: -window.innerHeight / 3,
+        offsetX: -150,
+        offsetY: -150,
         fillPatternImage: this.water,
         //fillPatternImage: this.grass,
         //fillPatternRepeat: 'no-repeat',
@@ -207,8 +980,8 @@ __webpack_require__.r(__webpack_exports__);
           strokeWidth: 3,
           closed: true,
           //draggable: true,
-          offsetX: -window.innerWidth / 3,
-          offsetY: -window.innerHeight / 3,
+          offsetX: -150,
+          offsetY: -150,
           fillPatternImage: _this.grass,
           //fillPatternImage: this.city,
           //fillPatternRepeat: 'no-repeat',
@@ -228,8 +1001,8 @@ __webpack_require__.r(__webpack_exports__);
           strokeWidth: 1,
           closed: true,
           //draggable: true,
-          offsetX: -window.innerWidth / 3,
-          offsetY: -window.innerHeight / 3,
+          offsetX: -150,
+          offsetY: -150,
           //fillPatternRepeat: 'no-repeat',
           fillPatternScale: {
             x: 0.1,
@@ -285,19 +1058,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\ninput[type=range][data-v-211cab52]::-ms-thumb {\n  fill: red;\n  stroke: none;\n}\n", ""]);
+exports.push([module.i, "\ninput[type=range][data-v-7f3aa0a8]::-ms-thumb {\n  fill: red;\n  stroke: none;\n}\n", ""]);
 
 // exports
 
@@ -31431,15 +32204,15 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--5-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--5-2!../../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&");
+var content = __webpack_require__(/*! !../../node_modules/css-loader??ref--5-1!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/postcss-loader/src??ref--5-2!../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=style&index=0&id=7f3aa0a8&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -31453,7 +32226,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -32539,10 +33312,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32556,7 +33329,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex bg-gray-300" },
+    { staticClass: "flex" },
     [
       _c(
         "div",
@@ -32625,6 +33398,8 @@ var render = function() {
               })
             ])
           ]),
+          _vm._v(" "),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
             _c(
@@ -32729,7 +33504,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-stage",
-        { staticClass: "w-full", attrs: { config: _vm.configKonva } },
+        {
+          staticClass: "w-full bg-gray-200",
+          attrs: { config: _vm.configKonva }
+        },
         [
           _c(
             "v-layer",
@@ -32759,7 +33537,29 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
+        _vm._v("Algorithm")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full mt-2" }, [
+        _c(
+          "select",
+          {
+            staticClass:
+              "block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs"
+          },
+          [_c("option", { attrs: { selected: "" } }, [_vm._v("Random offset")])]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44956,779 +45756,14 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js sync recursive \\.vue$/":
-/*!***********************************!*\
-  !*** ./resources/js sync \.vue$/ ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./components/KonvaMap.vue": "./resources/js/components/KonvaMap.vue"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./resources/js sync recursive \\.vue$/";
-
-/***/ }),
-
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-konva */ "./node_modules/vue-konva/umd/vue-konva.js");
-/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_konva__WEBPACK_IMPORTED_MODULE_0__);
-
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-Vue.use(vue_konva__WEBPACK_IMPORTED_MODULE_0___default.a); // Auto register components
-
-var files = __webpack_require__("./resources/js sync recursive \\.vue$/");
-
-files.keys().map(function (key) {
-  return Vue.component(key.split('/').pop().split('.')[0], files(key)["default"]);
-});
-var app = new Vue({
-  el: '#app'
-});
-
-/***/ }),
-
-/***/ "./resources/js/components/KonvaMap.vue":
-/*!**********************************************!*\
-  !*** ./resources/js/components/KonvaMap.vue ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=template&id=211cab52&scoped=true& */ "./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true&");
-/* harmony import */ var _KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=script&lang=js& */ "./resources/js/components/KonvaMap.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& */ "./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "211cab52",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/KonvaMap.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/KonvaMap.vue?vue&type=script&lang=js&":
-/*!***********************************************************************!*\
-  !*** ./resources/js/components/KonvaMap.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--5-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--5-2!../../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=style&index=0&id=211cab52&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_style_index_0_id_211cab52_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true& ***!
-  \*****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./KonvaMap.vue?vue&type=template&id=211cab52&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/KonvaMap.vue?vue&type=template&id=211cab52&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_211cab52_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/HexagonFactory.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/hex-tile-factory/HexagonFactory.js ***!
-  \*********************************************************/
-/*! exports provided: HexagonFactory */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HexagonFactory", function() { return HexagonFactory; });
-/* harmony import */ var _Polygon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Polygon */ "./resources/js/hex-tile-factory/Polygon.js");
-/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
-/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-var HexagonFactory = /*#__PURE__*/function () {
-  function HexagonFactory() {
-    _classCallCheck(this, HexagonFactory);
-  }
-
-  _createClass(HexagonFactory, null, [{
-    key: "make",
-    value: function make() {
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var line = new _Line__WEBPACK_IMPORTED_MODULE_1__["Line"]();
-
-      for (var i = 0; i < 6; i++) {
-        var _config$radius, _config$offsetX, _config$offsetY;
-
-        var radius = (_config$radius = config.radius) !== null && _config$radius !== void 0 ? _config$radius : 100;
-        var offsetX = (_config$offsetX = config.offsetX) !== null && _config$offsetX !== void 0 ? _config$offsetX : 0;
-        var offsetY = (_config$offsetY = config.offsetY) !== null && _config$offsetY !== void 0 ? _config$offsetY : 0;
-        var startX = Math.cos(radius / 2);
-        var startY = 0; //-0.5 * radius
-
-        var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
-        line.addPoint(point);
-      }
-
-      return new _Polygon__WEBPACK_IMPORTED_MODULE_0__["Polygon"](line);
-    }
-  }, {
-    key: "borderBetween",
-    value: function borderBetween(start, end) {
-      var line = new _Line__WEBPACK_IMPORTED_MODULE_1__["Line"]();
-      var config = {};
-
-      for (var i = start; i <= end; i++) {
-        var _config$radius2, _config$offsetX2, _config$offsetY2;
-
-        var radius = (_config$radius2 = config.radius) !== null && _config$radius2 !== void 0 ? _config$radius2 : 100;
-        var offsetX = (_config$offsetX2 = config.offsetX) !== null && _config$offsetX2 !== void 0 ? _config$offsetX2 : 0;
-        var offsetY = (_config$offsetY2 = config.offsetY) !== null && _config$offsetY2 !== void 0 ? _config$offsetY2 : 0;
-        var startX = Math.cos(radius / 2);
-        var startY = 0;
-        var point = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
-        line.addPoint(point);
-      }
-
-      return line;
-    }
-  }, {
-    key: "pointAtIndex",
-    value: function pointAtIndex(i) {
-      var _config$radius3, _config$offsetX3, _config$offsetY3;
-
-      var config = {};
-      var radius = (_config$radius3 = config.radius) !== null && _config$radius3 !== void 0 ? _config$radius3 : 100;
-      var offsetX = (_config$offsetX3 = config.offsetX) !== null && _config$offsetX3 !== void 0 ? _config$offsetX3 : 0;
-      var offsetY = (_config$offsetY3 = config.offsetY) !== null && _config$offsetY3 !== void 0 ? _config$offsetY3 : 0;
-      var startX = Math.cos(radius / 2);
-      var startY = 0;
-      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](startX + radius * Math.cos(i * Math.PI / 3) + offsetX, startY + radius * Math.sin(i * Math.PI / 3) + offsetY);
-    }
-  }, {
-    key: "centerPoint",
-    value: function centerPoint() {
-      var _config$offsetX4, _config$offsetY4;
-
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var offsetX = (_config$offsetX4 = config.offsetX) !== null && _config$offsetX4 !== void 0 ? _config$offsetX4 : 0;
-      var offsetY = (_config$offsetY4 = config.offsetY) !== null && _config$offsetY4 !== void 0 ? _config$offsetY4 : 0;
-      return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](offsetX, offsetY);
-    }
-  }]);
-
-  return HexagonFactory;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/Line.js":
-/*!***********************************************!*\
-  !*** ./resources/js/hex-tile-factory/Line.js ***!
-  \***********************************************/
-/*! exports provided: Line */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Line", function() { return Line; });
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Line = /*#__PURE__*/function () {
-  function Line() {
-    var points = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-    _classCallCheck(this, Line);
-
-    this.points = points;
-  }
-
-  _createClass(Line, [{
-    key: "addPoint",
-    value: function addPoint(point) {
-      this.points.push(point);
-      return this;
-    }
-  }, {
-    key: "addLine",
-    value: function addLine(line) {
-      this.points = [].concat(_toConsumableArray(this.points), _toConsumableArray(line.points));
-      return this;
-    }
-  }, {
-    key: "asPoints",
-    value: function asPoints() {
-      return this.points;
-    }
-  }, {
-    key: "asArray",
-    value: function asArray() {
-      return this.points.reduce(function (result, point) {
-        return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
-      }, []);
-    }
-  }, {
-    key: "length",
-    value: function length() {
-      return this.points.length;
-    }
-  }]);
-
-  return Line;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/Point.js":
-/*!************************************************!*\
-  !*** ./resources/js/hex-tile-factory/Point.js ***!
-  \************************************************/
-/*! exports provided: Point */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Point", function() { return Point; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Point = /*#__PURE__*/function () {
-  function Point(x, y) {
-    _classCallCheck(this, Point);
-
-    this.x = x;
-    this.y = y;
-  }
-
-  _createClass(Point, [{
-    key: "asArray",
-    value: function asArray() {
-      return [this.x, this.y];
-    }
-  }, {
-    key: "clone",
-    value: function clone() {
-      return new Point(this.x, this.y);
-    }
-  }]);
-
-  return Point;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/Polygon.js":
-/*!**************************************************!*\
-  !*** ./resources/js/hex-tile-factory/Polygon.js ***!
-  \**************************************************/
-/*! exports provided: Polygon */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Polygon", function() { return Polygon; });
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Polygon = /*#__PURE__*/function () {
-  function Polygon(line) {
-    _classCallCheck(this, Polygon);
-
-    this.line = line;
-  }
-
-  _createClass(Polygon, [{
-    key: "asPoints",
-    value: function asPoints() {
-      return this.line.asPoints();
-    }
-  }, {
-    key: "asArray",
-    value: function asArray() {
-      return this.line.points.reduce(function (result, point) {
-        return [].concat(_toConsumableArray(result), _toConsumableArray(point.asArray()));
-      }, []);
-    }
-  }]);
-
-  return Polygon;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/Section.js":
-/*!**************************************************!*\
-  !*** ./resources/js/hex-tile-factory/Section.js ***!
-  \**************************************************/
-/*! exports provided: Section */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Section", function() { return Section; });
-/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
-/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
-/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-var Section = /*#__PURE__*/function () {
-  function Section(options) {
-    _classCallCheck(this, Section);
-
-    this.type = options.type;
-    this.start = options.start;
-    this.end = options.end;
-    this.innerBorder = this.getInitialInnerBorder();
-    this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
-  }
-
-  _createClass(Section, [{
-    key: "asLine",
-    value: function asLine() {
-      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([].concat(_toConsumableArray(this.outerBorder.asPoints().map(function (p) {
-        return p.clone();
-      })), _toConsumableArray(this.innerBorder.asPoints().map(function (p) {
-        return p.clone();
-      }))));
-    }
-  }, {
-    key: "getHelperPoint",
-    value: function getHelperPoint() {
-      var angle = this.start * Math.PI / 3 + this.length() * Math.PI / 6 - Math.PI / 6;
-      return new _Point__WEBPACK_IMPORTED_MODULE_1__["Point"](30 * Math.cos(angle), 30 * Math.sin(angle));
-    }
-  }, {
-    key: "id",
-    value: function id() {
-      return 'type_' + this.type + '_from_' + this.start + '_to_' + this.end;
-    }
-  }, {
-    key: "getInitialInnerBorder",
-    value: function getInitialInnerBorder() {
-      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([_HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.end), this.getHelperPoint(), _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].pointAtIndex(this.start)]);
-    }
-  }, {
-    key: "getOuterHiddenBorder",
-    value: function getOuterHiddenBorder() {
-      var points = this.outerBorder.asPoints();
-      return new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"](points.filter(function (p, i) {
-        return i != 0 && i != points.length - 1;
-      }));
-    }
-  }, {
-    key: "length",
-    value: function length() {
-      return this.end - this.start + 1;
-    }
-  }]);
-
-  return Section;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/SectionFactory.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/hex-tile-factory/SectionFactory.js ***!
-  \*********************************************************/
-/*! exports provided: SectionFactory */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SectionFactory", function() { return SectionFactory; });
-/* harmony import */ var _Polygon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Polygon */ "./resources/js/hex-tile-factory/Polygon.js");
-/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
-/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
-/* harmony import */ var _Section__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Section */ "./resources/js/hex-tile-factory/Section.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-var SectionFactory = /*#__PURE__*/function () {
-  function SectionFactory() {
-    _classCallCheck(this, SectionFactory);
-  }
-
-  _createClass(SectionFactory, null, [{
-    key: "make",
-    value: function make(encoded) {
-      // Assume sections does not intersect array end-to-start
-      var sides = encoded.split('').map(function (str) {
-        return parseInt(str);
-      });
-      var sections = [];
-      var currentType = sides[0];
-      var currentStart = 0;
-
-      for (var i = 0; i < 6; i++) {
-        if (sides[i] !== currentType) {
-          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
-            type: currentType,
-            start: currentStart,
-            end: i
-          }));
-          currentType = sides[i];
-          currentStart = i;
-        }
-
-        if (i == 5) {
-          sections.push(new _Section__WEBPACK_IMPORTED_MODULE_3__["Section"]({
-            type: currentType,
-            start: currentStart,
-            end: 6
-          }));
-        }
-      }
-
-      return sections.filter(function (section) {
-        return section.type != 0;
-      });
-    }
-  }]);
-
-  return SectionFactory;
-}();
-
-/***/ }),
-
-/***/ "./resources/js/hex-tile-factory/Tile.js":
-/*!***********************************************!*\
-  !*** ./resources/js/hex-tile-factory/Tile.js ***!
-  \***********************************************/
-/*! exports provided: Tile */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tile", function() { return Tile; });
-/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HexagonFactory */ "./resources/js/hex-tile-factory/HexagonFactory.js");
-/* harmony import */ var _SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SectionFactory */ "./resources/js/hex-tile-factory/SectionFactory.js");
-/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./resources/js/hex-tile-factory/Point.js");
-/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Line */ "./resources/js/hex-tile-factory/Line.js");
-/* harmony import */ var delaunator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! delaunator */ "./node_modules/delaunator/index.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-var jsts = __webpack_require__(/*! jsts */ "./node_modules/jsts/dist/jsts.min.js");
-
-var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-
-var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
-
-var Tile = /*#__PURE__*/function () {
-  function Tile(options) {
-    var _parseInt, _options$seed;
-
-    _classCallCheck(this, Tile);
-
-    this.topology = options.topology;
-    this.iterations = Array((_parseInt = parseInt(options.iterations)) !== null && _parseInt !== void 0 ? _parseInt : 3).fill().map(function (x, i) {
-      return i;
-    });
-    this.seed = (_options$seed = options.seed) !== null && _options$seed !== void 0 ? _options$seed : 12345;
-    seedrandom(this.seed, {
-      global: true
-    });
-    this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
-    this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.topology);
-    this.states = [];
-    this.commit('Initial commit');
-    this.randomize();
-    this.commit('Finished!');
-  }
-
-  _createClass(Tile, [{
-    key: "hasSections",
-    value: function hasSections() {
-      return true;
-    }
-  }, {
-    key: "isSixSided",
-    value: function isSixSided() {
-      return false;
-    }
-  }, {
-    key: "randomize",
-    value: function randomize() {
-      var _this = this;
-
-      this.iterations.forEach(function (iteration) {
-        _this.sections.forEach(function (section) {
-          _this.densify(section);
-
-          _this.commit("Densified line");
-
-          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
-            var point = section.innerBorder.points[i];
-
-            _this.randomizePoint(point, iteration);
-
-            _this.commit("Randomized point");
-          }
-        });
-      });
-    }
-  }, {
-    key: "commit",
-    value: function commit() {
-      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Commited state';
-      this.message = message;
-      this.states.push( // Dont store the recursive states :)
-      _.cloneDeep(_.omit(this, ['states'])));
-      return this;
-    }
-  }, {
-    key: "densify",
-    value: function densify(section) {
-      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 1) {
-        section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
-      }
-    }
-  }, {
-    key: "randomizePoint",
-    value: function randomizePoint(point) {
-      var iteration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
-        return p.asArray();
-      })));
-      point.x = point.x + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
-      point.y = point.y + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
-      return;
-      var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_4__["default"].from(points);
-      var triangles = delaunay.triangles;
-      var connectedTriangles = [];
-      var notConnectedTriangles = [];
-
-      for (var i = 0; i < triangles.length; i += 3) {
-        var pi0 = triangles[i];
-        var pi1 = triangles[i + 1];
-        var pi2 = triangles[i + 2];
-
-        if ([pi0, pi1, pi2].includes(0)) {
-          connectedTriangles.push([// Build area
-          points[pi0], points[pi1], points[pi2]]);
-        } else {
-          notConnectedTriangles.push([// Build area
-          points[pi0], points[pi1], points[pi2]]);
-        }
-      }
-
-      var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
-      var selectedTriangle = connectedTriangles[selectedTriangleIndex]; // Triangels might overlap with other sections!
-      // Need to perform buffer and clip forbidden areas
-      // CLIPPING
-      //https://github.com/mfogel/polygon-clipping#readme
-      // BUFFER
-      //http://bjornharrtell.github.io/jsts/
-
-      var newPoint;
-
-      try {
-        newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
-        this.connectedTriangles = connectedTriangles.map(function (t) {
-          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
-            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
-          }));
-        });
-        point.x = newPoint.x;
-        point.y = newPoint.y;
-      } catch (_unused) {
-        this.connectedTriangles = notConnectedTriangles.map(function (t) {
-          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
-            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
-          }));
-        });
-      }
-    }
-  }, {
-    key: "allPoints",
-    value: function allPoints() {
-      return [].concat(_toConsumableArray(this.backgroundHexagon.asPoints()), _toConsumableArray(this.sections.flatMap(function (s) {
-        return s.asLine().asPoints();
-      })));
-    }
-  }], [{
-    key: "fromEncoded",
-    value: function fromEncoded(topology) {
-      var instance = new Tile({
-        topology: topology
-      });
-      return instance;
-    }
-  }]);
-
-  return Tile;
-}();
-
-/***/ }),
-
 /***/ 0:
-/*!***********************************!*\
-  !*** multi ./resources/js/app.js ***!
-  \***********************************/
+/*!*************************!*\
+  !*** multi ./js/app.js ***!
+  \*************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/anders/Code/hex-tile-factory/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/anders/Code/hex-tile-factory/js/app.js */"./js/app.js");
 
 
 /***/ }),

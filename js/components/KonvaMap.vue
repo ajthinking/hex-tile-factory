@@ -1,5 +1,5 @@
 <template>
-<div class="flex bg-gray-300">
+<div class="flex">
     <div class="px-4 flex flex-col bg-gray-100 text-gray-200">
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Topology</label>
@@ -11,6 +11,14 @@
                 <input type="number" v-model="seed" number class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
             </div>
         </div>
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">Algorithm</label>
+                <div class="w-full mt-2">
+                    <select class="block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs">
+                        <option selected>Random offset</option>
+                    </select>                    
+                </div> 
+        </div>        
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Iterations: {{ this.iterations}}</label>
                 <div class="w-full">
@@ -37,7 +45,7 @@
         </div>              
 
     </div>
-  <v-stage class="w-full"  :config="configKonva">
+  <v-stage class="w-full bg-gray-200"  :config="configKonva">
     <v-layer>
       <v-group :config="{draggable: true}">
         <v-line :config="backgroundHexagon"></v-line>
@@ -57,13 +65,13 @@ export default {
     data() {
         return {
             configKonva: {
-                width: window.innerWidth,
+                width: 400,
                 height: window.innerHeight
             },
             topology: '110200',
             seed: Math.floor(Math.random() * 100000),
             tileStateIndex: null,
-            iterations: 3,
+            iterations: 2,
             city: false,
             grass: false,
             water: false,
@@ -95,8 +103,8 @@ export default {
                 strokeWidth: 1,
                 closed: true,
                 //draggable: true,
-                offsetX: -window.innerWidth/3,
-                offsetY: -window.innerHeight/3,
+                offsetX: -150,
+                offsetY: -150,
                 fillPatternImage: this.water,
                 //fillPatternImage: this.grass,
                 //fillPatternRepeat: 'no-repeat',
@@ -116,8 +124,8 @@ export default {
                     strokeWidth: 3,
                     closed: true,
                     //draggable: true,
-                    offsetX: -window.innerWidth/3,
-                    offsetY: -window.innerHeight/3,
+                    offsetX: -150,
+                    offsetY: -150,
                     fillPatternImage: this.grass,
                     //fillPatternImage: this.city,
                     //fillPatternRepeat: 'no-repeat',
@@ -125,7 +133,7 @@ export default {
                         x: 0.1,
                         y: 0.1
                     },
-                })
+                })  
             })
         },
         
@@ -138,8 +146,8 @@ export default {
                     strokeWidth: 1,
                     closed: true,
                     //draggable: true,
-                    offsetX: -window.innerWidth/3,
-                    offsetY: -window.innerHeight/3,
+                    offsetX: -150,
+                    offsetY: -150,
                     //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,
