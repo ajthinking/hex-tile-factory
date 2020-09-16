@@ -12,12 +12,13 @@
             </div>
         </div>
         <div class="mt-4 uppercase font-bold">
-            <label class="tracking-wider text-xs text-gray-500">Algorithm</label>
+            <label class="tracking-wider text-xs text-gray-500">Strategy</label>
                 <div class="w-full mt-2">
-                    <select class="block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs">
-                        <option selected>Random offset</option>
+                    <select v-model="strategy"
+                        class="block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs">
+                        <option selected>RandomOffset</option>
                     </select>                    
-                </div> 
+                </div>               
         </div>        
         <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Iterations: {{ this.iterations}}</label>
@@ -51,7 +52,17 @@
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
         <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>                 
+      </v-group>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
+      </v-group>
+      <v-group :config="{draggable: true}">
+        <v-line :config="backgroundHexagon"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
+        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
+      </v-group>                             
     </v-layer>
   </v-stage>
 </div>
@@ -70,6 +81,7 @@ export default {
             },
             topology: '110200',
             seed: Math.floor(Math.random() * 100000),
+            strategy: 'RandomOffset',
             tileStateIndex: null,
             iterations: 2,
             city: false,
@@ -84,6 +96,7 @@ export default {
                 topology: this.topology,
                 seed: this.seed,
                 iterations: this.iterations,
+                strategy: this.strategy,
             })
 
             this.tileStateIndex = tile.states.length-1

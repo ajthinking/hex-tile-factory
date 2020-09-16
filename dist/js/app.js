@@ -674,18 +674,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Point */ "./js/hex-tile-factory/Point.js");
 /* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Line */ "./js/hex-tile-factory/Line.js");
 /* harmony import */ var delaunator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! delaunator */ "./node_modules/delaunator/index.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -719,11 +707,14 @@ var Tile = /*#__PURE__*/function () {
       global: true
     });
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
-    this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.topology);
+    this.sections = []; // It is up to the strategy to create the sections
+
     this.states = [];
     this.commit('Initial commit');
-    this.randomize();
-    this.commit('Finished!');
+
+    var strategy = __webpack_require__("./js/hex-tile-factory/strategies sync recursive ^\\.\\/.*$")("./" + options.strategy)[options.strategy];
+
+    strategy.randomize(this);
   }
 
   _createClass(Tile, [{
@@ -735,27 +726,6 @@ var Tile = /*#__PURE__*/function () {
     key: "isSixSided",
     value: function isSixSided() {
       return false;
-    }
-  }, {
-    key: "randomize",
-    value: function randomize() {
-      var _this = this;
-
-      this.iterations.forEach(function (iteration) {
-        _this.sections.forEach(function (section) {
-          _this.densify(section);
-
-          _this.commit("Densified line");
-
-          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
-            var point = section.innerBorder.points[i];
-
-            _this.randomizePoint(point, iteration);
-
-            _this.commit("Randomized point");
-          }
-        });
-      });
     }
   }, {
     key: "commit",
@@ -773,6 +743,130 @@ var Tile = /*#__PURE__*/function () {
         section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
       }
     }
+  }]);
+
+  return Tile;
+}();
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/strategies sync recursive ^\\.\\/.*$":
+/*!******************************************************!*\
+  !*** ./js/hex-tile-factory/strategies sync ^\.\/.*$ ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./RandomOffset": "./js/hex-tile-factory/strategies/RandomOffset.js",
+	"./RandomOffset.js": "./js/hex-tile-factory/strategies/RandomOffset.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./js/hex-tile-factory/strategies sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./js/hex-tile-factory/strategies/RandomOffset.js":
+/*!********************************************************!*\
+  !*** ./js/hex-tile-factory/strategies/RandomOffset.js ***!
+  \********************************************************/
+/*! exports provided: RandomOffset */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RandomOffset", function() { return RandomOffset; });
+/* harmony import */ var _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../HexagonFactory */ "./js/hex-tile-factory/HexagonFactory.js");
+/* harmony import */ var _SectionFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SectionFactory */ "./js/hex-tile-factory/SectionFactory.js");
+/* harmony import */ var _Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Point */ "./js/hex-tile-factory/Point.js");
+/* harmony import */ var _Line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Line */ "./js/hex-tile-factory/Line.js");
+/* harmony import */ var delaunator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! delaunator */ "./node_modules/delaunator/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+var jsts = __webpack_require__(/*! jsts */ "./node_modules/jsts/dist/jsts.min.js");
+
+var _ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+
+var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
+
+var RandomOffset = /*#__PURE__*/function () {
+  function RandomOffset(tile) {
+    _classCallCheck(this, RandomOffset);
+
+    this.tile = tile;
+    this.tile.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.tile.topology);
+  } // PUBLIC STATIC API
+
+
+  _createClass(RandomOffset, [{
+    key: "randomize_",
+    // PRIVATE API
+    value: function randomize_() {
+      var _this = this;
+
+      this.tile.iterations.forEach(function (iteration) {
+        _this.tile.sections.forEach(function (section) {
+          _this.tile.densify(section);
+
+          _this.tile.commit("Densified line");
+
+          for (var i = 1; i + 1 < section.innerBorder.points.length; i++) {
+            var point = section.innerBorder.points[i];
+
+            _this.randomizePoint(point, iteration);
+
+            _this.tile.commit("Randomized point");
+          }
+        });
+      });
+    }
+  }, {
+    key: "densify",
+    value: function densify(section) {
+      for (var i = section.innerBorder.length() - 1; i > 0; i = i - 1) {
+        section.innerBorder.points.splice(i, 0, new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((section.innerBorder.points[i - 1].x + section.innerBorder.points[i].x) / 2, (section.innerBorder.points[i - 1].y + section.innerBorder.points[i].y) / 2));
+      }
+    }
   }, {
     key: "randomizePoint",
     value: function randomizePoint(point) {
@@ -780,73 +874,82 @@ var Tile = /*#__PURE__*/function () {
       var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
         return p.asArray();
       })));
-      point.x = point.x + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
-      point.y = point.y + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
-      return;
-      var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_4__["default"].from(points);
-      var triangles = delaunay.triangles;
-      var connectedTriangles = [];
-      var notConnectedTriangles = [];
-
-      for (var i = 0; i < triangles.length; i += 3) {
-        var pi0 = triangles[i];
-        var pi1 = triangles[i + 1];
-        var pi2 = triangles[i + 2];
-
-        if ([pi0, pi1, pi2].includes(0)) {
-          connectedTriangles.push([// Build area
-          points[pi0], points[pi1], points[pi2]]);
-        } else {
-          notConnectedTriangles.push([// Build area
-          points[pi0], points[pi1], points[pi2]]);
-        }
-      }
-
-      var selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
-      var selectedTriangle = connectedTriangles[selectedTriangleIndex]; // Triangels might overlap with other sections!
-      // Need to perform buffer and clip forbidden areas
-      // CLIPPING
-      //https://github.com/mfogel/polygon-clipping#readme
-      // BUFFER
-      //http://bjornharrtell.github.io/jsts/
-
-      var newPoint;
-
-      try {
-        newPoint = new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"]((selectedTriangle[0][0] + selectedTriangle[1][0] + selectedTriangle[2][0]) / 3, (selectedTriangle[0][1] + selectedTriangle[1][1] + selectedTriangle[2][1]) / 3);
-        this.connectedTriangles = connectedTriangles.map(function (t) {
-          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
-            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
-          }));
-        });
-        point.x = newPoint.x;
-        point.y = newPoint.y;
-      } catch (_unused) {
-        this.connectedTriangles = notConnectedTriangles.map(function (t) {
-          return new _Line__WEBPACK_IMPORTED_MODULE_3__["Line"](t.map(function (p) {
-            return new _Point__WEBPACK_IMPORTED_MODULE_2__["Point"](p[0], p[1]);
-          }));
-        });
-      }
+      point.x = point.x + (0.5 - Math.random()) * 50 * Math.pow(1 / 2, iteration);
+      point.y = point.y + (0.5 - Math.random()) * 50 * Math.pow(1 / 2, iteration);
+      return; // const delaunay = Delaunator.from(points);
+      // let triangles = delaunay.triangles
+      // let connectedTriangles = []
+      // let notConnectedTriangles = []
+      // for (let i = 0; i < triangles.length; i += 3) {
+      //     let pi0 = triangles[i];
+      //     let pi1 = triangles[i+1];
+      //     let pi2 = triangles[i+2];
+      //     if([pi0,pi1,pi2].includes(0)) {
+      //         connectedTriangles.push([
+      //             // Build area
+      //             points[pi0],
+      //             points[pi1],
+      //             points[pi2]
+      //         ]);
+      //     } else {
+      //         notConnectedTriangles.push([
+      //             // Build area
+      //             points[pi0],
+      //             points[pi1],
+      //             points[pi2]
+      //         ]);                
+      //     }
+      // }
+      // let selectedTriangleIndex = Math.floor(Math.random() * connectedTriangles.length);
+      // let selectedTriangle = connectedTriangles[selectedTriangleIndex];
+      // // Triangels might overlap with other sections!
+      // // Need to perform buffer and clip forbidden areas
+      // // CLIPPING
+      // //https://github.com/mfogel/polygon-clipping#readme
+      // // BUFFER
+      // //http://bjornharrtell.github.io/jsts/
+      // let newPoint;
+      // try {
+      //     newPoint = new Point(
+      //         (selectedTriangle[0][0]+selectedTriangle[1][0]+selectedTriangle[2][0])/3,
+      //         (selectedTriangle[0][1]+selectedTriangle[1][1]+selectedTriangle[2][1])/3,
+      //     )
+      //     this.connectedTriangles = connectedTriangles.map(t => {
+      //         return new Line(
+      //             t.map(p => new Point(p[0], p[1]))
+      //         );
+      //     });
+      //     point.x = newPoint.x
+      //     point.y = newPoint.y
+      // } catch {
+      //     this.connectedTriangles = notConnectedTriangles.map(t => {
+      //         return new Line(
+      //             t.map(p => new Point(p[0], p[1]))
+      //         );
+      //     });             
+      // }
     }
   }, {
     key: "allPoints",
     value: function allPoints() {
-      return [].concat(_toConsumableArray(this.backgroundHexagon.asPoints()), _toConsumableArray(this.sections.flatMap(function (s) {
+      return [].concat(_toConsumableArray(this.tile.backgroundHexagon.asPoints()), _toConsumableArray(this.tile.sections.flatMap(function (s) {
         return s.asLine().asPoints();
       })));
     }
   }], [{
-    key: "fromEncoded",
-    value: function fromEncoded(topology) {
-      var instance = new Tile({
-        topology: topology
-      });
-      return instance;
+    key: "randomize",
+    value: function randomize(tile) {
+      var instance = new this(tile);
+      return instance.randomize_();
+    }
+  }, {
+    key: "description",
+    value: function description() {
+      return 'Creates a pie slice for each topology section, then, for each iteration, densifies section border and offsets interior point by a random value.';
     }
   }]);
 
-  return Tile;
+  return RandomOffset;
 }();
 
 /***/ }),
@@ -920,6 +1023,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -930,6 +1044,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       topology: '110200',
       seed: Math.floor(Math.random() * 100000),
+      strategy: 'RandomOffset',
       tileStateIndex: null,
       iterations: 2,
       city: false,
@@ -942,7 +1057,8 @@ __webpack_require__.r(__webpack_exports__);
       var tile = new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
         topology: this.topology,
         seed: this.seed,
-        iterations: this.iterations
+        iterations: this.iterations,
+        strategy: this.strategy
       });
       this.tileStateIndex = tile.states.length - 1;
       return tile;
@@ -33399,7 +33515,51 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Strategy")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full mt-2" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.strategy,
+                      expression: "strategy"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.strategy = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { selected: "" } }, [
+                    _vm._v("RandomOffset")
+                  ])
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
             _c(
@@ -33526,6 +33686,38 @@ var render = function() {
                   })
                 ],
                 2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "v-group",
+                { attrs: { config: { draggable: true } } },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: section }
+                    })
+                  })
+                ],
+                2
               )
             ],
             1
@@ -33537,29 +33729,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
-      _c("label", { staticClass: "tracking-wider text-xs text-gray-500" }, [
-        _vm._v("Algorithm")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-full mt-2" }, [
-        _c(
-          "select",
-          {
-            staticClass:
-              "block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs"
-          },
-          [_c("option", { attrs: { selected: "" } }, [_vm._v("Random offset")])]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
