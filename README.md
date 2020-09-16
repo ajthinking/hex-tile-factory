@@ -4,7 +4,7 @@ Creating organic looking hexagons with carcassone-ish topology
 ## Demo
 [HERE](ajthinking.github.io/hex-tile-factory)
 
-![hex-tile-factory-optimize-1](https://user-images.githubusercontent.com/3457668/93305912-7501e100-f7ff-11ea-9469-44996d5d9ab0.gif)
+<img src="https://user-images.githubusercontent.com/3457668/93305912-7501e100-f7ff-11ea-9469-44996d5d9ab0.gif" width=200>
 
 ## Example
 
