@@ -173,19 +173,19 @@ export default {
     
     created() {
         const city = new window.Image();
-        city.src = "/images/city.jpg";
+        city.src = "images/city.jpg";
         city.onload = () => {
             this.city = grass
         };
 
         const grass = new window.Image();
-        grass.src = "/images/grass.jpg";
+        grass.src = "images/grass.jpg";
         grass.onload = () => {
             this.grass = grass
         };        
 
         const water = new window.Image();
-        water.src = "/images/water.jpg";
+        water.src = "images/water.jpg";
         water.onload = () => {
             this.water = water
         };        
