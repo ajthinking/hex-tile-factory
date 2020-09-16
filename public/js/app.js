@@ -45650,6 +45650,9 @@ var Tile = /*#__PURE__*/function () {
       var points = [[point.x, point.y]].concat(_toConsumableArray(this.allPoints().map(function (p) {
         return p.asArray();
       })));
+      point.x = point.x + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
+      point.y = point.y + (0.5 - Math.random()) * 5 / Math.pow(1 / 2, iteration);
+      return;
       var delaunay = delaunator__WEBPACK_IMPORTED_MODULE_4__["default"].from(points);
       var triangles = delaunay.triangles;
       var connectedTriangles = [];

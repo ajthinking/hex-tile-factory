@@ -84,6 +84,11 @@ export class Tile {
             ...this.allPoints().map(p => p.asArray()) // Any duplicates will be ignored
         ]
 
+        point.x = point.x + (0.5 - Math.random()) * 5 / (Math.pow(1/2, iteration) )
+        point.y = point.y + (0.5 - Math.random()) * 5 / (Math.pow(1/2, iteration) )
+
+        return;
+
         const delaunay = Delaunator.from(points);
         let triangles = delaunay.triangles
         let connectedTriangles = []
