@@ -1040,11 +1040,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       configKonva: {
-        width: 400,
+        width: window.innerWidth,
         height: window.innerHeight,
         scale: {
-          x: 0.5,
-          y: 0.5
+          x: 1,
+          y: 1
         },
         offsetX: 0,
         offsetY: 0
@@ -1156,9 +1156,9 @@ __webpack_require__.r(__webpack_exports__);
     zoom: function zoom(event) {
       event.evt.preventDefault();
       console.log(event.evt);
-      var speed = 0.005;
+      var speed = 0.01;
       var direction = event.evt.wheelDelta > 0 ? 1 : -1;
-      var min = 0.1;
+      var min = 0.5;
       var max = 5;
       var newScale = this.configKonva.scale.x + direction * speed;
       newScale = newScale < min ? min : newScale > max ? max : newScale;

@@ -76,11 +76,11 @@ export default {
     data() {
         return {
             configKonva: {
-                width: 400,
+                width: window.innerWidth,
                 height: window.innerHeight,
                 scale: {
-                    x: 0.5,
-                    y: 0.5,
+                    x: 1,
+                    y: 1,
                 },
                 offsetX: 0,
                 offsetY: 0,
@@ -201,9 +201,9 @@ export default {
         zoom (event) {
             event.evt.preventDefault()
             console.log(event.evt)
-            let speed = 0.005
+            let speed = 0.01
             let direction = event.evt.wheelDelta > 0 ? 1 : -1
-            let min = 0.1
+            let min = 0.5
             let max = 5
             let newScale = this.configKonva.scale.x + direction*speed;
             newScale = newScale < min ? min : (newScale > max ? max : newScale)
