@@ -46,7 +46,7 @@
         </div>              
 
     </div>
-  <v-stage class="w-full bg-gray-200"  :config="configKonva">
+  <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
       <v-group :config="{draggable: true}">
         <v-line :config="backgroundHexagon"></v-line>
@@ -77,7 +77,13 @@ export default {
         return {
             configKonva: {
                 width: 400,
-                height: window.innerHeight
+                height: window.innerHeight,
+                scale: {
+                    x: 0.5,
+                    y: 0.5,
+                },
+                offsetX: 0,
+                offsetY: 0,
             },
             topology: '110200',
             seed: Math.floor(Math.random() * 100000),
@@ -87,6 +93,7 @@ export default {
             city: false,
             grass: false,
             water: false,
+            panning: false,
         };
     },
 
@@ -189,7 +196,31 @@ export default {
 
         randomize() {
             this.topology=this.randomTopology()            
-        }
+        },
+
+        zoom (event) {
+            event.evt.preventDefault()
+            console.log(event.evt)
+            let speed = 0.005
+            let direction = event.evt.wheelDelta > 0 ? 1 : -1
+            let min = 0.1
+            let max = 5
+            let newScale = this.configKonva.scale.x + direction*speed;
+            newScale = newScale < min ? min : (newScale > max ? max : newScale)
+            let t = this.configKonva.scale.y + direction*speed
+            this.configKonva.scale = {
+                x: newScale,
+                y: newScale,
+            }
+        },     
+
+        pan(event) {
+            if(this.panning) {
+                this.configKonva.offsetX = this.configKonva.offsetX - event.evt.movementX
+                this.configKonva.offsetY = this.configKonva.offsetY - event.evt.movementY
+            }
+            
+        },
     },
     
     created() {

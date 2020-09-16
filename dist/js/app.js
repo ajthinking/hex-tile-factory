@@ -1041,7 +1041,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       configKonva: {
         width: 400,
-        height: window.innerHeight
+        height: window.innerHeight,
+        scale: {
+          x: 0.5,
+          y: 0.5
+        },
+        offsetX: 0,
+        offsetY: 0
       },
       topology: '110200',
       seed: Math.floor(Math.random() * 100000),
@@ -1050,7 +1056,8 @@ __webpack_require__.r(__webpack_exports__);
       iterations: 4,
       city: false,
       grass: false,
-      water: false
+      water: false,
+      panning: false
     };
   },
   computed: {
@@ -1145,6 +1152,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     randomize: function randomize() {
       this.topology = this.randomTopology();
+    },
+    zoom: function zoom(event) {
+      event.evt.preventDefault();
+      console.log(event.evt);
+      var speed = 0.005;
+      var direction = event.evt.wheelDelta > 0 ? 1 : -1;
+      var min = 0.1;
+      var max = 5;
+      var newScale = this.configKonva.scale.x + direction * speed;
+      newScale = newScale < min ? min : newScale > max ? max : newScale;
+      var t = this.configKonva.scale.y + direction * speed;
+      this.configKonva.scale = {
+        x: newScale,
+        y: newScale
+      };
+    },
+    pan: function pan(event) {
+      if (this.panning) {
+        this.configKonva.offsetX = this.configKonva.offsetX - event.evt.movementX;
+        this.configKonva.offsetY = this.configKonva.offsetY - event.evt.movementY;
+      }
     }
   },
   created: function created() {
@@ -33667,7 +33695,17 @@ var render = function() {
         "v-stage",
         {
           staticClass: "w-full bg-gray-200",
-          attrs: { config: _vm.configKonva }
+          attrs: { config: _vm.configKonva },
+          on: {
+            wheel: _vm.zoom,
+            mouseup: function($event) {
+              _vm.panning = false
+            },
+            mousedown: function($event) {
+              _vm.panning = true
+            },
+            mousemove: _vm.pan
+          }
         },
         [
           _c(
