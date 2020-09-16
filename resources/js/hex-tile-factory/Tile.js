@@ -16,10 +16,6 @@ export class Tile {
 
         this.seed = options.seed ?? 12345
         seedrandom(this.seed, { global: true })
-        console.log(
-            this.seed,
-            Math.random()
-        )
 
         this.backgroundHexagon = HexagonFactory.make()
 
@@ -28,7 +24,8 @@ export class Tile {
         this.states = []
 
         this.commit('Initial commit')
-        this.randomize();       
+        this.randomize();
+        this.commit('Finished!')       
     }
 
     static fromEncoded(topology) {

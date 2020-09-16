@@ -45588,12 +45588,12 @@ var Tile = /*#__PURE__*/function () {
     seedrandom(this.seed, {
       global: true
     });
-    console.log(this.seed, Math.random());
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = _SectionFactory__WEBPACK_IMPORTED_MODULE_1__["SectionFactory"].make(this.topology);
     this.states = [];
     this.commit('Initial commit');
     this.randomize();
+    this.commit('Finished!');
   }
 
   _createClass(Tile, [{
