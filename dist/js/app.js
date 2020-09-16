@@ -1046,7 +1046,7 @@ __webpack_require__.r(__webpack_exports__);
       seed: Math.floor(Math.random() * 100000),
       strategy: 'RandomOffset',
       tileStateIndex: null,
-      iterations: 2,
+      iterations: 4,
       city: false,
       grass: false,
       water: false
