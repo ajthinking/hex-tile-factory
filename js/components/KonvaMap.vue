@@ -43,26 +43,16 @@
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
             <div @click="randomize()" class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
-        </div>              
+        </div>
+        {{ this.$store.state.message }}
 
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
-      <v-group :config="{draggable: true}">
+      <v-group :config="{draggable: true, rotation}" @click="rotation += 60">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>
-      <v-group :config="{draggable: true}">
-        <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>
-      <v-group :config="{draggable: true}">
-        <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
-        <!--<v-line v-for="(triangle, index) in triangles" :key="index+1000" :config="triangle"></v-line>-->
-      </v-group>                             
+      </v-group>                            
     </v-layer>
   </v-stage>
 </div>
@@ -82,8 +72,8 @@ export default {
                     x: 1,
                     y: 1,
                 },
-                offsetX: 0,
-                offsetY: 0,
+                offsetX: -window.innerWidth/2,
+                offsetY: -window.innerHeight/2,
             },
             topology: '110200',
             seed: Math.floor(Math.random() * 100000),
@@ -94,6 +84,7 @@ export default {
             grass: false,
             water: false,
             panning: false,
+            rotation: 0,
         };
     },
 
@@ -123,8 +114,8 @@ export default {
                 strokeWidth: 1,
                 closed: true,
                 //draggable: true,
-                offsetX: -150,
-                offsetY: -150,
+                offsetX: 0,
+                offsetY: 0,
                 fillPatternImage: this.water,
                 //fillPatternImage: this.grass,
                 //fillPatternRepeat: 'no-repeat',
@@ -144,8 +135,8 @@ export default {
                     strokeWidth: 3,
                     closed: true,
                     //draggable: true,
-                    offsetX: -150,
-                    offsetY: -150,
+                    offsetX: 0,
+                    offsetY: 0,
                     fillPatternImage: this.grass,
                     //fillPatternImage: this.city,
                     //fillPatternRepeat: 'no-repeat',
@@ -153,29 +144,10 @@ export default {
                         x: 0.1,
                         y: 0.1
                     },
+                    rotation: 0,
                 })  
             })
-        },
-        
-        triangles: function() {
-            return this.activeTile.connectedTriangles.map(triangle => {
-                return new Konva.Line({
-                    points: triangle.asArray(),
-                    //fill: this.indexToColor(section.type),
-                    stroke: 'black',
-                    strokeWidth: 1,
-                    closed: true,
-                    //draggable: true,
-                    offsetX: -150,
-                    offsetY: -150,
-                    //fillPatternRepeat: 'no-repeat',
-                    fillPatternScale: {
-                        x: 0.1,
-                        y: 0.1
-                    },
-                })
-            })
-        },        
+        },       
     },
 
     methods: {
@@ -221,6 +193,10 @@ export default {
             }
             
         },
+
+        rotate(event) {
+            this.rotation += 60
+        }
     },
     
     created() {
