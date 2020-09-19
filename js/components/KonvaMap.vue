@@ -37,14 +37,10 @@
                     >                    
                 </div>                
             </div>
-            <div class="flex text-sm w-full mt-2 text-gray-500 normal-case">
-                Message: "{{ activeTile.message }}"
-            </div>
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
             <div @click="randomize()" class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
         </div>
-        {{ this.$store.state.message }}
 
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
@@ -72,12 +68,11 @@ export default {
                     x: 1,
                     y: 1,
                 },
-                offsetX: -window.innerWidth/2,
-                offsetY: -window.innerHeight/2,
+                offsetX: -150,
+                offsetY: -150,
             },
             topology: '110200',
             seed: Math.floor(Math.random() * 100000),
-            strategy: 'RandomOffset',
             tileStateIndex: null,
             iterations: 4,
             city: false,
@@ -89,6 +84,14 @@ export default {
     },
 
     computed: {
+        strategy: {
+            get () {
+                return this.$store.state.map.strategy
+            },
+            set (value) {
+                this.$store.commit('updateStrategy', value)
+            }
+        },
         tile: function() {
             let tile = new Tile({
                 topology: this.topology,
@@ -109,16 +112,12 @@ export default {
         backgroundHexagon: function() {
             return new Konva.Line({
                 points: this.activeTile.backgroundHexagon.asArray(),
-                //fill: 'LightBlue',
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
-                //draggable: true,
                 offsetX: 0,
                 offsetY: 0,
                 fillPatternImage: this.water,
-                //fillPatternImage: this.grass,
-                //fillPatternRepeat: 'no-repeat',
                 fillPatternScale: {
                     x: 0.4,
                     y: 0.4
@@ -130,16 +129,12 @@ export default {
             return this.activeTile.sections.map(section => {
                 return new Konva.Line({
                     points: section.asLine().asArray(),
-                    //fill: this.indexToColor(section.type),
                     stroke: 'black',
                     strokeWidth: 3,
                     closed: true,
-                    //draggable: true,
                     offsetX: 0,
                     offsetY: 0,
                     fillPatternImage: this.grass,
-                    //fillPatternImage: this.city,
-                    //fillPatternRepeat: 'no-repeat',
                     fillPatternScale: {
                         x: 0.1,
                         y: 0.1
@@ -151,11 +146,6 @@ export default {
     },
 
     methods: {
-        indexToColor(index) {
-            let colors = ['#50D050', '#149414', '#46C79C', '#82FF82', '#8CFF8C']
-            return colors[index];
-        },
-
         randomTopology() {
             let configuration = '';
 
@@ -221,10 +211,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-input[type=range]::-ms-thumb {
-  fill: red;
-  stroke: none;
-}
-</style>

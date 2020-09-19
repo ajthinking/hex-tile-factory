@@ -1,7 +1,9 @@
 export default {
-    
+
 	state: {
-        message: 'Welcome to Vuex :)'
+        map: {
+            strategy: 'RandomOffset',
+        }
 	},
 
 	getters: {
@@ -31,8 +33,8 @@ export default {
 	},
 
 	mutations: {
-    //    categories(state,data) {
-    //       return state.category = data
-    //    }
+       updateStrategy(state, strategy) {
+          return state.map.strategy = strategy
+       }
 	}
 }
