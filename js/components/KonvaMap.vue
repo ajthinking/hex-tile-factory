@@ -42,7 +42,7 @@
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
       <v-group v-for="(tile, index) in stack" :key="index"        
-        :config="{draggable: true, rotation}" @click="rotation += 60">
+        :config="{draggable: true, rotation}" @dblclick="rotate">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
       </v-group>                            
@@ -81,6 +81,15 @@ export default {
 
     computed: {
         stack: function() {
+            return Array(10).fill().map((i)=> {
+                return new Tile({
+                    topology: this.randomTopology(),
+                    seed: this.randomSeed(),
+                    iterations: this.iterations,
+                    strategy: this.strategy,
+                })
+            });
+
             return [
                 // needs a rotation property
                 // what is the difference between a tile and a maptile?
@@ -188,6 +197,10 @@ export default {
             return configuration;
         },
 
+        randomSeed() {
+            return Math.floor(Math.random() * 10000)
+        },
+
         randomize() {
             this.topology=this.randomTopology()            
         },
@@ -217,7 +230,10 @@ export default {
         },
 
         rotate(event) {
-            this.rotation += 60
+            // WRECKING STATE
+            event.currentTarget.setRotation(
+                event.currentTarget.getRotation() + 60
+            )
         }
     },
     

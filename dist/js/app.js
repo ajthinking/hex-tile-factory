@@ -1145,6 +1145,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     stack: function stack() {
+      var _this = this;
+
+      return Array(10).fill().map(function (i) {
+        return new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+          topology: _this.randomTopology(),
+          seed: _this.randomSeed(),
+          iterations: _this.iterations,
+          strategy: _this.strategy
+        });
+      });
       return [// needs a rotation property
       // what is the difference between a tile and a maptile?
       new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
@@ -1196,7 +1206,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     sections: function sections() {
-      var _this = this;
+      var _this2 = this;
 
       return this.activeTile.sections.map(function (section) {
         return new Konva.Line({
@@ -1206,7 +1216,7 @@ __webpack_require__.r(__webpack_exports__);
           closed: true,
           offsetX: 0,
           offsetY: 0,
-          fillPatternImage: _this.grass,
+          fillPatternImage: _this2.grass,
           fillPatternScale: {
             x: 0.1,
             y: 0.1
@@ -1242,6 +1252,9 @@ __webpack_require__.r(__webpack_exports__);
 
       return configuration;
     },
+    randomSeed: function randomSeed() {
+      return Math.floor(Math.random() * 10000);
+    },
     randomize: function randomize() {
       this.topology = this.randomTopology();
     },
@@ -1267,31 +1280,32 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     rotate: function rotate(event) {
-      this.rotation += 60;
+      // WRECKING STATE
+      event.currentTarget.setRotation(event.currentTarget.getRotation() + 60);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     var city = new window.Image();
     city.src = "images/city.jpg";
 
     city.onload = function () {
-      _this2.city = grass;
+      _this3.city = grass;
     };
 
     var grass = new window.Image();
     grass.src = "images/grass.jpg";
 
     grass.onload = function () {
-      _this2.grass = grass;
+      _this3.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "images/water.jpg";
 
     water.onload = function () {
-      _this2.water = water;
+      _this3.water = water;
     };
   }
 });
@@ -33337,11 +33351,7 @@ var render = function() {
                   attrs: {
                     config: { draggable: true, rotation: _vm.rotation }
                   },
-                  on: {
-                    click: function($event) {
-                      _vm.rotation += 60
-                    }
-                  }
+                  on: { dblclick: _vm.rotate }
                 },
                 [
                   _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
