@@ -82,6 +82,8 @@ export default {
     computed: {
         stack: function() {
             return [
+                // needs a rotation property
+                // what is the difference between a tile and a maptile?
                 new Tile({
                     topology: this.randomTopology(),
                     seed: this.seed,

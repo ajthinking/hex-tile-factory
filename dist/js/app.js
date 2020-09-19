@@ -1145,7 +1145,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     stack: function stack() {
-      return [new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+      return [// needs a rotation property
+      // what is the difference between a tile and a maptile?
+      new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
         topology: this.randomTopology(),
         seed: this.seed,
         iterations: this.iterations,
