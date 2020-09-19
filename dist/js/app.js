@@ -94,7 +94,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./components/KonvaMap.vue": "./js/components/KonvaMap.vue"
+	"./components/KonvaMap.vue": "./js/components/KonvaMap.vue",
+	"./components/TileDebug.vue": "./js/components/TileDebug.vue"
 };
 
 
@@ -216,6 +217,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_7f3aa0a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonvaMap_vue_vue_type_template_id_7f3aa0a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./js/components/TileDebug.vue":
+/*!*************************************!*\
+  !*** ./js/components/TileDebug.vue ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TileDebug.vue?vue&type=template&id=6bad8554& */ "./js/components/TileDebug.vue?vue&type=template&id=6bad8554&");
+/* harmony import */ var _TileDebug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TileDebug.vue?vue&type=script&lang=js& */ "./js/components/TileDebug.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TileDebug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "js/components/TileDebug.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./js/components/TileDebug.vue?vue&type=script&lang=js&":
+/*!**************************************************************!*\
+  !*** ./js/components/TileDebug.vue?vue&type=script&lang=js& ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TileDebug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./TileDebug.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/TileDebug.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TileDebug_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./js/components/TileDebug.vue?vue&type=template&id=6bad8554&":
+/*!********************************************************************!*\
+  !*** ./js/components/TileDebug.vue?vue&type=template&id=6bad8554& ***!
+  \********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/vue-loader/lib??vue-loader-options!./TileDebug.vue?vue&type=template&id=6bad8554& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./js/components/TileDebug.vue?vue&type=template&id=6bad8554&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TileDebug_vue_vue_type_template_id_6bad8554___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -956,7 +1026,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     map: {
-      strategy: 'RandomOffset'
+      strategy: 'RandomOffset',
+      iterations: 4,
+      seed: 12345,
+      stack: []
     }
   },
   getters: {//    getCategoryFormGetters(state){ //take parameter state
@@ -987,6 +1060,246 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      configKonva: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scale: {
+          x: 1,
+          y: 1
+        },
+        offsetX: -150,
+        offsetY: -150
+      },
+      seed: Math.floor(Math.random() * 100000),
+      tileStateIndex: null,
+      iterations: 4,
+      city: false,
+      grass: false,
+      water: false,
+      panning: false,
+      rotation: 0
+    };
+  },
+  computed: {
+    stack: function stack() {
+      return [new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+        topology: this.randomTopology(),
+        seed: this.seed,
+        iterations: this.iterations,
+        strategy: this.strategy
+      }), new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+        topology: this.randomTopology(),
+        seed: this.seed,
+        iterations: this.iterations,
+        strategy: this.strategy
+      })];
+    },
+    strategy: {
+      get: function get() {
+        return this.$store.state.map.strategy;
+      },
+      set: function set(value) {
+        this.$store.commit('updateStrategy', value);
+      }
+    },
+    tile: function tile() {
+      var tile = new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+        topology: this.randomTopology(),
+        seed: this.seed,
+        iterations: this.iterations,
+        strategy: this.strategy
+      });
+      this.tileStateIndex = tile.states.length - 1;
+      return tile;
+    },
+    activeTile: function activeTile() {
+      return this.tile.states[this.tileStateIndex];
+    },
+    backgroundHexagon: function backgroundHexagon() {
+      return new Konva.Line({
+        points: this.activeTile.backgroundHexagon.asArray(),
+        stroke: 'black',
+        strokeWidth: 1,
+        closed: true,
+        offsetX: 0,
+        offsetY: 0,
+        fillPatternImage: this.water,
+        fillPatternScale: {
+          x: 0.4,
+          y: 0.4
+        }
+      });
+    },
+    sections: function sections() {
+      var _this = this;
+
+      return this.activeTile.sections.map(function (section) {
+        return new Konva.Line({
+          points: section.asLine().asArray(),
+          stroke: 'black',
+          strokeWidth: 3,
+          closed: true,
+          offsetX: 0,
+          offsetY: 0,
+          fillPatternImage: _this.grass,
+          fillPatternScale: {
+            x: 0.1,
+            y: 0.1
+          },
+          rotation: 0
+        });
+      });
+    }
+  },
+  methods: {
+    konvaLandSection: function konvaLandSection(section) {
+      return new Konva.Line({
+        points: section.asLine().asArray(),
+        stroke: 'black',
+        strokeWidth: 3,
+        closed: true,
+        offsetX: 0,
+        offsetY: 0,
+        fillPatternImage: this.grass,
+        fillPatternScale: {
+          x: 0.1,
+          y: 0.1
+        },
+        rotation: 0
+      });
+    },
+    randomTopology: function randomTopology() {
+      var configuration = '';
+
+      for (var i = 0; i < 6; i++) {
+        configuration += Math.floor(Math.random() * 3).toString();
+      }
+
+      return configuration;
+    },
+    randomize: function randomize() {
+      this.topology = this.randomTopology();
+    },
+    zoom: function zoom(event) {
+      event.evt.preventDefault();
+      console.log(event.evt);
+      var speed = 0.01;
+      var direction = event.evt.wheelDelta > 0 ? 1 : -1;
+      var min = 0.5;
+      var max = 5;
+      var newScale = this.configKonva.scale.x + direction * speed;
+      newScale = newScale < min ? min : newScale > max ? max : newScale;
+      var t = this.configKonva.scale.y + direction * speed;
+      this.configKonva.scale = {
+        x: newScale,
+        y: newScale
+      };
+    },
+    pan: function pan(event) {
+      if (this.panning) {
+        this.configKonva.offsetX = this.configKonva.offsetX - event.evt.movementX;
+        this.configKonva.offsetY = this.configKonva.offsetY - event.evt.movementY;
+      }
+    },
+    rotate: function rotate(event) {
+      this.rotation += 60;
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    var city = new window.Image();
+    city.src = "images/city.jpg";
+
+    city.onload = function () {
+      _this2.city = grass;
+    };
+
+    var grass = new window.Image();
+    grass.src = "images/grass.jpg";
+
+    grass.onload = function () {
+      _this2.grass = grass;
+    };
+
+    var water = new window.Image();
+    water.src = "images/water.jpg";
+
+    water.onload = function () {
+      _this2.water = water;
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./js/components/TileDebug.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./js/components/TileDebug.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32811,6 +33124,256 @@ if (typeof window !== 'undefined' && window.Vue) {
 /*!*************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./js/components/KonvaMap.vue?vue&type=template&id=7f3aa0a8& ***!
   \*************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "flex" },
+    [
+      _c(
+        "div",
+        { staticClass: "px-4 flex flex-col bg-gray-100 text-gray-200" },
+        [
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Seed")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.seed,
+                    expression: "seed"
+                  }
+                ],
+                staticClass:
+                  "shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+                attrs: { type: "number", number: "", placeholder: "12345" },
+                domProps: { value: _vm.seed },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.seed = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Strategy")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full mt-2" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.strategy,
+                      expression: "strategy"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.strategy = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { selected: "" } }, [
+                    _vm._v("RandomOffset")
+                  ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Iterations: " + _vm._s(this.iterations))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.iterations,
+                    expression: "iterations"
+                  }
+                ],
+                staticClass: "w-full",
+                attrs: { type: "range", min: 1, max: 5 },
+                domProps: { value: _vm.iterations },
+                on: {
+                  __r: function($event) {
+                    _vm.iterations = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("History: " + _vm._s(_vm.tileStateIndex))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-2 flex text-gray-600" }, [
+              _c("div", { staticClass: "w-full" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tileStateIndex,
+                      expression: "tileStateIndex"
+                    }
+                  ],
+                  staticClass: "w-full",
+                  attrs: {
+                    type: "range",
+                    min: "0",
+                    max: _vm.tile.states.length - 1
+                  },
+                  domProps: { value: _vm.tileStateIndex },
+                  on: {
+                    __r: function($event) {
+                      _vm.tileStateIndex = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex justify-center mt-8 uppercase font-bold" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer",
+                  on: {
+                    click: function($event) {
+                      return _vm.randomize()
+                    }
+                  }
+                },
+                [_vm._v("Random")]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-stage",
+        {
+          staticClass: "w-full bg-gray-200",
+          attrs: { config: _vm.configKonva },
+          on: {
+            wheel: _vm.zoom,
+            mouseup: function($event) {
+              _vm.panning = false
+            },
+            mousedown: function($event) {
+              _vm.panning = true
+            },
+            mousemove: _vm.pan
+          }
+        },
+        [
+          _c(
+            "v-layer",
+            _vm._l(_vm.stack, function(tile, index) {
+              return _c(
+                "v-group",
+                {
+                  key: index,
+                  attrs: {
+                    config: { draggable: true, rotation: _vm.rotation }
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.rotation += 60
+                    }
+                  }
+                },
+                [
+                  _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
+                  _vm._v(" "),
+                  _vm._l(tile.sections, function(section, index) {
+                    return _c("v-line", {
+                      key: index,
+                      attrs: { config: _vm.konvaLandSection(section) }
+                    })
+                  })
+                ],
+                2
+              )
+            }),
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./js/components/TileDebug.vue?vue&type=template&id=6bad8554&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./js/components/TileDebug.vue?vue&type=template&id=6bad8554& ***!
+  \**************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

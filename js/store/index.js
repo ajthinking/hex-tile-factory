@@ -3,6 +3,9 @@ export default {
 	state: {
         map: {
             strategy: 'RandomOffset',
+            iterations: 4,
+            seed: 12345,
+            stack: [],
         }
 	},
 

@@ -2,6 +2,10 @@
 <div class="flex">
     <div class="px-4 flex flex-col bg-gray-100 text-gray-200">
         <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">Topology</label>
+            <input v-model="topology" class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="011020">
+        </div>
+        <div class="mt-4 uppercase font-bold">
             <label class="tracking-wider text-xs text-gray-500">Seed</label>
             <div class="flex">
                 <input type="number" v-model="seed" number class="shadow tracking-widest rounded mt-2 px-2 py-1 text-gray-600 text-xs" placeholder="12345">
@@ -41,10 +45,9 @@
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
-      <v-group v-for="(tile, index) in stack" :key="index"        
-        :config="{draggable: true, rotation}" @click="rotation += 60">
+      <v-group :config="{draggable: true, rotation}" @click="rotation += 60">
         <v-line :config="backgroundHexagon"></v-line>
-        <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
+        <v-line v-for="(section, index) in sections" :key="index" :config="section"></v-line>
       </v-group>                            
     </v-layer>
   </v-stage>
@@ -68,6 +71,7 @@ export default {
                 offsetX: -150,
                 offsetY: -150,
             },
+            topology: '110200',
             seed: Math.floor(Math.random() * 100000),
             tileStateIndex: null,
             iterations: 4,
@@ -80,23 +84,6 @@ export default {
     },
 
     computed: {
-        stack: function() {
-            return [
-                new Tile({
-                    topology: this.randomTopology(),
-                    seed: this.seed,
-                    iterations: this.iterations,
-                    strategy: this.strategy,
-                }),
-                new Tile({
-                    topology: this.randomTopology(),
-                    seed: this.seed,
-                    iterations: this.iterations,
-                    strategy: this.strategy,
-                })
-            ]
-        },
-
         strategy: {
             get () {
                 return this.$store.state.map.strategy
@@ -107,7 +94,7 @@ export default {
         },
         tile: function() {
             let tile = new Tile({
-                topology: this.randomTopology(),
+                topology: this.topology,
                 seed: this.seed,
                 iterations: this.iterations,
                 strategy: this.strategy,
@@ -159,23 +146,6 @@ export default {
     },
 
     methods: {
-        konvaLandSection(section) {
-            return new Konva.Line({
-                points: section.asLine().asArray(),
-                stroke: 'black',
-                strokeWidth: 3,
-                closed: true,
-                offsetX: 0,
-                offsetY: 0,
-                fillPatternImage: this.grass,
-                fillPatternScale: {
-                    x: 0.1,
-                    y: 0.1
-                },
-                rotation: 0,
-            })            
-        },
-
         randomTopology() {
             let configuration = '';
 
