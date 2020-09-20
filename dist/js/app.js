@@ -462,17 +462,6 @@ var Line = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./js/hex-tile-factory/MapTile.js":
-/*!****************************************!*\
-  !*** ./js/hex-tile-factory/MapTile.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
 /***/ "./js/hex-tile-factory/Point.js":
 /*!**************************************!*\
   !*** ./js/hex-tile-factory/Point.js ***!
@@ -919,8 +908,8 @@ var MagicStack = /*#__PURE__*/function () {
     value: function make(options) {
       return new MagicStack(options !== null && options !== void 0 ? options : {
         propabilities: {
-          sea: 0.9,
-          coastal: 0.1 //inland: 0.2
+          sea: 0.5,
+          coastal: 0.5 //inland: 0.2
 
         }
       });
@@ -1153,7 +1142,7 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 3,
+      size: 2,
       seed: 12345
     }
   },
@@ -1191,9 +1180,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
-/* harmony import */ var _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/MapTile */ "./js/hex-tile-factory/MapTile.js");
-/* harmony import */ var _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
+/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
 //
@@ -1237,7 +1224,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1250,8 +1236,8 @@ __webpack_require__.r(__webpack_exports__);
           x: 1,
           y: 1
         },
-        offsetX: -150,
-        offsetY: -150
+        offsetX: -300,
+        offsetY: -300
       },
       seed: Math.floor(Math.random() * 100000),
       tileStateIndex: null,
@@ -1274,9 +1260,11 @@ __webpack_require__.r(__webpack_exports__);
         var r2 = Math.min(size, -q + size);
 
         for (var r = r1; r <= r2; r++) {
-          //if(Math.abs(q+r) > 6) continue;
+          // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
+          // Map.tileAt(q,r) // Tile
+          // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
           tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
+            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
             seed: this.randomSeed(),
             iterations: this.iterations,
             strategy: this.strategy,

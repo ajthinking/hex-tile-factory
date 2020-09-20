@@ -4,7 +4,7 @@ export default {
         map: {
             strategy: 'RandomOffset',
             iterations: 4,
-            size: 3,
+            size: 2,
             seed: 12345,
         }
 	},

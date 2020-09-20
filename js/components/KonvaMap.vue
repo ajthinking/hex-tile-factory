@@ -44,7 +44,6 @@
 <script>
 
 import { Tile } from '../hex-tile-factory/Tile'
-import { MapTile } from '../hex-tile-factory/MapTile'
 import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 
 export default {
@@ -57,8 +56,8 @@ export default {
                     x: 1,
                     y: 1,
                 },
-                offsetX: -150,
-                offsetY: -150,
+                offsetX: -300,
+                offsetY: -300,
             },
             seed: Math.floor(Math.random() * 100000),
             tileStateIndex: null,
@@ -84,7 +83,9 @@ export default {
                 let r2 = Math.min(size, -q +size)
                 for(let r = r1; r <= r2; r++) {
 
-                    //if(Math.abs(q+r) > 6) continue;
+                    // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
+                    // Map.tileAt(q,r) // Tile
+                    // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
 
                     tiles.push(new Tile({
                         topology: MagicStack.make().get(),
