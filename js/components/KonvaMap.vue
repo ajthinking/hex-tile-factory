@@ -79,7 +79,7 @@ export default {
             let tiles = [];
 
             for(let q = -this.$store.state.map.size; q < this.$store.state.map.size; q++) {
-                for(let r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {                
+                for(let r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {
                     tiles.push(new Tile({
                         topology: MagicStack.make().get(),
                         seed: this.randomSeed(),

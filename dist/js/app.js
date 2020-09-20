@@ -466,19 +466,10 @@ var Line = /*#__PURE__*/function () {
 /*!****************************************!*\
   !*** ./js/hex-tile-factory/MapTile.js ***!
   \****************************************/
-/*! exports provided: MapTile */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTile", function() { return MapTile; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MapTile = function MapTile(tile, options) {
-  _classCallCheck(this, MapTile);
-
-  this.options = options;
-};
 
 /***/ }),
 
@@ -1149,7 +1140,7 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 3,
+      size: 5,
       seed: 12345
     }
   },
@@ -1188,6 +1179,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
 /* harmony import */ var _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/MapTile */ "./js/hex-tile-factory/MapTile.js");
+/* harmony import */ var _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
