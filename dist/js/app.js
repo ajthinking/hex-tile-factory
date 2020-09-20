@@ -874,8 +874,10 @@ var MagicStack = /*#__PURE__*/function () {
       return '001100';
     }
   }, {
-    key: "getNew",
-    value: function getNew() {}
+    key: "getConstrained",
+    value: function getConstrained(sides) {
+      var example = [null, 1, null, null, 0, null];
+    }
   }, {
     key: "randomBucket",
     value: function randomBucket(propabilities) {

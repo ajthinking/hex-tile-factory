@@ -20,7 +20,10 @@ export class MagicStack {
         return '001100'
     }
 
-    getNew() {
+    getConstrained(sides) {
+        let example = [
+            null,1,null,null,0,null
+        ]
         
     }
     
