@@ -170,8 +170,8 @@ export default {
             event.evt.preventDefault()
             let speed = 0.01
             let direction = event.evt.wheelDelta > 0 ? 1 : -1
-            let min = 0.5
-            let max = 5
+            let min = 0.1
+            let max = 20
             let newScale = this.configKonva.scale.x + direction*speed;
             newScale = newScale < min ? min : (newScale > max ? max : newScale)
             let t = this.configKonva.scale.y + direction*speed
