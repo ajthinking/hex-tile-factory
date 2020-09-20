@@ -44,6 +44,7 @@
 <script>
 
 import { Tile } from '../hex-tile-factory/Tile'
+import { MapTile } from '../hex-tile-factory/MapTile'
 import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 
 export default {
@@ -72,6 +73,20 @@ export default {
 
     computed: {
         stack: function() {
+
+            let tile = new Tile({
+                topology: MagicStack.make().get(),
+                seed: this.randomSeed(),
+                iterations: this.iterations,
+                strategy: this.strategy,
+            });
+
+            let t = new MapTile(tile, {
+                x: 1,
+                y: 1,
+                rotation: 0,
+            });
+
             return Array(10).fill().map((i)=> {
                 return new Tile({
                     topology: MagicStack.make().get(),

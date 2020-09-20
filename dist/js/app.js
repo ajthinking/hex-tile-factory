@@ -462,6 +462,26 @@ var Line = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./js/hex-tile-factory/MapTile.js":
+/*!****************************************!*\
+  !*** ./js/hex-tile-factory/MapTile.js ***!
+  \****************************************/
+/*! exports provided: MapTile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapTile", function() { return MapTile; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MapTile = function MapTile(tile, options) {
+  _classCallCheck(this, MapTile);
+
+  this.options = options;
+};
+
+/***/ }),
+
 /***/ "./js/hex-tile-factory/Point.js":
 /*!**************************************!*\
   !*** ./js/hex-tile-factory/Point.js ***!
@@ -1154,7 +1174,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
-/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
+/* harmony import */ var _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/MapTile */ "./js/hex-tile-factory/MapTile.js");
+/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
 //
@@ -1198,6 +1219,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1227,9 +1249,20 @@ __webpack_require__.r(__webpack_exports__);
     stack: function stack() {
       var _this = this;
 
+      var tile = new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+        topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
+        seed: this.randomSeed(),
+        iterations: this.iterations,
+        strategy: this.strategy
+      });
+      var t = new _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__["MapTile"](tile, {
+        x: 1,
+        y: 1,
+        rotation: 0
+      });
       return Array(10).fill().map(function (i) {
         return new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-          topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
+          topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
           seed: _this.randomSeed(),
           iterations: _this.iterations,
           strategy: _this.strategy
