@@ -1333,13 +1333,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    var city = new window.Image();
-    city.src = "images/city.jpg";
-
-    city.onload = function () {
-      _this2.city = grass;
-    };
-
     var grass = new window.Image();
     grass.src = "images/grass.jpg";
 
