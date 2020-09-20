@@ -26,6 +26,14 @@ export class MagicStack {
         ]
         
     }
+
+    couldBeInland(sides) {
+        return !sides.contains(0)
+    }
+
+    couldBeSea(sides) {
+        return !sides.contains(1)
+    }    
     
     randomBucket(propabilities) {
         let scale = Object.keys(propabilities).reduce(function(sum, key, value) {

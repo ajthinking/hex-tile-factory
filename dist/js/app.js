@@ -879,6 +879,16 @@ var MagicStack = /*#__PURE__*/function () {
       var example = [null, 1, null, null, 0, null];
     }
   }, {
+    key: "couldBeInland",
+    value: function couldBeInland(sides) {
+      return !sides.contains(0);
+    }
+  }, {
+    key: "couldBeSea",
+    value: function couldBeSea(sides) {
+      return !sides.contains(1);
+    }
+  }, {
     key: "randomBucket",
     value: function randomBucket(propabilities) {
       var scale = Object.keys(propabilities).reduce(function (sum, key, value) {
