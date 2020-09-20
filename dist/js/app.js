@@ -598,7 +598,7 @@ var Section = /*#__PURE__*/function () {
     this.type = options.type;
     this.start = options.start;
     this.end = options.end;
-    this.innerBorder = this.getInitialInnerBorder();
+    this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : [];
     this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
   }
 
@@ -838,16 +838,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var MagicStack = /*#__PURE__*/function () {
-  function MagicStack() {//
-
+  function MagicStack() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, MagicStack);
+
+    this.options = options;
   }
 
   _createClass(MagicStack, [{
     key: "get",
     value: function get() {
+      var type = this.randomBucket(this.options.propabilities);
+      if (type == 'sea') return '000000';
       return '001100';
     }
   }, {
@@ -879,9 +882,10 @@ var MagicStack = /*#__PURE__*/function () {
     key: "make",
     value: function make(options) {
       return new MagicStack(options !== null && options !== void 0 ? options : {
-        sea: 0.2,
-        inland: 0.2,
-        coastal: 0.6
+        propabilities: {
+          sea: 0.4,
+          coastal: 0.6
+        }
       });
     }
   }]);
@@ -1082,6 +1086,8 @@ var RandomOffset = /*#__PURE__*/function () {
     key: "randomize",
     value: function randomize(tile) {
       var instance = new this(tile);
+      if (tile.topology == '000000') return;
+      if (tile.topology == '111111') return;
       return instance.randomize_();
     }
   }, {

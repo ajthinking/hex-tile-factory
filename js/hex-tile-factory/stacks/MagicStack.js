@@ -1,17 +1,22 @@
 export class MagicStack {    
     constructor(options = {}) {
-        //
+        this.options = options
     }
 
     static make(options) {
         return new MagicStack(options ?? {
-            sea: 0.2,
-            inland: 0.2,
-            coastal: 0.6,
+            propabilities: {
+                sea: 0.4,
+                coastal: 0.6,
+            }
         })
     }
 
     get() {
+        let type = this.randomBucket(this.options.propabilities)
+
+        if(type == 'sea') return '000000'
+        
         return '001100'
     }
 

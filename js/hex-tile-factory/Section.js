@@ -7,9 +7,8 @@ export class Section {
         this.type = options.type
         this.start = options.start
         this.end = options.end
-
         
-        this.innerBorder = this.getInitialInnerBorder()
+        this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : [];
         this.outerBorder = HexagonFactory.borderBetween(this.start, this.end)
     }
 
