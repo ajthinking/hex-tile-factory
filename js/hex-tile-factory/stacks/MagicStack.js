@@ -6,8 +6,9 @@ export class MagicStack {
     static make(options) {
         return new MagicStack(options ?? {
             propabilities: {
-                sea: 0.4,
-                coastal: 0.6,
+                sea: 0.9,
+                coastal: 0.1,
+                //inland: 0.2
             }
         })
     }
@@ -16,9 +17,21 @@ export class MagicStack {
         let type = this.randomBucket(this.options.propabilities)
 
         if(type == 'sea') return '000000'
+
+        if(type == 'inland') return '111111'
         
-        return '001100'
+        return this.randomTopology();
     }
+
+    randomTopology() {
+        let configuration = '';
+
+        for(let i = 0; i< 6; i++) {
+            configuration += Math.floor(Math.random()*3).toString()
+        }
+
+        return configuration;
+    }    
 
     getConstrained(sides) {
         let example = [

@@ -609,7 +609,7 @@ var Section = /*#__PURE__*/function () {
     this.type = options.type;
     this.start = options.start;
     this.end = options.end;
-    this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : [];
+    this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : null;
     this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
   }
 
@@ -863,7 +863,19 @@ var MagicStack = /*#__PURE__*/function () {
     value: function get() {
       var type = this.randomBucket(this.options.propabilities);
       if (type == 'sea') return '000000';
-      return '001100';
+      if (type == 'inland') return '111111';
+      return this.randomTopology();
+    }
+  }, {
+    key: "randomTopology",
+    value: function randomTopology() {
+      var configuration = '';
+
+      for (var i = 0; i < 6; i++) {
+        configuration += Math.floor(Math.random() * 3).toString();
+      }
+
+      return configuration;
     }
   }, {
     key: "getConstrained",
@@ -907,8 +919,9 @@ var MagicStack = /*#__PURE__*/function () {
     value: function make(options) {
       return new MagicStack(options !== null && options !== void 0 ? options : {
         propabilities: {
-          sea: 0.4,
-          coastal: 0.6
+          sea: 0.9,
+          coastal: 0.1 //inland: 0.2
+
         }
       });
     }
@@ -1325,20 +1338,11 @@ __webpack_require__.r(__webpack_exports__);
         rotation: 0
       });
     },
-    randomTopology: function randomTopology() {
-      var configuration = '';
-
-      for (var i = 0; i < 6; i++) {
-        configuration += Math.floor(Math.random() * 3).toString();
-      }
-
-      return configuration;
-    },
     randomSeed: function randomSeed() {
       return Math.floor(Math.random() * 10000);
     },
     randomize: function randomize() {
-      this.topology = this.randomTopology();
+      alert("fix");
     },
     zoom: function zoom(event) {
       event.evt.preventDefault();

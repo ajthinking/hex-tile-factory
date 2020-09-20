@@ -154,22 +154,12 @@ export default {
             })            
         },
 
-        randomTopology() {
-            let configuration = '';
-
-            for(let i = 0; i< 6; i++) {
-                configuration += Math.floor(Math.random()*3).toString()
-            }
-
-            return configuration;
-        },
-
         randomSeed() {
             return Math.floor(Math.random() * 10000)
         },
 
         randomize() {
-            this.topology=this.randomTopology()            
+            alert("fix")
         },
 
         zoom (event) {
