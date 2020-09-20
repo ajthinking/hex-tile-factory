@@ -1140,7 +1140,7 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 5,
+      size: 3,
       seed: 12345
     }
   },
@@ -1254,9 +1254,14 @@ __webpack_require__.r(__webpack_exports__);
     tiles: function tiles() {
       var radius = 100;
       var tiles = [];
+      var size = this.$store.state.map.size;
 
-      for (var q = -this.$store.state.map.size; q < this.$store.state.map.size; q++) {
-        for (var r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {
+      for (var q = -size; q <= size; q++) {
+        var r1 = Math.max(-size, -q - size);
+        var r2 = Math.min(size, -q + size);
+
+        for (var r = r1; r <= r2; r++) {
+          //if(Math.abs(q+r) > 6) continue;
           tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
             seed: this.randomSeed(),

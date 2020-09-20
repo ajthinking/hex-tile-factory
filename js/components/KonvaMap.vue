@@ -77,9 +77,15 @@ export default {
             let radius = 100
 
             let tiles = [];
+            let size = this.$store.state.map.size
 
-            for(let q = -this.$store.state.map.size; q < this.$store.state.map.size; q++) {
-                for(let r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {
+            for(let q = -size; q <= size; q++) {
+                let r1 = Math.max(-size, -q -size)
+                let r2 = Math.min(size, -q +size)
+                for(let r = r1; r <= r2; r++) {
+
+                    //if(Math.abs(q+r) > 6) continue;
+
                     tiles.push(new Tile({
                         topology: MagicStack.make().get(),
                         seed: this.randomSeed(),
