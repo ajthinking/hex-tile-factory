@@ -23,16 +23,6 @@
                         class="w-full"
                     >                    
                 </div> 
-        </div>        
-        <div class="mt-4 uppercase font-bold">
-            <label class="tracking-wider text-xs text-gray-500">History: {{ tileStateIndex  }}</label>
-            <div class="mt-2 flex text-gray-600">
-                <div class="w-full">
-                    <input v-model="tileStateIndex" type="range" min="0" :max="tile.states.length-1"
-                        class="w-full"
-                    >                    
-                </div>                
-            </div>
         </div>
         <div class="flex justify-center mt-8 uppercase font-bold">
             <div @click="randomize()" class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
@@ -117,26 +107,10 @@ export default {
                 this.$store.commit('updateStrategy', value)
             }
         },
-        tile: function() {
-            let tile = new Tile({
-                topology: this.randomTopology(),
-                seed: this.seed,
-                iterations: this.iterations,
-                strategy: this.strategy,
-            })
-
-            this.tileStateIndex = tile.states.length-1
-            return tile
-        },
-        activeTile: function() {
-            return this.tile.states[
-                this.tileStateIndex
-            ]
-        },
 
         backgroundHexagon: function() {
             return new Konva.Line({
-                points: this.activeTile.backgroundHexagon.asArray(),
+                points: this.stack[0].backgroundHexagon.asArray(),
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
@@ -147,25 +121,6 @@ export default {
                     x: 0.4,
                     y: 0.4
                 },           
-            })
-        },
-
-        sections: function() {
-            return this.activeTile.sections.map(section => {
-                return new Konva.Line({
-                    points: section.asLine().asArray(),
-                    stroke: 'black',
-                    strokeWidth: 3,
-                    closed: true,
-                    offsetX: 0,
-                    offsetY: 0,
-                    fillPatternImage: this.grass,
-                    fillPatternScale: {
-                        x: 0.1,
-                        y: 0.1
-                    },
-                    rotation: 0,
-                })  
             })
         },       
     },
@@ -208,7 +163,6 @@ export default {
 
         zoom (event) {
             event.evt.preventDefault()
-            console.log(event.evt)
             let speed = 0.01
             let direction = event.evt.wheelDelta > 0 ? 1 : -1
             let min = 0.5

@@ -1198,16 +1198,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1267,22 +1257,9 @@ __webpack_require__.r(__webpack_exports__);
         this.$store.commit('updateStrategy', value);
       }
     },
-    tile: function tile() {
-      var tile = new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-        topology: this.randomTopology(),
-        seed: this.seed,
-        iterations: this.iterations,
-        strategy: this.strategy
-      });
-      this.tileStateIndex = tile.states.length - 1;
-      return tile;
-    },
-    activeTile: function activeTile() {
-      return this.tile.states[this.tileStateIndex];
-    },
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
-        points: this.activeTile.backgroundHexagon.asArray(),
+        points: this.stack[0].backgroundHexagon.asArray(),
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
@@ -1293,26 +1270,6 @@ __webpack_require__.r(__webpack_exports__);
           x: 0.4,
           y: 0.4
         }
-      });
-    },
-    sections: function sections() {
-      var _this2 = this;
-
-      return this.activeTile.sections.map(function (section) {
-        return new Konva.Line({
-          points: section.asLine().asArray(),
-          stroke: 'black',
-          strokeWidth: 3,
-          closed: true,
-          offsetX: 0,
-          offsetY: 0,
-          fillPatternImage: _this2.grass,
-          fillPatternScale: {
-            x: 0.1,
-            y: 0.1
-          },
-          rotation: 0
-        });
       });
     }
   },
@@ -1350,7 +1307,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     zoom: function zoom(event) {
       event.evt.preventDefault();
-      console.log(event.evt);
       var speed = 0.01;
       var direction = event.evt.wheelDelta > 0 ? 1 : -1;
       var min = 0.5;
@@ -1375,27 +1331,27 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this2 = this;
 
     var city = new window.Image();
     city.src = "images/city.jpg";
 
     city.onload = function () {
-      _this3.city = grass;
+      _this2.city = grass;
     };
 
     var grass = new window.Image();
     grass.src = "images/grass.jpg";
 
     grass.onload = function () {
-      _this3.grass = grass;
+      _this2.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "images/water.jpg";
 
     water.onload = function () {
-      _this3.water = water;
+      _this2.water = water;
     };
   }
 });
@@ -33354,41 +33310,6 @@ var render = function() {
                   }
                 }
               })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
-            _c(
-              "label",
-              { staticClass: "tracking-wider text-xs text-gray-500" },
-              [_vm._v("History: " + _vm._s(_vm.tileStateIndex))]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "mt-2 flex text-gray-600" }, [
-              _c("div", { staticClass: "w-full" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.tileStateIndex,
-                      expression: "tileStateIndex"
-                    }
-                  ],
-                  staticClass: "w-full",
-                  attrs: {
-                    type: "range",
-                    min: "0",
-                    max: _vm.tile.states.length - 1
-                  },
-                  domProps: { value: _vm.tileStateIndex },
-                  on: {
-                    __r: function($event) {
-                      _vm.tileStateIndex = $event.target.value
-                    }
-                  }
-                })
-              ])
             ])
           ]),
           _vm._v(" "),
