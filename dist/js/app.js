@@ -809,6 +809,88 @@ var Tile = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./js/hex-tile-factory/stacks/MagicStack.js":
+/*!**************************************************!*\
+  !*** ./js/hex-tile-factory/stacks/MagicStack.js ***!
+  \**************************************************/
+/*! exports provided: MagicStack */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MagicStack", function() { return MagicStack; });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var MagicStack = /*#__PURE__*/function () {
+  function MagicStack() {//
+
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, MagicStack);
+  }
+
+  _createClass(MagicStack, [{
+    key: "get",
+    value: function get() {
+      return '001100';
+    }
+  }, {
+    key: "getNew",
+    value: function getNew() {}
+  }, {
+    key: "randomBucket",
+    value: function randomBucket(propabilities) {
+      var scale = Object.keys(propabilities).reduce(function (sum, key, value) {
+        return sum + value;
+      }, 0);
+      var ticket = Math.random() * scale;
+      var cursor = 0;
+      var current;
+
+      for (var _i = 0, _Object$entries = Object.entries(propabilities); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            key = _Object$entries$_i[0],
+            value = _Object$entries$_i[1];
+
+        current = key;
+        cursor += value;
+        if (cursor > ticket) return current;
+      }
+
+      return current;
+    }
+  }], [{
+    key: "make",
+    value: function make(options) {
+      return new MagicStack(options !== null && options !== void 0 ? options : {
+        sea: 0.2,
+        inland: 0.2,
+        coastal: 0.6
+      });
+    }
+  }]);
+
+  return MagicStack;
+}();
+
+/***/ }),
+
 /***/ "./js/hex-tile-factory/strategies sync recursive ^\\.\\/.*$":
 /*!******************************************************!*\
   !*** ./js/hex-tile-factory/strategies sync ^\.\/.*$ ***!
@@ -1066,6 +1148,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
+/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
 //
@@ -1119,6 +1202,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1149,7 +1233,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return Array(10).fill().map(function (i) {
         return new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-          topology: _this.randomTopology(),
+          topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
           seed: _this.randomSeed(),
           iterations: _this.iterations,
           strategy: _this.strategy
@@ -1280,7 +1364,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     rotate: function rotate(event) {
-      // WRECKING STATE
+      // WRECKING STATE            
       event.currentTarget.setRotation(event.currentTarget.getRotation() + 60);
     }
   },

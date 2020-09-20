@@ -54,6 +54,7 @@
 <script>
 
 import { Tile } from '../hex-tile-factory/Tile'
+import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 
 export default {
     data() {
@@ -83,7 +84,7 @@ export default {
         stack: function() {
             return Array(10).fill().map((i)=> {
                 return new Tile({
-                    topology: this.randomTopology(),
+                    topology: MagicStack.make().get(),
                     seed: this.randomSeed(),
                     iterations: this.iterations,
                     strategy: this.strategy,
@@ -230,7 +231,7 @@ export default {
         },
 
         rotate(event) {
-            // WRECKING STATE
+            // WRECKING STATE            
             event.currentTarget.setRotation(
                 event.currentTarget.getRotation() + 60
             )
