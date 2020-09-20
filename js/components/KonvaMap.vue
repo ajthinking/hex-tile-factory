@@ -31,8 +31,8 @@
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
-      <v-group v-for="(tile, index) in stack" :key="index"        
-        :config="{draggable: true, rotation}" @dblclick="rotate">
+      <v-group v-for="(tile, index) in tiles" :key="index"        
+        :config="tileConfig(tile)" @dblclick="rotate">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
       </v-group>                            
@@ -72,46 +72,27 @@ export default {
     },
 
     computed: {
-        stack: function() {
+        tiles: function() {
 
-            let tile = new Tile({
-                topology: MagicStack.make().get(),
-                seed: this.randomSeed(),
-                iterations: this.iterations,
-                strategy: this.strategy,
-            });
+            let radius = 100
 
-            let t = new MapTile(tile, {
-                x: 1,
-                y: 1,
-                rotation: 0,
-            });
+            let tiles = [];
 
-            return Array(10).fill().map((i)=> {
-                return new Tile({
-                    topology: MagicStack.make().get(),
-                    seed: this.randomSeed(),
-                    iterations: this.iterations,
-                    strategy: this.strategy,
-                })
-            });
+            for(let q = -this.$store.state.map.size; q < this.$store.state.map.size; q++) {
+                for(let r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {                
+                    tiles.push(new Tile({
+                        topology: MagicStack.make().get(),
+                        seed: this.randomSeed(),
+                        iterations: this.iterations,
+                        strategy: this.strategy,
+                        rotation: 0,
+                        x: r * radius * 3/2,
+                        y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius/2
+                    }))
+                }
+            }
 
-            return [
-                // needs a rotation property
-                // what is the difference between a tile and a maptile?
-                new Tile({
-                    topology: this.randomTopology(),
-                    seed: this.seed,
-                    iterations: this.iterations,
-                    strategy: this.strategy,
-                }),
-                new Tile({
-                    topology: this.randomTopology(),
-                    seed: this.seed,
-                    iterations: this.iterations,
-                    strategy: this.strategy,
-                })
-            ]
+            return tiles;
         },
 
         strategy: {
@@ -125,7 +106,7 @@ export default {
 
         backgroundHexagon: function() {
             return new Konva.Line({
-                points: this.stack[0].backgroundHexagon.asArray(),
+                points: this.tiles[0].backgroundHexagon.asArray(),
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
@@ -141,6 +122,15 @@ export default {
     },
 
     methods: {
+        tileConfig: function(tile) {
+            return {
+                draggable: true,
+                rotation: this.rotation,
+                offsetX: tile.options.x,
+                offsetY: tile.options.y,
+            }
+        },
+
         konvaLandSection(section) {
             return new Konva.Line({
                 points: section.asLine().asArray(),

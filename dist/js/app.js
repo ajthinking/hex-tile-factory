@@ -777,6 +777,7 @@ var Tile = /*#__PURE__*/function () {
 
     _classCallCheck(this, Tile);
 
+    this.options = options;
     this.topology = options.topology;
     this.iterations = Array((_parseInt = parseInt(options.iterations)) !== null && _parseInt !== void 0 ? _parseInt : 3).fill().map(function (x, i) {
       return i;
@@ -1148,8 +1149,8 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      seed: 12345,
-      stack: []
+      size: 3,
+      seed: 12345
     }
   },
   getters: {//    getCategoryFormGetters(state){ //take parameter state
@@ -1258,41 +1259,25 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    stack: function stack() {
-      var _this = this;
+    tiles: function tiles() {
+      var radius = 100;
+      var tiles = [];
 
-      var tile = new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-        topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
-        seed: this.randomSeed(),
-        iterations: this.iterations,
-        strategy: this.strategy
-      });
-      var t = new _hex_tile_factory_MapTile__WEBPACK_IMPORTED_MODULE_1__["MapTile"](tile, {
-        x: 1,
-        y: 1,
-        rotation: 0
-      });
-      return Array(10).fill().map(function (i) {
-        return new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-          topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
-          seed: _this.randomSeed(),
-          iterations: _this.iterations,
-          strategy: _this.strategy
-        });
-      });
-      return [// needs a rotation property
-      // what is the difference between a tile and a maptile?
-      new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-        topology: this.randomTopology(),
-        seed: this.seed,
-        iterations: this.iterations,
-        strategy: this.strategy
-      }), new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-        topology: this.randomTopology(),
-        seed: this.seed,
-        iterations: this.iterations,
-        strategy: this.strategy
-      })];
+      for (var q = -this.$store.state.map.size; q < this.$store.state.map.size; q++) {
+        for (var r = -this.$store.state.map.size; r < this.$store.state.map.size; r++) {
+          tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__["MagicStack"].make().get(),
+            seed: this.randomSeed(),
+            iterations: this.iterations,
+            strategy: this.strategy,
+            rotation: 0,
+            x: r * radius * 3 / 2,
+            y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2
+          }));
+        }
+      }
+
+      return tiles;
     },
     strategy: {
       get: function get() {
@@ -1304,7 +1289,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
-        points: this.stack[0].backgroundHexagon.asArray(),
+        points: this.tiles[0].backgroundHexagon.asArray(),
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
@@ -1319,6 +1304,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    tileConfig: function tileConfig(tile) {
+      return {
+        draggable: true,
+        rotation: this.rotation,
+        offsetX: tile.options.x,
+        offsetY: tile.options.y
+      };
+    },
     konvaLandSection: function konvaLandSection(section) {
       return new Konva.Line({
         points: section.asLine().asArray(),
@@ -1376,20 +1369,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
     var grass = new window.Image();
     grass.src = "images/grass.jpg";
 
     grass.onload = function () {
-      _this2.grass = grass;
+      _this.grass = grass;
     };
 
     var water = new window.Image();
     water.src = "images/water.jpg";
 
     water.onload = function () {
-      _this2.water = water;
+      _this.water = water;
     };
   }
 });
@@ -33392,14 +33385,12 @@ var render = function() {
         [
           _c(
             "v-layer",
-            _vm._l(_vm.stack, function(tile, index) {
+            _vm._l(_vm.tiles, function(tile, index) {
               return _c(
                 "v-group",
                 {
                   key: index,
-                  attrs: {
-                    config: { draggable: true, rotation: _vm.rotation }
-                  },
+                  attrs: { config: _vm.tileConfig(tile) },
                   on: { dblclick: _vm.rotate }
                 },
                 [

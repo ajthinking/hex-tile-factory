@@ -9,6 +9,7 @@ var seedrandom = require('seedrandom');
 
 export class Tile {    
     constructor(options) {
+        this.options = options
         this.topology = options.topology
         this.iterations = Array(
             parseInt(options.iterations) ?? 3
