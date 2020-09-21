@@ -1236,8 +1236,8 @@ __webpack_require__.r(__webpack_exports__);
           x: 1,
           y: 1
         },
-        offsetX: -300,
-        offsetY: -300
+        offsetX: -this.$store.state.map.size * 100 - 200,
+        offsetY: -this.$store.state.map.size * 100 - 200
       },
       seed: Math.floor(Math.random() * 100000),
       tileStateIndex: null,
