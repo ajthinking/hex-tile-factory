@@ -132,14 +132,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-konva */ "./node_modules/vue-konva/umd/vue-konva.js");
 /* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_konva__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/index */ "./js/store/index.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/index */ "./js/store/index.js");
 
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.use(vue_konva__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_3__["default"]); // Auto register components
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_2__["default"]); // Auto register components
 
 var files = __webpack_require__("./js sync recursive \\.vue$/");
 
@@ -526,6 +526,7 @@ var Map = /*#__PURE__*/function () {
 
         for (var r = r1; r <= r2; r++) {
           var constraints = this.constraintsAt(q, r);
+          console.log(q, r, constraints);
           creation_instance++;
           this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().getConstrained(constraints),
@@ -961,9 +962,10 @@ var MagicStack = /*#__PURE__*/function () {
       // let propabilities = {
       //     coastal: 0.2
       // }
-      if (this.couldBeSea(sides) && Math.random() < 0.5) {
-        return '000000';
-      } // if(this.couldBeInland(sides)) {
+      // if(this.couldBeSea(sides) && Math.random() < 0.5) {
+      //     return '000000'
+      // }
+      // if(this.couldBeInland(sides)) {
       //     propabilities.inland = 0.1
       // }
       // seedrandom(Date.now(), { global: true })
@@ -972,8 +974,6 @@ var MagicStack = /*#__PURE__*/function () {
       // if(choice == 'sea') return '000000'
       // if(choice == 'inland') return '111111'
       // else coastal
-
-
       var configuration = '';
 
       for (var i = 0; i < 6; i++) {
@@ -1223,7 +1223,6 @@ var RandomOffset = /*#__PURE__*/function () {
     key: "randomize",
     value: function randomize(tile) {
       var instance = new this(tile);
-      console.log(tile.topology);
       if (tile.topology == '000000') return;
       if (tile.topology == '111111') return;
       return instance.randomize_();

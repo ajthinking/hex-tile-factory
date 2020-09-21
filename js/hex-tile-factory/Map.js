@@ -45,6 +45,7 @@ export class Map {
             for(let r = r1; r <= r2; r++) {
 
                 let constraints = this.constraintsAt(q,r)
+                console.log(q,r,constraints)
                 creation_instance++
                 this.tiles.push(new Tile({
                     topology: MagicStack.make().getConstrained(constraints),

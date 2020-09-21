@@ -40,9 +40,9 @@ export class MagicStack {
         //     coastal: 0.2
         // }
 
-        if(this.couldBeSea(sides) && Math.random() < 0.5) {
-            return '000000'
-        }
+        // if(this.couldBeSea(sides) && Math.random() < 0.5) {
+        //     return '000000'
+        // }
 
         // if(this.couldBeInland(sides)) {
         //     propabilities.inland = 0.1
