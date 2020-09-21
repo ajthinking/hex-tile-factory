@@ -510,7 +510,8 @@ var Map = /*#__PURE__*/function () {
       sides[2] = this.tileAt(q, r - 1) ? this.tileAt(q, r - 1)[4] : null;
       sides[3] = this.tileAt(q + 1, r + 1) ? this.tileAt(q + 1, r + 1)[4] : null;
       sides[4] = this.tileAt(q + 1, r) ? this.tileAt(q + 1, r)[4] : null;
-      sides[5] = this.tileAt(q, r + 1) ? this.tileAt(q, r + 1)[4] : null;
+      sides[5] = this.tileAt(q, r + 1) ? this.tileAt(q, r + 1)[4] : null; //return [0, 0, 0, 0, 0, 0]
+
       return [null, null, null, null, null, null];
     }
   }, {
@@ -953,7 +954,13 @@ var MagicStack = /*#__PURE__*/function () {
   }, {
     key: "getConstrained",
     value: function getConstrained(sides) {
-      return this.get();
+      var configuration = '';
+
+      for (var i = 0; i < 6; i++) {
+        configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random() * 3).toString();
+      }
+
+      return configuration;
     }
   }, {
     key: "couldBeInland",

@@ -34,7 +34,13 @@ export class MagicStack {
     }    
 
     getConstrained(sides) {
-        return this.get()
+        let configuration = '';
+
+        for(let i = 0; i< 6; i++) {
+            configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random()*3).toString()
+        }
+
+        return configuration;
         
     }
 

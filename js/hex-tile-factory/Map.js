@@ -28,6 +28,7 @@ export class Map {
         sides[4] = this.tileAt(q+1, r  ) ? this.tileAt(q+1, r  )[4] : null
         sides[5] = this.tileAt(q  , r+1) ? this.tileAt(q  , r+1)[4] : null
 
+        //return [0, 0, 0, 0, 0, 0]
         return [null, null, null, null, null, null]
     }
 
