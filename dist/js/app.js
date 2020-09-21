@@ -462,6 +462,87 @@ var Line = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./js/hex-tile-factory/Map.js":
+/*!************************************!*\
+  !*** ./js/hex-tile-factory/Map.js ***!
+  \************************************/
+/*! exports provided: Map */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Map", function() { return Map; });
+/* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
+/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Map = /*#__PURE__*/function () {
+  function Map(options) {
+    _classCallCheck(this, Map);
+
+    this.options = options;
+  }
+
+  _createClass(Map, [{
+    key: "placeTile",
+    value: function placeTile(tile, q, r) {}
+  }, {
+    key: "getTileAt",
+    value: function getTileAt(q, r) {
+      return this.tiles.find(function (tile) {
+        return tile.q == q && tile.r == r;
+      });
+    }
+  }, {
+    key: "getConstraintsAt",
+    value: function getConstraintsAt(q, r) {
+      for (var q_ = q - 1; q_ <= q + 1; q_++) {
+        for (var r_ = r - 1; r_ <= r + 1; r_++) {// this is just a sketch
+        }
+      }
+    }
+  }, {
+    key: "tiles",
+    value: function tiles() {
+      var radius = 100;
+      var tiles = [];
+      var size = this.options.size;
+
+      for (var q = -size; q <= size; q++) {
+        var r1 = Math.max(-size, -q - size);
+        var r2 = Math.min(size, -q + size);
+
+        for (var r = r1; r <= r2; r++) {
+          // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
+          // Map.tileAt(q,r) // Tile
+          // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
+          tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
+            seed: 12345,
+            iterations: 3,
+            strategy: 'RandomOffset',
+            rotation: 0,
+            x: r * radius * 3 / 2,
+            y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2
+          }));
+        }
+      }
+
+      return tiles;
+    }
+  }]);
+
+  return Map;
+}();
+
+/***/ }),
+
 /***/ "./js/hex-tile-factory/Point.js":
 /*!**************************************!*\
   !*** ./js/hex-tile-factory/Point.js ***!
@@ -1180,7 +1261,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
-/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
+/* harmony import */ var _hex_tile_factory_Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/Map */ "./js/hex-tile-factory/Map.js");
+/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
 //
@@ -1224,6 +1306,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1250,32 +1333,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    tiles: function tiles() {
-      var radius = 100;
-      var tiles = [];
-      var size = this.$store.state.map.size;
-
-      for (var q = -size; q <= size; q++) {
-        var r1 = Math.max(-size, -q - size);
-        var r2 = Math.min(size, -q + size);
-
-        for (var r = r1; r <= r2; r++) {
-          // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
-          // Map.tileAt(q,r) // Tile
-          // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
-          tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
-            seed: this.randomSeed(),
-            iterations: this.iterations,
-            strategy: this.strategy,
-            rotation: 0,
-            x: r * radius * 3 / 2,
-            y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2
-          }));
-        }
-      }
-
-      return tiles;
+    map: function map() {
+      return new _hex_tile_factory_Map__WEBPACK_IMPORTED_MODULE_1__["Map"]({
+        size: this.$store.state.map.size
+      });
     },
     strategy: {
       get: function get() {
@@ -1287,7 +1348,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
-        points: this.tiles[0].backgroundHexagon.asArray(),
+        points: this.map.tiles()[0].backgroundHexagon.asArray(),
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
@@ -1304,7 +1365,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     tileConfig: function tileConfig(tile) {
       return {
-        draggable: true,
         rotation: this.rotation,
         offsetX: tile.options.x,
         offsetY: tile.options.y
@@ -1351,10 +1411,6 @@ __webpack_require__.r(__webpack_exports__);
         this.configKonva.offsetX = this.configKonva.offsetX - event.evt.movementX;
         this.configKonva.offsetY = this.configKonva.offsetY - event.evt.movementY;
       }
-    },
-    rotate: function rotate(event) {
-      // WRECKING STATE            
-      event.currentTarget.setRotation(event.currentTarget.getRotation() + 60);
     }
   },
   created: function created() {
@@ -33374,14 +33430,10 @@ var render = function() {
         [
           _c(
             "v-layer",
-            _vm._l(_vm.tiles, function(tile, index) {
+            _vm._l(_vm.map.tiles(), function(tile, index) {
               return _c(
                 "v-group",
-                {
-                  key: index,
-                  attrs: { config: _vm.tileConfig(tile) },
-                  on: { dblclick: _vm.rotate }
-                },
+                { key: index, attrs: { config: _vm.tileConfig(tile) } },
                 [
                   _c("v-line", { attrs: { config: _vm.backgroundHexagon } }),
                   _vm._v(" "),

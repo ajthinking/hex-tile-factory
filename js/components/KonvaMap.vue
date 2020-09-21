@@ -31,8 +31,8 @@
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
-      <v-group v-for="(tile, index) in tiles" :key="index"        
-        :config="tileConfig(tile)" @dblclick="rotate">
+      <v-group v-for="(tile, index) in map.tiles()" :key="index"        
+        :config="tileConfig(tile)">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
       </v-group>                            
@@ -44,6 +44,7 @@
 <script>
 
 import { Tile } from '../hex-tile-factory/Tile'
+import { Map } from '../hex-tile-factory/Map'
 import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 
 export default {
@@ -71,35 +72,10 @@ export default {
     },
 
     computed: {
-        tiles: function() {
-
-            let radius = 100
-
-            let tiles = [];
-            let size = this.$store.state.map.size
-
-            for(let q = -size; q <= size; q++) {
-                let r1 = Math.max(-size, -q -size)
-                let r2 = Math.min(size, -q +size)
-                for(let r = r1; r <= r2; r++) {
-
-                    // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
-                    // Map.tileAt(q,r) // Tile
-                    // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
-
-                    tiles.push(new Tile({
-                        topology: MagicStack.make().get(),
-                        seed: this.randomSeed(),
-                        iterations: this.iterations,
-                        strategy: this.strategy,
-                        rotation: 0,
-                        x: r * radius * 3/2,
-                        y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius/2
-                    }))
-                }
-            }
-
-            return tiles;
+        map: function() {
+            return new Map({
+                size: this.$store.state.map.size,
+            })
         },
 
         strategy: {
@@ -113,7 +89,7 @@ export default {
 
         backgroundHexagon: function() {
             return new Konva.Line({
-                points: this.tiles[0].backgroundHexagon.asArray(),
+                points: this.map.tiles()[0].backgroundHexagon.asArray(),
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
@@ -131,7 +107,6 @@ export default {
     methods: {
         tileConfig: function(tile) {
             return {
-                draggable: true,
                 rotation: this.rotation,
                 offsetX: tile.options.x,
                 offsetY: tile.options.y,
@@ -184,13 +159,6 @@ export default {
                 this.configKonva.offsetY = this.configKonva.offsetY - event.evt.movementY
             }
             
-        },
-
-        rotate(event) {
-            // WRECKING STATE            
-            event.currentTarget.setRotation(
-                event.currentTarget.getRotation() + 60
-            )
         }
     },
     
