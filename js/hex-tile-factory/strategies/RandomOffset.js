@@ -17,11 +17,11 @@ export class RandomOffset {
     // PUBLIC STATIC API
     static randomize(tile) {
         let instance = new this(tile)
+        console.log(tile.topology)
 
         if(tile.topology == '000000') return;
 
         if(tile.topology == '111111') return;
-
 
         return instance.randomize_()
     }

@@ -37,13 +37,15 @@ export class Map {
 
         let size = this.options.size
 
+        let creation_instance = 0
+
         for(let q = -size; q <= size; q++) {
             let r1 = Math.max(-size, -q -size)
             let r2 = Math.min(size, -q +size)
             for(let r = r1; r <= r2; r++) {
 
                 let constraints = this.constraintsAt(q,r)
-
+                creation_instance++
                 this.tiles.push(new Tile({
                     topology: MagicStack.make().getConstrained(constraints),
                     seed: 12345,
@@ -53,7 +55,8 @@ export class Map {
                     q,
                     r,
                     x: r * radius * 3/2,
-                    y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius/2
+                    y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius/2,
+                    creation_instance: creation_instance,
                 }))
             }
         }       

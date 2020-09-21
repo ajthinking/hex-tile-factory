@@ -1,3 +1,5 @@
+var seedrandom = require('seedrandom');
+
 export class MagicStack {    
     constructor(options = {}) {
         this.options = options
@@ -34,6 +36,27 @@ export class MagicStack {
     }    
 
     getConstrained(sides) {
+        // let propabilities = {
+        //     coastal: 0.2
+        // }
+
+        if(this.couldBeSea(sides) && Math.random() < 0.5) {
+            return '000000'
+        }
+
+        // if(this.couldBeInland(sides)) {
+        //     propabilities.inland = 0.1
+        // }
+        // seedrandom(Date.now(), { global: true })
+        // let choice = this.randomBucket(propabilities)
+
+        // console.log(propabilities, choice)
+
+
+        // if(choice == 'sea') return '000000'
+        // if(choice == 'inland') return '111111'
+
+        // else coastal
         let configuration = '';
 
         for(let i = 0; i< 6; i++) {
@@ -45,11 +68,11 @@ export class MagicStack {
     }
 
     couldBeInland(sides) {
-        return !sides.contains(0)
+        return !sides.includes(0)
     }
 
     couldBeSea(sides) {
-        return !sides.contains(1)
+        return !sides.includes(1)
     }    
     
     randomBucket(propabilities) {

@@ -518,6 +518,7 @@ var Map = /*#__PURE__*/function () {
     value: function populateTiles() {
       var radius = 100;
       var size = this.options.size;
+      var creation_instance = 0;
 
       for (var q = -size; q <= size; q++) {
         var r1 = Math.max(-size, -q - size);
@@ -525,6 +526,7 @@ var Map = /*#__PURE__*/function () {
 
         for (var r = r1; r <= r2; r++) {
           var constraints = this.constraintsAt(q, r);
+          creation_instance++;
           this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().getConstrained(constraints),
             seed: 12345,
@@ -534,7 +536,8 @@ var Map = /*#__PURE__*/function () {
             q: q,
             r: r,
             x: r * radius * 3 / 2,
-            y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2
+            y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2,
+            creation_instance: creation_instance
           }));
         }
       }
@@ -682,7 +685,7 @@ var Section = /*#__PURE__*/function () {
     this.type = options.type;
     this.start = options.start;
     this.end = options.end;
-    this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : null;
+    this.innerBorder = this.length() < 6 ? this.getInitialInnerBorder() : new _Line__WEBPACK_IMPORTED_MODULE_2__["Line"]([]);
     this.outerBorder = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].borderBetween(this.start, this.end);
   }
 
@@ -922,6 +925,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
+
 var MagicStack = /*#__PURE__*/function () {
   function MagicStack() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -953,6 +958,22 @@ var MagicStack = /*#__PURE__*/function () {
   }, {
     key: "getConstrained",
     value: function getConstrained(sides) {
+      // let propabilities = {
+      //     coastal: 0.2
+      // }
+      if (this.couldBeSea(sides) && Math.random() < 0.5) {
+        return '000000';
+      } // if(this.couldBeInland(sides)) {
+      //     propabilities.inland = 0.1
+      // }
+      // seedrandom(Date.now(), { global: true })
+      // let choice = this.randomBucket(propabilities)
+      // console.log(propabilities, choice)
+      // if(choice == 'sea') return '000000'
+      // if(choice == 'inland') return '111111'
+      // else coastal
+
+
       var configuration = '';
 
       for (var i = 0; i < 6; i++) {
@@ -964,12 +985,12 @@ var MagicStack = /*#__PURE__*/function () {
   }, {
     key: "couldBeInland",
     value: function couldBeInland(sides) {
-      return !sides.contains(0);
+      return !sides.includes(0);
     }
   }, {
     key: "couldBeSea",
     value: function couldBeSea(sides) {
-      return !sides.contains(1);
+      return !sides.includes(1);
     }
   }, {
     key: "randomBucket",
@@ -1202,6 +1223,7 @@ var RandomOffset = /*#__PURE__*/function () {
     key: "randomize",
     value: function randomize(tile) {
       var instance = new this(tile);
+      console.log(tile.topology);
       if (tile.topology == '000000') return;
       if (tile.topology == '111111') return;
       return instance.randomize_();
@@ -33457,7 +33479,13 @@ var render = function() {
                   _c("v-text", {
                     attrs: {
                       config: {
-                        text: tile.options.q + " " + tile.options.r,
+                        text:
+                          "(" +
+                          tile.options.q +
+                          "," +
+                          tile.options.r +
+                          ") - " +
+                          tile.options.creation_instance,
                         fontSize: 15
                       }
                     }
