@@ -35,6 +35,7 @@
         :config="tileConfig(tile)">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
+        <v-text :config="{text: tile.options.q + ' ' +  tile.options.r, fontSize: 15}"/>
       </v-group>                            
     </v-layer>
   </v-stage>

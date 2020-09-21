@@ -1316,6 +1316,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -33452,6 +33453,15 @@ var render = function() {
                       key: index,
                       attrs: { config: _vm.konvaLandSection(section) }
                     })
+                  }),
+                  _vm._v(" "),
+                  _c("v-text", {
+                    attrs: {
+                      config: {
+                        text: tile.options.q + " " + tile.options.r,
+                        fontSize: 15
+                      }
+                    }
                   })
                 ],
                 2
