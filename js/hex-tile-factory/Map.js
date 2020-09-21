@@ -19,17 +19,16 @@ export class Map {
     }
 
     constraintsAt(q,r) {
-        let sides = []
-        
-        sides[0] = this.tileAt(q-1, r-1) ? this.tileAt(q-1, r-1)[4] : null
-        sides[1] = this.tileAt(q-1, r  ) ? this.tileAt(q-1, r  )[4] : null
-        sides[2] = this.tileAt(q  , r-1) ? this.tileAt(q  , r-1)[4] : null
-        sides[3] = this.tileAt(q+1, r+1) ? this.tileAt(q+1, r+1)[4] : null
-        sides[4] = this.tileAt(q+1, r  ) ? this.tileAt(q+1, r  )[4] : null
-        sides[5] = this.tileAt(q  , r+1) ? this.tileAt(q  , r+1)[4] : null
+        let sides = [null, null, null, null, null, null]
+        //sides[0] = this.tileAt(q-1, r-1) ? 1 : 0
+        // sides[0] = this.tileAt(q-1, r-1) ? this.tileAt(q-1, r-1).topology[4] : null
+        // sides[1] = this.tileAt(q-1, r  ) ? this.tileAt(q-1, r  ).topology[5] : null
+        // sides[2] = this.tileAt(q  , r-1) ? this.tileAt(q  , r-1).topology[0] : null
+        // sides[3] = this.tileAt(q+1, r+1) ? this.tileAt(q+1, r+1).topology[1] : null
+        // sides[4] = this.tileAt(q+1, r  ) ? this.tileAt(q+1, r  ).topology[2] : null
+        // sides[5] = this.tileAt(q  , r+1) ? this.tileAt(q  , r+1).topology[3] : null
 
-        //return [0, 0, 0, 0, 0, 0]
-        return [null, null, null, null, null, null]
+        return sides
     }
 
     populateTiles() {
