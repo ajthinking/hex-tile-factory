@@ -4,31 +4,36 @@ import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 export class Map {
     constructor(options) {
         this.options = options
+        this.tiles = []
+        this.populateTiles()
     }
 
     placeTile(tile, q, r) {
 
     }
 
-    getTileAt(q,r) {
+    tileAt(q,r) {
         return this.tiles.find(tile => {
-            return tile.q == q && tile.r == r
+            return tile.options.q == q && tile.options.r == r
         })
     }
 
-    getConstraintsAt(q,r) {
-        for(let q_ = q-1; q_ <= q+1; q_++ ) {
-            for(let r_ = r-1; r_ <= r+1; r_++ ) {
-                // this is just a sketch
-            }            
-        }
+    constraintsAt(q,r) {
+        let sides = []
+        
+        sides[0] = this.tileAt(q-1, r-1) ? this.tileAt(q-1, r-1)[4] : null
+        sides[1] = this.tileAt(q-1, r  ) ? this.tileAt(q-1, r  )[4] : null
+        sides[2] = this.tileAt(q  , r-1) ? this.tileAt(q  , r-1)[4] : null
+        sides[3] = this.tileAt(q+1, r+1) ? this.tileAt(q+1, r+1)[4] : null
+        sides[4] = this.tileAt(q+1, r  ) ? this.tileAt(q+1, r  )[4] : null
+        sides[5] = this.tileAt(q  , r+1) ? this.tileAt(q  , r+1)[4] : null
+
     }
 
-    tiles() {
+    populateTiles() {
 
         let radius = 100
 
-        let tiles = [];
         let size = this.options.size
 
         for(let q = -size; q <= size; q++) {
@@ -36,22 +41,20 @@ export class Map {
             let r2 = Math.min(size, -q +size)
             for(let r = r1; r <= r2; r++) {
 
-                // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
-                // Map.tileAt(q,r) // Tile
-                // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
+                let constraints = this.constraintsAt(q,r)
 
-                tiles.push(new Tile({
+                this.tiles.push(new Tile({
                     topology: MagicStack.make().get(),
                     seed: 12345,
                     iterations: 3,
                     strategy: 'RandomOffset',
                     rotation: 0,
+                    q,
+                    r,
                     x: r * radius * 3/2,
                     y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius/2
                 }))
             }
-        }
-
-        return tiles;        
+        }       
     }
 }

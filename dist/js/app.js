@@ -487,31 +487,35 @@ var Map = /*#__PURE__*/function () {
     _classCallCheck(this, Map);
 
     this.options = options;
+    this.tiles = [];
+    this.populateTiles();
   }
 
   _createClass(Map, [{
     key: "placeTile",
     value: function placeTile(tile, q, r) {}
   }, {
-    key: "getTileAt",
-    value: function getTileAt(q, r) {
+    key: "tileAt",
+    value: function tileAt(q, r) {
       return this.tiles.find(function (tile) {
-        return tile.q == q && tile.r == r;
+        return tile.options.q == q && tile.options.r == r;
       });
     }
   }, {
-    key: "getConstraintsAt",
-    value: function getConstraintsAt(q, r) {
-      for (var q_ = q - 1; q_ <= q + 1; q_++) {
-        for (var r_ = r - 1; r_ <= r + 1; r_++) {// this is just a sketch
-        }
-      }
+    key: "constraintsAt",
+    value: function constraintsAt(q, r) {
+      var sides = [];
+      sides[0] = this.tileAt(q - 1, r - 1) ? this.tileAt(q - 1, r - 1)[4] : null;
+      sides[1] = this.tileAt(q - 1, r) ? this.tileAt(q - 1, r)[4] : null;
+      sides[2] = this.tileAt(q, r - 1) ? this.tileAt(q, r - 1)[4] : null;
+      sides[3] = this.tileAt(q + 1, r + 1) ? this.tileAt(q + 1, r + 1)[4] : null;
+      sides[4] = this.tileAt(q + 1, r) ? this.tileAt(q + 1, r)[4] : null;
+      sides[5] = this.tileAt(q, r + 1) ? this.tileAt(q, r + 1)[4] : null;
     }
   }, {
-    key: "tiles",
-    value: function tiles() {
+    key: "populateTiles",
+    value: function populateTiles() {
       var radius = 100;
-      var tiles = [];
       var size = this.options.size;
 
       for (var q = -size; q <= size; q++) {
@@ -519,22 +523,20 @@ var Map = /*#__PURE__*/function () {
         var r2 = Math.min(size, -q + size);
 
         for (var r = r1; r <= r2; r++) {
-          // DIFFERNTIATE UNFILLED SLOTS AND FILLED SLOTS
-          // Map.tileAt(q,r) // Tile
-          // Map.constraintsAt(q,r) // [null,1,1 null,null,null]
-          tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
+          var constraints = this.constraintsAt(q, r);
+          this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
             seed: 12345,
             iterations: 3,
             strategy: 'RandomOffset',
             rotation: 0,
+            q: q,
+            r: r,
             x: r * radius * 3 / 2,
             y: q * Math.sqrt(3) * radius + r * Math.sqrt(3) * radius / 2
           }));
         }
       }
-
-      return tiles;
     }
   }]);
 
@@ -1348,7 +1350,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     backgroundHexagon: function backgroundHexagon() {
       return new Konva.Line({
-        points: this.map.tiles()[0].backgroundHexagon.asArray(),
+        points: this.map.tiles[0].backgroundHexagon.asArray(),
         stroke: 'black',
         strokeWidth: 1,
         closed: true,
@@ -33430,7 +33432,7 @@ var render = function() {
         [
           _c(
             "v-layer",
-            _vm._l(_vm.map.tiles(), function(tile, index) {
+            _vm._l(_vm.map.tiles, function(tile, index) {
               return _c(
                 "v-group",
                 { key: index, attrs: { config: _vm.tileConfig(tile) } },

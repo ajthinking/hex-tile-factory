@@ -31,7 +31,7 @@
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
     <v-layer>
-      <v-group v-for="(tile, index) in map.tiles()" :key="index"        
+      <v-group v-for="(tile, index) in map.tiles" :key="index"        
         :config="tileConfig(tile)">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
@@ -89,7 +89,7 @@ export default {
 
         backgroundHexagon: function() {
             return new Konva.Line({
-                points: this.map.tiles()[0].backgroundHexagon.asArray(),
+                points: this.map.tiles[0].backgroundHexagon.asArray(),
                 stroke: 'black',
                 strokeWidth: 1,
                 closed: true,
