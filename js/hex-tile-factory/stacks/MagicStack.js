@@ -34,9 +34,7 @@ export class MagicStack {
     }    
 
     getConstrained(sides) {
-        let example = [
-            null,1,null,null,0,null
-        ]
+        return this.get()
         
     }
 

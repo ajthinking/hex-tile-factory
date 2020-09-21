@@ -511,6 +511,7 @@ var Map = /*#__PURE__*/function () {
       sides[3] = this.tileAt(q + 1, r + 1) ? this.tileAt(q + 1, r + 1)[4] : null;
       sides[4] = this.tileAt(q + 1, r) ? this.tileAt(q + 1, r)[4] : null;
       sides[5] = this.tileAt(q, r + 1) ? this.tileAt(q, r + 1)[4] : null;
+      return [null, null, null, null, null, null];
     }
   }, {
     key: "populateTiles",
@@ -525,7 +526,7 @@ var Map = /*#__PURE__*/function () {
         for (var r = r1; r <= r2; r++) {
           var constraints = this.constraintsAt(q, r);
           this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
-            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().get(),
+            topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().getConstrained(constraints),
             seed: 12345,
             iterations: 3,
             strategy: 'RandomOffset',
@@ -952,7 +953,7 @@ var MagicStack = /*#__PURE__*/function () {
   }, {
     key: "getConstrained",
     value: function getConstrained(sides) {
-      var example = [null, 1, null, null, 0, null];
+      return this.get();
     }
   }, {
     key: "couldBeInland",

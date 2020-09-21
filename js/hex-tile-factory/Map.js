@@ -28,6 +28,7 @@ export class Map {
         sides[4] = this.tileAt(q+1, r  ) ? this.tileAt(q+1, r  )[4] : null
         sides[5] = this.tileAt(q  , r+1) ? this.tileAt(q  , r+1)[4] : null
 
+        return [null, null, null, null, null, null]
     }
 
     populateTiles() {
@@ -44,7 +45,7 @@ export class Map {
                 let constraints = this.constraintsAt(q,r)
 
                 this.tiles.push(new Tile({
-                    topology: MagicStack.make().get(),
+                    topology: MagicStack.make().getConstrained(constraints),
                     seed: 12345,
                     iterations: 3,
                     strategy: 'RandomOffset',
