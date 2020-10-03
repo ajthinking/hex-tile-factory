@@ -16,7 +16,7 @@ export class Tile {
         ).fill().map((x,i)=>i)
 
         this.seed = options.seed ?? 12345
-        seedrandom(this.seed, { global: true })
+        //seedrandom(this.seed, { global: true })
 
         this.backgroundHexagon = HexagonFactory.make()
 

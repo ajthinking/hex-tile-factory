@@ -8,8 +8,8 @@ export class MagicStack {
     static make(options) {
         return new MagicStack(options ?? {
             propabilities: {
-                sea: 0.5,
-                coastal: 0.5,
+                sea: 0.8,
+                coastal: 0.2,
                 //inland: 0.2
             }
         })

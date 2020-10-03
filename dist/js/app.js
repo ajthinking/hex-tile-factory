@@ -850,10 +850,8 @@ var Tile = /*#__PURE__*/function () {
     this.iterations = Array((_parseInt = parseInt(options.iterations)) !== null && _parseInt !== void 0 ? _parseInt : 3).fill().map(function (x, i) {
       return i;
     });
-    this.seed = (_options$seed = options.seed) !== null && _options$seed !== void 0 ? _options$seed : 12345;
-    seedrandom(this.seed, {
-      global: true
-    });
+    this.seed = (_options$seed = options.seed) !== null && _options$seed !== void 0 ? _options$seed : 12345; //seedrandom(this.seed, { global: true })
+
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = []; // It is up to the strategy to create the sections
 
@@ -1019,8 +1017,8 @@ var MagicStack = /*#__PURE__*/function () {
     value: function make(options) {
       return new MagicStack(options !== null && options !== void 0 ? options : {
         propabilities: {
-          sea: 0.5,
-          coastal: 0.5 //inland: 0.2
+          sea: 0.8,
+          coastal: 0.2 //inland: 0.2
 
         }
       });
@@ -1253,7 +1251,7 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 2,
+      size: 6,
       seed: 12345
     }
   },
