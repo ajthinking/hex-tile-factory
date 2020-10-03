@@ -162,7 +162,6 @@ export default {
 
         zoom (event) {
             event.evt.preventDefault()
-            console.log(event.evt)
             let speed = 0.01
             let direction = event.evt.wheelDelta > 0 ? 1 : -1
             let min = 0.5

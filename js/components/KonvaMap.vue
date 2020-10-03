@@ -35,7 +35,7 @@
         :config="tileConfig(tile)">
         <v-line :config="backgroundHexagon"></v-line>
         <v-line v-for="(section, index) in tile.sections" :key="index" :config="konvaLandSection(section)"></v-line>
-        <v-text :config="{text: '(' + tile.options.q + ',' +  tile.options.r + ') - ' + tile.options.creation_instance, fontSize: 15}"/>
+        <v-text v-if="$store.state.map.coordinates" :config="{text: '(' + tile.options.q + ',' +  tile.options.r + ') - ' + tile.options.creation_instance, fontSize: 15}"/>
       </v-group>                            
     </v-layer>
   </v-stage>

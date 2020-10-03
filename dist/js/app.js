@@ -526,7 +526,6 @@ var Map = /*#__PURE__*/function () {
 
         for (var r = r1; r <= r2; r++) {
           var constraints = this.constraintsAt(q, r);
-          console.log(q, r, constraints);
           creation_instance++;
           this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().getConstrained(constraints),
@@ -941,11 +940,23 @@ var MagicStack = /*#__PURE__*/function () {
       var type = this.randomBucket(this.options.propabilities);
       if (type == 'sea') return '000000';
       if (type == 'inland') return '111111';
-      return this.randomTopology();
+      return this.randomSparseTopology();
     }
   }, {
     key: "randomTopology",
     value: function randomTopology() {
+      console.log("RANDOM");
+      var configuration = '';
+
+      for (var i = 0; i < 6; i++) {
+        configuration += Math.floor(Math.random() * 3).toString();
+      }
+
+      return configuration;
+    }
+  }, {
+    key: "randomSparseTopology",
+    value: function randomSparseTopology() {
       var configuration = '';
 
       for (var i = 0; i < 6; i++) {
@@ -957,7 +968,7 @@ var MagicStack = /*#__PURE__*/function () {
   }, {
     key: "getConstrained",
     value: function getConstrained(sides) {
-      // let propabilities = {
+      console.log("CONSTRAINED"); // let propabilities = {
       //     coastal: 0.2
       // }
       // if(this.couldBeSea(sides) && Math.random() < 0.5) {
@@ -972,10 +983,11 @@ var MagicStack = /*#__PURE__*/function () {
       // if(choice == 'sea') return '000000'
       // if(choice == 'inland') return '111111'
       // else coastal
+
       var configuration = '';
 
       for (var i = 0; i < 6; i++) {
-        configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random() * 3).toString();
+        configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random() * 2).toString();
       }
 
       return configuration;
@@ -1251,8 +1263,9 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 6,
-      seed: 12345
+      size: 2,
+      seed: 12345,
+      coordinates: false
     }
   },
   getters: {//    getCategoryFormGetters(state){ //take parameter state
@@ -1627,7 +1640,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     zoom: function zoom(event) {
       event.evt.preventDefault();
-      console.log(event.evt);
       var speed = 0.01;
       var direction = event.evt.wheelDelta > 0 ? 1 : -1;
       var min = 0.5;
@@ -33473,20 +33485,22 @@ var render = function() {
                     })
                   }),
                   _vm._v(" "),
-                  _c("v-text", {
-                    attrs: {
-                      config: {
-                        text:
-                          "(" +
-                          tile.options.q +
-                          "," +
-                          tile.options.r +
-                          ") - " +
-                          tile.options.creation_instance,
-                        fontSize: 15
-                      }
-                    }
-                  })
+                  _vm.$store.state.map.coordinates
+                    ? _c("v-text", {
+                        attrs: {
+                          config: {
+                            text:
+                              "(" +
+                              tile.options.q +
+                              "," +
+                              tile.options.r +
+                              ") - " +
+                              tile.options.creation_instance,
+                            fontSize: 15
+                          }
+                        }
+                      })
+                    : _vm._e()
                 ],
                 2
               )

@@ -22,10 +22,11 @@ export class MagicStack {
 
         if(type == 'inland') return '111111'
         
-        return this.randomTopology();
+        return this.randomSparseTopology();
     }
 
     randomTopology() {
+        console.log("RANDOM")
         let configuration = '';
 
         for(let i = 0; i< 6; i++) {
@@ -33,9 +34,20 @@ export class MagicStack {
         }
 
         return configuration;
-    }    
+    }
+
+    randomSparseTopology() {
+        let configuration = '';
+
+        for(let i = 0; i< 6; i++) {
+            configuration += Math.floor(Math.random()*3).toString()
+        }
+
+        return configuration;        
+    }
 
     getConstrained(sides) {
+        console.log("CONSTRAINED")
         // let propabilities = {
         //     coastal: 0.2
         // }
@@ -60,7 +72,7 @@ export class MagicStack {
         let configuration = '';
 
         for(let i = 0; i< 6; i++) {
-            configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random()*3).toString()
+            configuration += sides[i] !== null ? sides[i].toString() : Math.floor(Math.random()*2).toString()
         }
 
         return configuration;
