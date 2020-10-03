@@ -15,9 +15,6 @@ export class Tile {
             parseInt(options.iterations) ?? 3
         ).fill().map((x,i)=>i)
 
-        this.seed = options.seed ?? 12345
-        //seedrandom(this.seed, { global: true })
-
         this.backgroundHexagon = HexagonFactory.make()
 
         this.sections = [] // It is up to the strategy to create the sections

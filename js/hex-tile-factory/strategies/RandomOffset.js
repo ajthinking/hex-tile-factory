@@ -12,6 +12,8 @@ export class RandomOffset {
         this.tile = tile
         this.tile.sections = SectionFactory.make(this.tile.topology)
         this.tile.commit('Added base sections')
+
+
     }
     
     // PUBLIC STATIC API

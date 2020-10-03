@@ -482,6 +482,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
+
 var Map = /*#__PURE__*/function () {
   function Map(options) {
     _classCallCheck(this, Map);
@@ -517,7 +520,7 @@ var Map = /*#__PURE__*/function () {
     key: "populateTiles",
     value: function populateTiles() {
       var radius = 100;
-      var size = this.options.size;
+      var size = parseInt(this.options.size);
       var creation_instance = 0;
 
       for (var q = -size; q <= size; q++) {
@@ -529,10 +532,10 @@ var Map = /*#__PURE__*/function () {
           creation_instance++;
           this.tiles.push(new _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__["Tile"]({
             topology: _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_1__["MagicStack"].make().getConstrained(constraints),
-            seed: 12345,
-            iterations: 3,
+            iterations: this.options.iterations,
             strategy: 'RandomOffset',
             rotation: 0,
+            seed: this.seed,
             q: q,
             r: r,
             x: r * radius * 3 / 2,
@@ -840,7 +843,7 @@ var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrando
 
 var Tile = /*#__PURE__*/function () {
   function Tile(options) {
-    var _parseInt, _options$seed;
+    var _parseInt;
 
     _classCallCheck(this, Tile);
 
@@ -849,8 +852,6 @@ var Tile = /*#__PURE__*/function () {
     this.iterations = Array((_parseInt = parseInt(options.iterations)) !== null && _parseInt !== void 0 ? _parseInt : 3).fill().map(function (x, i) {
       return i;
     });
-    this.seed = (_options$seed = options.seed) !== null && _options$seed !== void 0 ? _options$seed : 12345; //seedrandom(this.seed, { global: true })
-
     this.backgroundHexagon = _HexagonFactory__WEBPACK_IMPORTED_MODULE_0__["HexagonFactory"].make();
     this.sections = []; // It is up to the strategy to create the sections
 
@@ -923,8 +924,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var seedrandom = __webpack_require__(/*! seedrandom */ "./node_modules/seedrandom/index.js");
-
 var MagicStack = /*#__PURE__*/function () {
   function MagicStack() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -935,26 +934,6 @@ var MagicStack = /*#__PURE__*/function () {
   }
 
   _createClass(MagicStack, [{
-    key: "get",
-    value: function get() {
-      var type = this.randomBucket(this.options.propabilities);
-      if (type == 'sea') return '000000';
-      if (type == 'inland') return '111111';
-      return this.randomSparseTopology();
-    }
-  }, {
-    key: "randomTopology",
-    value: function randomTopology() {
-      console.log("RANDOM");
-      var configuration = '';
-
-      for (var i = 0; i < 6; i++) {
-        configuration += Math.floor(Math.random() * 3).toString();
-      }
-
-      return configuration;
-    }
-  }, {
     key: "randomSparseTopology",
     value: function randomSparseTopology() {
       var configuration = '';
@@ -1263,7 +1242,7 @@ __webpack_require__.r(__webpack_exports__);
     map: {
       strategy: 'RandomOffset',
       iterations: 4,
-      size: 2,
+      size: 4,
       seed: 12345,
       coordinates: false
     }
@@ -1303,7 +1282,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hex_tile_factory_Tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../hex-tile-factory/Tile */ "./js/hex-tile-factory/Tile.js");
 /* harmony import */ var _hex_tile_factory_Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hex-tile-factory/Map */ "./js/hex-tile-factory/Map.js");
-/* harmony import */ var _hex_tile_factory_stacks_MagicStack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hex-tile-factory/stacks/MagicStack */ "./js/hex-tile-factory/stacks/MagicStack.js");
 //
 //
 //
@@ -1348,7 +1326,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1367,6 +1349,7 @@ __webpack_require__.r(__webpack_exports__);
       seed: Math.floor(Math.random() * 100000),
       tileStateIndex: null,
       iterations: 4,
+      size: 3,
       city: false,
       grass: false,
       water: false,
@@ -1377,7 +1360,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     map: function map() {
       return new _hex_tile_factory_Map__WEBPACK_IMPORTED_MODULE_1__["Map"]({
-        size: this.$store.state.map.size
+        iterations: this.iterations,
+        size: this.size,
+        seed: this.seed
       });
     },
     strategy: {
@@ -1430,9 +1415,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     randomSeed: function randomSeed() {
       return Math.floor(Math.random() * 10000);
-    },
-    randomize: function randomize() {
-      alert("fix");
     },
     zoom: function zoom(event) {
       event.evt.preventDefault();
@@ -33430,25 +33412,34 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex justify-center mt-8 uppercase font-bold" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer",
-                  on: {
-                    click: function($event) {
-                      return _vm.randomize()
-                    }
+          _c("div", { staticClass: "mt-4 uppercase font-bold" }, [
+            _c(
+              "label",
+              { staticClass: "tracking-wider text-xs text-gray-500" },
+              [_vm._v("Size: " + _vm._s(this.size * 2 + 1))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.size,
+                    expression: "size"
                   }
-                },
-                [_vm._v("Random")]
-              )
-            ]
-          )
+                ],
+                staticClass: "w-full",
+                attrs: { type: "range", min: 1, max: 5 },
+                domProps: { value: _vm.size },
+                on: {
+                  __r: function($event) {
+                    _vm.size = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
         ]
       ),
       _vm._v(" "),

@@ -1,11 +1,13 @@
 import { Tile } from '../hex-tile-factory/Tile'
 import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
+var seedrandom = require('seedrandom');
 
 export class Map {
     constructor(options) {
         this.options = options
         this.tiles = []
-        this.populateTiles()
+
+        this.populateTiles()        
     }
 
     placeTile(tile, q, r) {
@@ -35,7 +37,7 @@ export class Map {
 
         let radius = 100
 
-        let size = this.options.size
+        let size = parseInt(this.options.size)
 
         let creation_instance = 0
 
@@ -46,12 +48,13 @@ export class Map {
 
                 let constraints = this.constraintsAt(q,r)
                 creation_instance++
+
                 this.tiles.push(new Tile({
                     topology: MagicStack.make().getConstrained(constraints),
-                    seed: 12345,
-                    iterations: 3,
+                    iterations: this.options.iterations,
                     strategy: 'RandomOffset',
                     rotation: 0,
+                    seed: this.seed,
                     q,
                     r,
                     x: r * radius * 3/2,

@@ -1,5 +1,3 @@
-var seedrandom = require('seedrandom');
-
 export class MagicStack {    
     constructor(options = {}) {
         this.options = options
@@ -13,27 +11,6 @@ export class MagicStack {
                 //inland: 0.2
             }
         })
-    }
-
-    get() {
-        let type = this.randomBucket(this.options.propabilities)
-
-        if(type == 'sea') return '000000'
-
-        if(type == 'inland') return '111111'
-        
-        return this.randomSparseTopology();
-    }
-
-    randomTopology() {
-        console.log("RANDOM")
-        let configuration = '';
-
-        for(let i = 0; i< 6; i++) {
-            configuration += Math.floor(Math.random()*3).toString()
-        }
-
-        return configuration;
     }
 
     randomSparseTopology() {

@@ -24,9 +24,14 @@
                     >                    
                 </div> 
         </div>
-        <div class="flex justify-center mt-8 uppercase font-bold">
-            <div @click="randomize()" class="text-sm shadow bg-indigo-500 rounded py-2 px-4 hover:bg-indigo-600 cursor-pointer">Random</div>
-        </div>
+        <div class="mt-4 uppercase font-bold">
+            <label class="tracking-wider text-xs text-gray-500">Size: {{ this.size * 2 + 1}}</label>
+                <div class="w-full">
+                    <input v-model="size" type="range" :min="1" :max="5"
+                        class="w-full"
+                    >                    
+                </div> 
+        </div>        
 
     </div>
   <v-stage class="w-full bg-gray-200" :config="configKonva" @wheel="zoom" @mouseup="panning=false" @mousedown="panning=true" @mousemove="pan">
@@ -46,7 +51,6 @@
 
 import { Tile } from '../hex-tile-factory/Tile'
 import { Map } from '../hex-tile-factory/Map'
-import { MagicStack } from '../hex-tile-factory/stacks/MagicStack'
 
 export default {
     data() {
@@ -64,6 +68,7 @@ export default {
             seed: Math.floor(Math.random() * 100000),
             tileStateIndex: null,
             iterations: 4,
+            size: 3,
             city: false,
             grass: false,
             water: false,
@@ -75,7 +80,9 @@ export default {
     computed: {
         map: function() {
             return new Map({
-                size: this.$store.state.map.size,
+                iterations: this.iterations,
+                size: this.size,
+                seed: this.seed
             })
         },
 
@@ -133,10 +140,6 @@ export default {
 
         randomSeed() {
             return Math.floor(Math.random() * 10000)
-        },
-
-        randomize() {
-            alert("fix")
         },
 
         zoom (event) {
